@@ -12,10 +12,10 @@
 <head>
     <meta charset="utf-8"/>
     <title>DX</title>
-    <link rel="stylesheet" href="js/layui/css/layui.css" media="all">
-    <script src="js/jquery-2.1.1.min.js"></script>
-    <script src="js/jquery.min.js"></script>
-    <script src="js/layui/layui.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="<%=basePath%>js/layui/css/layui.css" media="all">
+    <script src="<%=basePath%>js/jquery-2.1.1.min.js"></script>
+    <script src="<%=basePath%>js/jquery.min.js"></script>
+    <script src="<%=basePath%>js/layui/layui.js" charset="utf-8"></script>
 
 </head>
 <style>

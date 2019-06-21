@@ -75,11 +75,17 @@ public class TRSSearchServiceImpl implements TRSSearchService {
         TRSInputRecord record = new TRSInputRecord();
         SimpleDateFormat formatter = new SimpleDateFormat( "yyyy-MM-dd");
         String dbName = "";
+        Date date1 = null;
+        Date date2 = null;
         try {
             if(dataType==0){
                 dbName = "sj_pinpu";
-                Date DDATA_RECBTIME = formatter.parse(pinPu.getDDATA_RECBTIME());
-                Date DDATA_RECETIME = formatter.parse(pinPu.getDDATA_RECETIME());
+                if (!pinPu.getDDATA_RECBTIME().equals("")&&pinPu.getDDATA_RECBTIME()!=null){
+                    date1 = formatter.parse(pinPu.getDDATA_RECBTIME());
+                }
+                if (!pinPu.getDDATA_RECETIME().equals("")&&pinPu.getDDATA_RECETIME()!=null){
+                    date2 = formatter.parse(pinPu.getDDATA_RECETIME());
+                }
                 record.addColumn("SFILENAME",pinPu.getSFILENAME());
                 record.addColumn("NFILELEN",pinPu.getNFILELEN());
                 record.addColumn("SCOMFREQSPAN",pinPu.getSCOMFREQSPAN());
@@ -97,8 +103,8 @@ public class TRSSearchServiceImpl implements TRSSearchService {
                 record.addColumn("NSIGLEVEL",pinPu.getNSIGLEVEL());
                 record.addColumn("NBANDDATA_TYPE",pinPu.getNBANDDATA_TYPE());
                 record.addColumn("NSPECTRUM_DIVISION",pinPu.getNSPECTRUM_DIVISION());
-                record.addColumn("DDATA_RECBTIME",DDATA_RECBTIME);
-                record.addColumn("DDATA_RECETIME",DDATA_RECETIME);
+                record.addColumn("DDATA_RECBTIME",date1);
+                record.addColumn("DDATA_RECETIME",date2);
                 record.addColumn("NDATA_RECDURATION",pinPu.getNDATA_RECDURATION());
                 record.addColumn("SIS_COMPRESS_SAVE",pinPu.getSIS_COMPRESS_SAVE());
                 record.addColumn("SUPLOADER",pinPu.getSUPLOADER());
@@ -106,8 +112,12 @@ public class TRSSearchServiceImpl implements TRSSearchService {
                 record.addColumn("BISTOSHARE",pinPu.getBISTOSHARE());
             }else if(dataType==1){
                 dbName = "sj_mocai";
-                Date DDATA_RECBTIME = formatter.parse(moCai.getDDATA_RECBTIME());
-                Date DDATA_RECETIME = formatter.parse(moCai.getDDATA_RECETIME());
+                if (!moCai.getDDATA_RECBTIME().equals("")&&moCai.getDDATA_RECBTIME()!=null){
+                    date1 = formatter.parse(moCai.getDDATA_RECBTIME());
+                }
+                if (!moCai.getDDATA_RECETIME().equals("")&&moCai.getDDATA_RECETIME()!=null){
+                    date2 = formatter.parse(moCai.getDDATA_RECETIME());
+                }
                 record.addColumn("SFILENAME",moCai.getSFILENAME());
                 record.addColumn("NFILELEN",moCai.getNFILELEN());
                 record.addColumn("SCOMFREQSPAN",moCai.getSCOMFREQSPAN());
@@ -127,8 +137,8 @@ public class TRSSearchServiceImpl implements TRSSearchService {
                 record.addColumn("SSAMPLEGAIN_TYPE",moCai.getSSAMPLEGAIN_TYPE());
                 record.addColumn("SSAMPLEGAIN",moCai.getSSAMPLEGAIN());
                 record.addColumn("NDATA_CARRIERFREQ",moCai.getNDATA_CARRIERFREQ());
-                record.addColumn("DDATA_RECBTIME",DDATA_RECBTIME);
-                record.addColumn("DDATA_RECETIME",DDATA_RECETIME);
+                record.addColumn("DDATA_RECBTIME",date1);
+                record.addColumn("DDATA_RECETIME",date2);
                 record.addColumn("NDATA_RECDURATION",moCai.getNDATA_RECDURATION());
                 record.addColumn("NSAMPLE_BITS",moCai.getNSAMPLE_BITS());
                 record.addColumn("NSAMPLE_VALID_BITS",moCai.getNSAMPLE_VALID_BITS());
@@ -137,8 +147,12 @@ public class TRSSearchServiceImpl implements TRSSearchService {
                 record.addColumn("SUSERCOMMENT",moCai.getSUSERCOMMENT());
             }else if(dataType==2){
                 dbName = "sj_shucai";
-                Date DDATA_RECBTIME = formatter.parse(shuCai.getDDATA_RECBTIME());
-                Date DDATA_RECETIME = formatter.parse(shuCai.getDDATA_RECETIME());
+                if (!shuCai.getDDATA_RECBTIME().equals("")&&shuCai.getDDATA_RECBTIME()!=null){
+                    date1 = formatter.parse(shuCai.getDDATA_RECBTIME());
+                }
+                if (!shuCai.getDDATA_RECETIME().equals("")&&shuCai.getDDATA_RECETIME()!=null){
+                    date2 = formatter.parse(shuCai.getDDATA_RECETIME());
+                }
                 record.addColumn("SFILENAME",shuCai.getSFILENAME());
                 record.addColumn("NFILELEN",shuCai.getNFILELEN());
                 record.addColumn("SCOMFREQSPAN",shuCai.getSCOMFREQSPAN());
@@ -149,8 +163,8 @@ public class TRSSearchServiceImpl implements TRSSearchService {
                 record.addColumn("NCARRIERFREQ",shuCai.getNCARRIERFREQ());
                 record.addColumn("SSQUIPMENT_NAME",shuCai.getSSQUIPMENT_NAME());
                 record.addColumn("SSQUIPMENT_CHAN",shuCai.getSSQUIPMENT_CHAN());
-                record.addColumn("DDATA_RECBTIME",DDATA_RECBTIME);
-                record.addColumn("DDATA_RECETIME",DDATA_RECETIME);
+                record.addColumn("DDATA_RECBTIME",date1);
+                record.addColumn("DDATA_RECETIME",date2);
                 record.addColumn("NDATA_RECDURATION",shuCai.getNDATA_RECDURATION());
                 record.addColumn("SMODULATIONMODE",shuCai.getSMODULATIONMODE());
                 record.addColumn("NMODULATIONRATE",shuCai.getNMODULATIONRATE());
@@ -169,8 +183,12 @@ public class TRSSearchServiceImpl implements TRSSearchService {
                 record.addColumn("SUSERCOMMENT",shuCai.getSUSERCOMMENT());
             }else if(dataType==3){
                 dbName = "sj_xinyuan";
-                Date DDATA_RECBTIME = formatter.parse(xinYuan.getDDATA_RECBTIME());
-                Date DDATA_RECETIME = formatter.parse(xinYuan.getDDATA_RECETIME());
+                if (!xinYuan.getDDATA_RECBTIME().equals("")&&xinYuan.getDDATA_RECBTIME()!=null){
+                    date1 = formatter.parse(xinYuan.getDDATA_RECBTIME());
+                }
+                if (!xinYuan.getDDATA_RECETIME().equals("")&&xinYuan.getDDATA_RECETIME()!=null){
+                    date2 = formatter.parse(xinYuan.getDDATA_RECETIME());
+                }
                 record.addColumn("SFILENAME",xinYuan.getSFILENAME());
                 record.addColumn("NFILELEN",xinYuan.getNFILELEN());
                 record.addColumn("SCOMFREQSPAN",xinYuan.getSCOMFREQSPAN());
@@ -182,16 +200,20 @@ public class TRSSearchServiceImpl implements TRSSearchService {
                 record.addColumn("SSOURCETYPE",xinYuan.getSSOURCETYPE());
                 record.addColumn("SSOURCECODETYPE",xinYuan.getSSOURCECODETYPE());
                 record.addColumn("NSOURCERATE",xinYuan.getNSOURCERATE());
-                record.addColumn("DDATA_RECBTIME",DDATA_RECBTIME);
-                record.addColumn("DDATA_RECETIME",DDATA_RECETIME);
+                record.addColumn("DDATA_RECBTIME",date1);
+                record.addColumn("DDATA_RECETIME",date2);
                 record.addColumn("NDATA_RECDURATION",xinYuan.getNDATA_RECDURATION());
                 record.addColumn("SIS_COMPRESS_SAVE",xinYuan.getSIS_COMPRESS_SAVE());
                 record.addColumn("SUPLOADER",xinYuan.getSUPLOADER());
                 record.addColumn("SUSERCOMMENT",xinYuan.getSUSERCOMMENT());
             }else if(dataType==4){
                 dbName = "sj_wangluo";
-                Date DDATA_RECBTIME = formatter.parse(wangLuo.getDDATA_RECBTIME());
-                Date DDATA_RECETIME = formatter.parse(wangLuo.getDDATA_RECETIME());
+                if (!wangLuo.getDDATA_RECBTIME().equals("")&&wangLuo.getDDATA_RECBTIME()!=null){
+                    date1 = formatter.parse(wangLuo.getDDATA_RECBTIME());
+                }
+                if (!wangLuo.getDDATA_RECETIME().equals("")&&wangLuo.getDDATA_RECETIME()!=null){
+                    date2 = formatter.parse(wangLuo.getDDATA_RECETIME());
+                }
                 record.addColumn("SFILENAME",wangLuo.getSFILENAME());
                 record.addColumn("NFILELEN",wangLuo.getNFILELEN());
                 record.addColumn("SCOMFREQSPAN",wangLuo.getSCOMFREQSPAN());
@@ -200,8 +222,8 @@ public class TRSSearchServiceImpl implements TRSSearchService {
                 record.addColumn("SPOLARIZATION_TYPE",wangLuo.getSPOLARIZATION_TYPE());
                 record.addColumn("STRANSPONDR",wangLuo.getSTRANSPONDR());
                 record.addColumn("NCARRIERFREQ",wangLuo.getNCARRIERFREQ());
-                record.addColumn("DDATA_RECBTIME",DDATA_RECBTIME);
-                record.addColumn("DDATA_RECETIME",DDATA_RECETIME);
+                record.addColumn("DDATA_RECBTIME",date1);
+                record.addColumn("DDATA_RECETIME",date2);
                 record.addColumn("NDATA_RECDURATION",wangLuo.getNDATA_RECDURATION());
                 record.addColumn("SMODULATIONMODE",wangLuo.getSMODULATIONMODE());
                 record.addColumn("NMODULATIONRATE",wangLuo.getNMODULATIONRATE());
@@ -221,7 +243,9 @@ public class TRSSearchServiceImpl implements TRSSearchService {
                 record.addColumn("SUSERCOMMENT",wangLuo.getSUSERCOMMENT());
             }else if(dataType==5){
                 dbName = "sj_erjinzhi";
-                Date DUPLOADERTIME = formatter.parse(erJinZhi.getDUPLOADERTIME());
+                if (!erJinZhi.getDUPLOADERTIME().equals("")&&erJinZhi.getDUPLOADERTIME()!=null){
+                    date1 = formatter.parse(erJinZhi.getDUPLOADERTIME());
+                }
                 record.addColumn("SFILENAME",erJinZhi.getSFILENAME());
                 record.addColumn("NFILELEN",erJinZhi.getNFILELEN());
                 record.addColumn("SPROGTYPE",erJinZhi.getSPROGTYPE());
@@ -230,29 +254,33 @@ public class TRSSearchServiceImpl implements TRSSearchService {
                 record.addColumn("SEQUIPMENT",erJinZhi.getSEQUIPMENT());
                 record.addColumn("SPROJECTNAME",erJinZhi.getSPROJECTNAME());
                 record.addColumn("SUPLOADER",erJinZhi.getSUPLOADER());
-                record.addColumn("DUPLOADERTIME",DUPLOADERTIME);
+                record.addColumn("DUPLOADERTIME",date1);
                 record.addColumn("SUSERCOMMENT",erJinZhi.getSUSERCOMMENT());
             }else if(dataType==6){
                 dbName = "sj_fenxi";
-                Date DUPLOADERTIME = formatter.parse(fenXi.getDUPLOADERTIME());
+                if (!fenXi.getDUPLOADERTIME().equals("")&&fenXi.getDUPLOADERTIME()!=null){
+                    date1 = formatter.parse(fenXi.getDUPLOADERTIME());
+                }
                 record.addColumn("SFILENAME",fenXi.getSFILENAME());
                 record.addColumn("NFILELEN",fenXi.getNFILELEN());
                 record.addColumn("SPROCESSORTYPE",fenXi.getSPROCESSORTYPE());
                 record.addColumn("SEQUIPMENT",fenXi.getSEQUIPMENT());
                 record.addColumn("SPROJECTNAME",fenXi.getSPROJECTNAME());
                 record.addColumn("SUPLOADER",fenXi.getSUPLOADER());
-                record.addColumn("DUPLOADERTIME",DUPLOADERTIME);
+                record.addColumn("DUPLOADERTIME",date1);
                 record.addColumn("SUSERCOMMENT",fenXi.getSUSERCOMMENT());
             }else if(dataType==7){
                 dbName = "sj_chengxu";
-                Date DUPLOADERTIME = formatter.parse(chengXu.getDUPLOADERTIME());
+                if (!chengXu.getDUPLOADERTIME().equals("")&&chengXu.getDUPLOADERTIME()!=null){
+                    date1 = formatter.parse(chengXu.getDUPLOADERTIME());
+                }
                 record.addColumn("SFILENAME",chengXu.getSFILENAME());
                 record.addColumn("NFILELEN",chengXu.getNFILELEN());
                 record.addColumn("SPROGTYPE",chengXu.getSPROGTYPE());
                 record.addColumn("SPROJECTNAME",chengXu.getSPROJECTNAME());
                 record.addColumn("SIS_COMPRESS_SAVE",chengXu.getSIS_COMPRESS_SAVE());
                 record.addColumn("SUPLOADER",chengXu.getSUPLOADER());
-                record.addColumn("DUPLOADERTIME",DUPLOADERTIME);
+                record.addColumn("DUPLOADERTIME",date1);
                 record.addColumn("SUSERCOMMENT",chengXu.getSUSERCOMMENT());
             }
             recordList.add(record);
