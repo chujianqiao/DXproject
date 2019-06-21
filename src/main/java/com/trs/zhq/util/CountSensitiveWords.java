@@ -1,3 +1,4 @@
+/*
 package com.trs.zhq.util;
 
 import com.eprobiti.trs.TRSConnection;
@@ -18,7 +19,8 @@ public class CountSensitiveWords {
     TRSConnection conn = null;
     TRSResultSet rs = null;
 
-    /**
+    */
+/**
      * 查找敏感词的相关信息的详细信息
      *
      * @param tableName
@@ -27,7 +29,8 @@ public class CountSensitiveWords {
      * @param
      * @return 详细信息
      * @throws IOException
-     */
+     *//*
+
     public List searchMessage(String tableName, String sensitiveWords, boolean isContinue) throws IOException {
         long num = 0;
         conn = db.getDBConnection();
@@ -190,12 +193,14 @@ public class CountSensitiveWords {
         return list;
     }
 
-    /**
+    */
+/**
      * 获取相应目录下文本中所有的敏感词
      *
      * @param filePath
      * @return 文本中所有的敏感词
-     */
+     *//*
+
     public static String getSensitiveWords(String filePath) {
         String sensitiveWords = "";
         FileReader reader = null;
@@ -221,12 +226,14 @@ public class CountSensitiveWords {
         return sensitiveWords;
     }
 
-    /**
+    */
+/**
      * 每条记录出现相同敏感词的次数
      *
      * @param searchWords
      * @return 相同敏感词记录
-     */
+     *//*
+
     public static String sameWordNums(String searchWords) {
         String[] string = searchWords.split(",");
         Map<String, Integer> map = new HashMap<String, Integer>();
@@ -272,9 +279,11 @@ public class CountSensitiveWords {
         return whiteMap;
     }
 
-    /**
+    */
+/**
      * 这个主方法是为了生成疑似信息详细列表
-     */
+     *//*
+
     public static void detail(String username, Boolean isAdmin) throws IOException {
         Map<String, Boolean> whiteMap = filterWhiteList(username);
         CountSensitiveWords csw = new CountSensitiveWords();
@@ -466,11 +475,13 @@ public class CountSensitiveWords {
         }
     }
 
-    /**
+    */
+/**
      * 分网站统计
      *
      * @throws IOException
-     */
+     *//*
+
     public static void countBySize() {
         String serverTable = DBConfig.serverTable;
         String[] filePath = {DBConfig.biaodashi};
@@ -497,3 +508,4 @@ public class CountSensitiveWords {
         CreateTable.create(serverTable, columnname, hashMapSpecialAll);
     }
 }
+*/

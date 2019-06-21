@@ -1,6 +1,5 @@
 package com.trs.zhq.entity;
 
-import java.util.Date;
 
 public class XinYuan {
     private String SFILENAME;

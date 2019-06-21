@@ -1,7 +1,7 @@
+/*
 package com.trs.zhq.util;
 
 import com.trs.zhq.config.DBConfig;
-import com.trs.zhq.entity.SpecialWord;
 import org.apache.poi.xssf.usermodel.XSSFRow;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
@@ -117,3 +117,4 @@ public class CreateTable {
         }
     }
 }
+*/

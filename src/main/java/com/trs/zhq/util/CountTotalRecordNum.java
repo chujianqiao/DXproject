@@ -1,3 +1,4 @@
+/*
 package com.trs.zhq.util;
 
 import com.eprobiti.trs.TRSConnection;
@@ -12,9 +13,11 @@ public class CountTotalRecordNum {
     static TRSConnection conn = null;
     static TRSResultSet rs = null;
 
-    /*
+    */
+/*
      * 获取所有的记录数
-     */
+     *//*
+
     public static String getDataNumAll(String tableName) {
         long num = 0;
         String column = ConcatSiteName.getColumnName(tableName);
@@ -33,12 +36,14 @@ public class CountTotalRecordNum {
         return num + "";
     }
 
-    /**
+    */
+/**
      * 获取指定网站的数量
      *
      * @param tableName
      * @return
-     */
+     *//*
+
     public static String getColumnNum(String tableName, String sitename) {
         long num = 0;
         conn = db.getDBConnection();
@@ -69,3 +74,4 @@ public class CountTotalRecordNum {
     }
 
 }
+*/
