@@ -68,6 +68,16 @@
         <a href="<%=basePath%>toImport?dataType=6" class="layui-btn layui-btn-normal layui-btn-radius">分析工程文件数据</a>
         <a href="<%=basePath%>toImport?dataType=7" class="layui-btn layui-btn-normal layui-btn-radius">程序数据</a>
     </div>
+
+    <form id="fileForm" name="fileForm" enctype="multipart/form-data">
+        <input class="form-control" type="file" name="file" id="file"/>
+        <button id="btn" type="button">提交</button>
+    </form>
+    <div class="progress">
+        <div id="progress" class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 1%;">
+            0%
+        </div>
+    </div>
 </div>
 
 </body>
@@ -107,4 +117,43 @@
 
     }
 
+</script>
+
+<script>
+    $(function () {
+        $("#btn").on("click",function () {
+            var xhr = new XMLHttpRequest();
+            xhr.upload.addEventListener("progress", uploadProgress, false);
+            xhr.addEventListener("load", uploadComplete, false);
+            xhr.addEventListener("error", uploadFailed, false);
+            xhr.addEventListener("abort", uploadCanceled, false);
+            xhr.open("POST", "up");
+            xhr.send(new FormData($("#fileForm")[0]));
+        });
+
+    });
+    function uploadProgress(evt) {
+        if (evt.lengthComputable) {
+            var percentComplete = Math.round(evt.loaded * 100 / evt.total);
+            var progress = $("#progress");
+            progress.css("width",percentComplete + "%");
+            progress.html(percentComplete + "%");
+
+        } else {
+            $("#progress").html("无法计算");
+        }
+    }
+
+    function uploadComplete(evt) {
+        /* 当服务器响应后，这个事件就会被触发 */
+        alert("上传成功：" + evt.target.responseText);
+    }
+
+    function uploadFailed(evt) {
+        alert("上传失败：" + "上传文件发生了错误");
+    }
+
+    function uploadCanceled(evt) {
+        alert("上传取消：" + "上传被用户取消或者浏览器断开连接");
+    }
 </script>
