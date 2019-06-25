@@ -17,6 +17,7 @@ import javax.servlet.http.HttpSession;
 import java.io.*;
 import java.net.URLEncoder;
 import java.util.List;
+import java.util.UUID;
 
 
 @Controller
@@ -167,6 +168,7 @@ public class IndexController {
 
     @RequestMapping("toImport")
     public String toImport(int dataType, HttpServletRequest request) {
+        String TRSID = UUID.randomUUID().toString().replaceAll("-","");
         String fieldString = "";
         if (dataType == 0) {
             fieldString = SelectFiledUtil.SJ_PINPU_FIELD;
@@ -187,11 +189,12 @@ public class IndexController {
         }
         request.setAttribute("fieldString", fieldString);
         request.setAttribute("dataType", dataType);
+        request.setAttribute("TRSID", TRSID);
         return "importContent";
     }
 
     @RequestMapping("importData")
-    public String importData(int dataType, ChengXu chengXu, ErJinZhi erJinZhi, FenXi fenXi,
+    public String importData(String TRSID, int dataType, ChengXu chengXu, ErJinZhi erJinZhi, FenXi fenXi,
                              MoCai moCai, PinPu pinPu, ShuCai shuCai, WangLuo wangLuo,
                              XinYuan xinYuan, HttpServletRequest request) throws Exception {
         String flag = trsSearchService.insertData(chengXu, erJinZhi, fenXi, moCai, pinPu, shuCai, wangLuo, xinYuan, dataType);

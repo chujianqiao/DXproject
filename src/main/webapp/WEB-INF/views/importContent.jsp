@@ -50,7 +50,7 @@
             </a>
         </button>
     </div>--%>
-    <form class="layui-form layui-form-pane" action="<%=basePath%>importData" target="target">
+    <form class="layui-form layui-form-pane" action="<%=basePath%>importData" target="target" enctype="multipart/form-data">
         <input hidden name="dataType" value="${dataType}">
         <div class="layui-form-item">
             <label class="layui-form-label">SFILENAME</label>
@@ -591,12 +591,29 @@
             </div>
         </c:if>
         <div class="layui-form-item">
+            <label class="layui-form-label" style="width: 700px">
+        <input class="form-control" type="file" name="file" id="file" style="float: left"/>
+            </label>
+        </div>
+        <div class="progress">
+            <div id="progress" class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 1%;">
+                0%
+            </div>
+        </div>
+        <input hidden id="TRSID" name="TRSID" value="${TRSID}" >
+        <div class="layui-form-item">
             <div class="layui-input-block">
                 <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
                 <button type="reset" class="layui-btn layui-btn-primary">重置</button>
             </div>
         </div>
+
     </form>
+    <%--<form id="fileForm" name="fileForm" enctype="multipart/form-data">
+
+        <button id="btn" type="button">提交</button>
+    </form>--%>
+
     <iframe name="target" id="target" width="800px" height="100px" hidden></iframe>
 </div>
 </div>
@@ -644,4 +661,42 @@
             elem: "[name='DDATA_RECETIME']" //指定元素
         });
     });
+</script>
+<script>
+    $(function () {
+        $("#btn").on("click",function () {
+            var xhr = new XMLHttpRequest();
+            xhr.upload.addEventListener("progress", uploadProgress, false);
+            xhr.addEventListener("load", uploadComplete, false);
+            xhr.addEventListener("error", uploadFailed, false);
+            xhr.addEventListener("abort", uploadCanceled, false);
+            xhr.open("POST", "up");
+            xhr.send(new FormData($("#fileForm")[0]));
+        });
+
+    });
+    function uploadProgress(evt) {
+        if (evt.lengthComputable) {
+            var percentComplete = Math.round(evt.loaded * 100 / evt.total);
+            var progress = $("#progress");
+            progress.css("width",percentComplete + "%");
+            progress.html(percentComplete + "%");
+
+        } else {
+            $("#progress").html("无法计算");
+        }
+    }
+
+    function uploadComplete(evt) {
+        /* 当服务器响应后，这个事件就会被触发 */
+        alert("上传成功：" + evt.target.responseText);
+    }
+
+    function uploadFailed(evt) {
+        alert("上传失败：" + "上传文件发生了错误");
+    }
+
+    function uploadCanceled(evt) {
+        alert("上传取消：" + "上传被用户取消或者浏览器断开连接");
+    }
 </script>
