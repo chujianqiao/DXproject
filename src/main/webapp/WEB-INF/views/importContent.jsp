@@ -108,7 +108,7 @@
             <div class="layui-form-item">
                 <label class="layui-form-label">NFILELEN</label>
                 <div class="layui-input-inline" style="width: 500px">
-                    <input type="text" id="NFILELEN" name="NFILELEN"  lay-verify="required" placeholder="请输入NFILELEN" autocomplete="off" class="layui-input">
+                    <input type="text" id="NFILELEN" name="NFILELEN"  lay-verify="required|number" placeholder="请输入NFILELEN" autocomplete="off" class="layui-input">
                 </div>
                 <div class="layui-form-mid" style="color: red;">*必填</div>
             </div>
@@ -177,7 +177,7 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label">NCARRIERFREQ</label>
                     <div class="layui-input-block">
-                        <input type="text" name="NCARRIERFREQ" placeholder="请输入NCARRIERFREQ" autocomplete="off" class="layui-input">
+                        <input type="text" name="NCARRIERFREQ" lay-verify="number" placeholder="请输入NCARRIERFREQ" autocomplete="off" class="layui-input">
                     </div>
                 </div>
             </c:if>
@@ -185,7 +185,7 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label">NCARRIERFREQ</label>
                     <div class="layui-input-inline" style="width: 500px">
-                        <input type="text" name="NCARRIERFREQ"  lay-verify="required" placeholder="请输入NCARRIERFREQ" autocomplete="off" class="layui-input">
+                        <input type="text" name="NCARRIERFREQ"  lay-verify="required|number" placeholder="请输入NCARRIERFREQ" autocomplete="off" class="layui-input">
                     </div>
                     <div class="layui-form-mid" style="color: red;">*必填</div>
                 </div>
@@ -213,7 +213,7 @@
             <div class="layui-form-item">
                 <label class="layui-form-label">NSOURCERATE</label>
                 <div class="layui-input-block">
-                    <input type="text" name="NSOURCERATE" placeholder="请输入NSOURCERATE" autocomplete="off" class="layui-input">
+                    <input type="text" name="NSOURCERATE" lay-verify="number" placeholder="请输入NSOURCERATE" autocomplete="off" class="layui-input">
                 </div>
             </div>
         </c:if>
@@ -237,7 +237,7 @@
             <div class="layui-form-item">
                 <label class="layui-form-label">NCARRIER_FREQ</label>
                 <div class="layui-input-inline" style="width: 500px">
-                    <input type="text" name="NCARRIER_FREQ"  lay-verify="required" placeholder="请输入NCARRIER_FREQ" autocomplete="off" class="layui-input">
+                    <input type="text" name="NCARRIER_FREQ"  lay-verify="required|number" placeholder="请输入NCARRIER_FREQ" autocomplete="off" class="layui-input">
                 </div>
                 <div class="layui-form-mid" style="color: red;">*必填</div>
             </div>
@@ -246,7 +246,7 @@
             <div class="layui-form-item">
                 <label class="layui-form-label">NIF_FREQ</label>
                 <div class="layui-input-inline" style="width: 500px">
-                    <input type="text" name="NIF_FREQ"  lay-verify="required" placeholder="请输入NIF_FREQ" autocomplete="off" class="layui-input">
+                    <input type="text" name="NIF_FREQ"  lay-verify="required|number" placeholder="请输入NIF_FREQ" autocomplete="off" class="layui-input">
                 </div>
                 <div class="layui-form-mid" style="color: red;">*必填</div>
             </div>
@@ -255,7 +255,7 @@
             <div class="layui-form-item">
                 <label class="layui-form-label">NCARRIER_BAND</label>
                 <div class="layui-input-inline" style="width: 500px">
-                    <input type="text" name="NCARRIER_BAND"  lay-verify="required" placeholder="请输入NCARRIER_BAND" autocomplete="off" class="layui-input">
+                    <input type="text" name="NCARRIER_BAND"  lay-verify="required|number" placeholder="请输入NCARRIER_BAND" autocomplete="off" class="layui-input">
                 </div>
                 <div class="layui-form-mid" style="color: red;">*必填</div>
             </div>
@@ -264,7 +264,7 @@
             <div class="layui-form-item">
                 <label class="layui-form-label">NDATA_SAMPLERATE</label>
                 <div class="layui-input-inline" style="width: 500px">
-                    <input type="text" name="NDATA_SAMPLERATE"  lay-verify="required" placeholder="请输入NDATA_SAMPLERATE" autocomplete="off" class="layui-input">
+                    <input type="text" name="NDATA_SAMPLERATE"  lay-verify="required|number" placeholder="请输入NDATA_SAMPLERATE" autocomplete="off" class="layui-input">
                 </div>
                 <div class="layui-form-mid" style="color: red;">*必填</div>
             </div>
@@ -297,7 +297,7 @@
             <div class="layui-form-item">
                 <label class="layui-form-label">SSAMPLEGAIN</label>
                 <div class="layui-input-block">
-                    <input type="text" name="SSAMPLEGAIN" placeholder="请输入SSAMPLEGAIN" autocomplete="off" class="layui-input">
+                    <input type="text" name="SSAMPLEGAIN" lay-verify="number" placeholder="请输入SSAMPLEGAIN" autocomplete="off" class="layui-input">
                 </div>
             </div>
         </c:if>
@@ -305,7 +305,7 @@
             <div class="layui-form-item">
                 <label class="layui-form-label">NDATA_CARRIERFREQ</label>
                 <div class="layui-input-block">
-                    <input type="text" name="NDATA_CARRIERFREQ" placeholder="请输入NDATA_CARRIERFREQ" autocomplete="off" class="layui-input">
+                    <input type="text" name="NDATA_CARRIERFREQ" lay-verify="number" placeholder="请输入NDATA_CARRIERFREQ" autocomplete="off" class="layui-input">
                 </div>
             </div>
         </c:if>
@@ -313,7 +313,7 @@
             <div class="layui-form-item">
                 <label class="layui-form-label">NFREQ_START</label>
                 <div class="layui-input-inline" style="width: 500px">
-                    <input type="text" name="NFREQ_START"  lay-verify="required" placeholder="请输入NFREQ_START" autocomplete="off" class="layui-input">
+                    <input type="text" name="NFREQ_START"  lay-verify="required|number" placeholder="请输入NFREQ_START" autocomplete="off" class="layui-input">
                 </div>
                 <div class="layui-form-mid" style="color: red;">*必填</div>
             </div>
@@ -322,7 +322,7 @@
             <div class="layui-form-item">
                 <label class="layui-form-label">NFREQ_STOP</label>
                 <div class="layui-input-inline" style="width: 500px">
-                    <input type="text" name="NFREQ_STOP"  lay-verify="required" placeholder="请输入NFREQ_STOP" autocomplete="off" class="layui-input">
+                    <input type="text" name="NFREQ_STOP"  lay-verify="required|number" placeholder="请输入NFREQ_STOP" autocomplete="off" class="layui-input">
                 </div>
                 <div class="layui-form-mid" style="color: red;">*必填</div>
             </div>
@@ -331,7 +331,7 @@
             <div class="layui-form-item">
                 <label class="layui-form-label">NBANDDATA_SPLRATE</label>
                 <div class="layui-input-inline" style="width: 500px">
-                    <input type="text" name="NBANDDATA_SPLRATE"  lay-verify="required" placeholder="请输入NBANDDATA_SPLRATE" autocomplete="off" class="layui-input">
+                    <input type="text" name="NBANDDATA_SPLRATE"  lay-verify="required|number" placeholder="请输入NBANDDATA_SPLRATE" autocomplete="off" class="layui-input">
                 </div>
                 <div class="layui-form-mid" style="color: red;">*必填</div>
             </div>
@@ -340,7 +340,7 @@
             <div class="layui-form-item">
                 <label class="layui-form-label">NBANDDATA_FFTNUM</label>
                 <div class="layui-input-inline" style="width: 500px">
-                    <input type="text" name="NBANDDATA_FFTNUM"  lay-verify="required" placeholder="请输入NBANDDATA_FFTNUM" autocomplete="off" class="layui-input">
+                    <input type="text" name="NBANDDATA_FFTNUM"  lay-verify="required|number" placeholder="请输入NBANDDATA_FFTNUM" autocomplete="off" class="layui-input">
                 </div>
                 <div class="layui-form-mid" style="color: red;">*必填</div>
             </div>
@@ -349,7 +349,7 @@
             <div class="layui-form-item">
                 <label class="layui-form-label">NSIGLEVEL</label>
                 <div class="layui-input-block">
-                    <input type="text" name="NSIGLEVEL" placeholder="请输入NSIGLEVEL" autocomplete="off" class="layui-input">
+                    <input type="text" name="NSIGLEVEL" lay-verify="number" placeholder="请输入NSIGLEVEL" autocomplete="off" class="layui-input">
                 </div>
             </div>
         </c:if>
@@ -357,7 +357,7 @@
             <div class="layui-form-item">
                 <label class="layui-form-label">NBANDDATA_TYPE</label>
                 <div class="layui-input-inline" style="width: 500px">
-                    <input type="text" name="NBANDDATA_TYPE"  lay-verify="required" placeholder="请输入NBANDDATA_TYPE" autocomplete="off" class="layui-input">
+                    <input type="text" name="NBANDDATA_TYPE"  lay-verify="required|number" placeholder="请输入NBANDDATA_TYPE" autocomplete="off" class="layui-input">
                 </div>
                 <div class="layui-form-mid" style="color: red;">*必填</div>
             </div>
@@ -366,7 +366,7 @@
             <div class="layui-form-item">
                 <label class="layui-form-label">NSPECTRUM_DIVISION</label>
                 <div class="layui-input-block">
-                    <input type="text" name="NSPECTRUM_DIVISION" placeholder="请输入NSPECTRUM_DIVISION" autocomplete="off" class="layui-input">
+                    <input type="text" name="NSPECTRUM_DIVISION" lay-verify="number" placeholder="请输入NSPECTRUM_DIVISION" autocomplete="off" class="layui-input">
                 </div>
             </div>
         </c:if>
@@ -390,7 +390,7 @@
             <div class="layui-form-item">
                 <label class="layui-form-label">NDATA_RECDURATION</label>
                 <div class="layui-input-block">
-                    <input type="text" name="NDATA_RECDURATION" placeholder="请输入NDATA_RECDURATION" autocomplete="off" class="layui-input">
+                    <input type="text" name="NDATA_RECDURATION" lay-verify="number" placeholder="请输入NDATA_RECDURATION" autocomplete="off" class="layui-input">
                 </div>
             </div>
         </c:if>
@@ -398,7 +398,7 @@
             <div class="layui-form-item">
                 <label class="layui-form-label">NSAMPLE_BITS</label>
                 <div class="layui-input-block">
-                    <input type="text" name="NSAMPLE_BITS" placeholder="请输入NSAMPLE_BITS" autocomplete="off" class="layui-input">
+                    <input type="text" name="NSAMPLE_BITS" lay-verify="number" placeholder="请输入NSAMPLE_BITS" autocomplete="off" class="layui-input">
                 </div>
             </div>
         </c:if>
@@ -406,7 +406,7 @@
             <div class="layui-form-item">
                 <label class="layui-form-label">NSAMPLE_VALID_BITS</label>
                 <div class="layui-input-block">
-                    <input type="text" name="NSAMPLE_VALID_BITS" placeholder="请输入NSAMPLE_VALID_BITS" autocomplete="off" class="layui-input">
+                    <input type="text" name="NSAMPLE_VALID_BITS" lay-verify="number" placeholder="请输入NSAMPLE_VALID_BITS" autocomplete="off" class="layui-input">
                 </div>
             </div>
         </c:if>
@@ -434,7 +434,7 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label">NMODULATIONRATE</label>
                     <div class="layui-input-inline" style="width: 500px">
-                        <input type="text" name="NMODULATIONRATE" lay-verify="required" placeholder="请输入NMODULATIONRATE" autocomplete="off" class="layui-input">
+                        <input type="text" name="NMODULATIONRATE" lay-verify="required|number" placeholder="请输入NMODULATIONRATE" autocomplete="off" class="layui-input">
                     </div>
                     <div class="layui-form-mid" style="color: red;">*必填</div>
                 </div>
@@ -443,7 +443,7 @@
                 <div class="layui-form-item">
                     <label class="layui-form-label">NMODULATIONRATE</label>
                     <div class="layui-input-block">
-                        <input type="text" name="NMODULATIONRATE" placeholder="请输入NMODULATIONRATE" autocomplete="off" class="layui-input">
+                        <input type="text" name="NMODULATIONRATE" lay-verify="number" placeholder="请输入NMODULATIONRATE" autocomplete="off" class="layui-input">
                     </div>
                 </div>
             </c:if>
@@ -500,7 +500,7 @@
             <div class="layui-form-item">
                 <label class="layui-form-label">NINFORATE</label>
                 <div class="layui-input-block">
-                    <input type="text" name="NINFORATE" placeholder="请输入NINFORATE" autocomplete="off" class="layui-input">
+                    <input type="text" name="NINFORATE" lay-verify="number" placeholder="请输入NINFORATE" autocomplete="off" class="layui-input">
                 </div>
             </div>
         </c:if>
@@ -525,7 +525,7 @@
             <div class="layui-form-item">
                 <label class="layui-form-label">NDEMOD_ERR</label>
                 <div class="layui-input-block">
-                    <input type="text" name="NDEMOD_ERR" placeholder="请输入NDEMOD_ERR" autocomplete="off" class="layui-input">
+                    <input type="text" name="NDEMOD_ERR" lay-verify="number" placeholder="请输入NDEMOD_ERR" autocomplete="off" class="layui-input">
                 </div>
             </div>
         </c:if>
@@ -533,7 +533,7 @@
             <div class="layui-form-item">
                 <label class="layui-form-label">NDECOD_ERR</label>
                 <div class="layui-input-block">
-                    <input type="text" name="NDECOD_ERR" placeholder="请输入NDECOD_ERR" autocomplete="off" class="layui-input">
+                    <input type="text" name="NDECOD_ERR" lay-verify="number" placeholder="请输入NDECOD_ERR" autocomplete="off" class="layui-input">
                 </div>
             </div>
         </c:if>
@@ -559,7 +559,7 @@
             <div class="layui-form-item">
                 <label class="layui-form-label">SUPLOADER</label>
                 <div class="layui-input-inline" style="width: 500px">
-                    <input type="text" name="SUPLOADER"  lay-verify="required" placeholder="请输入SUPLOADER" autocomplete="off" class="layui-input">
+                    <input type="text" name="SUPLOADER"  lay-verify="required|number" placeholder="请输入SUPLOADER" autocomplete="off" class="layui-input">
                 </div>
                 <div class="layui-form-mid" style="color: red;">*必填</div>
             </div>
@@ -625,14 +625,10 @@
         //监听提交
         form.on('submit(formDemo)', function(data){
             //layer.msg(JSON.stringify(data.field));
-            var re =  /^[0-9]+.?[0-9]*/;//判断字符串是否为数字//判断正整数/[1−9]+[0−9]∗]∗/
-            if (isNaN($("#NFILELEN").val())==true) {
-                layer.msg("NFILELEN请正确输入数字");
-                return false;
-            }else {
-                layer.msg("正在上传。");
-                return true;
-            }
+
+            layer.msg("正在上传。");
+            return true;
+
 
         });
     });

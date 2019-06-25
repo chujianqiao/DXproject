@@ -4,6 +4,7 @@ import com.trs.hybase.client.TRSRecord;
 import com.trs.zhq.entity.*;
 import com.trs.zhq.service.ConfigService;
 import com.trs.zhq.service.TRSSearchService;
+import com.trs.zhq.service.UserService;
 import com.trs.zhq.util.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -32,10 +33,31 @@ public class IndexController {
     @Autowired
     private TRSSearchService trsSearchService;
 
+    @Autowired
+    private UserService userService;
+
 
     @RequestMapping("login")
     public String login() {
         return "login";
+    }
+
+    @RequestMapping("toRegister")
+    public String toRegister() {
+        return "register";
+    }
+
+    @RequestMapping("register")
+    public String register(Users user) {
+        String flag = userService.insertUser(user);
+        if (flag.equals("success")) {
+            request.setAttribute("flag", "register");
+        }else if (flag.equals("same")){
+            request.setAttribute("flag", "same");
+        }else {
+            request.setAttribute("flag", "error");
+        }
+        return "returnFlag";
     }
 
     @RequestMapping({ "toLogin" })

@@ -31,6 +31,20 @@
             parent.layer.open({
                 content: "上传成功"
             });
+        }else if (${flag=="register"}){
+            parent.layer.open({
+                content: "注册成功"
+            });
+            window.parent.location.href="<%=basePath %>login";
+
+        }else if (${flag=="same"}){
+            parent.layer.open({
+                content: "用户名重复，请重新输入"
+            });
+        }else if (${flag=="error"}){
+            parent.layer.open({
+                content: "注册失败"
+            });
         }else {
             parent.layer.open({
                 content: "上传失败"

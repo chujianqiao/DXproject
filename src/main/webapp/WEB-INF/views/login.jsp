@@ -76,6 +76,8 @@
                         </div>
                         <div class="layui-form-item" id="login_btn">
                             <input value="登录" class="layui-btn" lay-filter="login" id="yidai_login" style="width:100%;" onclick="login()" type="button">
+                            <br><br>
+                            <input value="注册" class="layui-btn" lay-filter="register" id="yidai_register" style="width:100%;" onclick="register()" type="button">
                         </div>
                     </form>
                 </div>
@@ -107,6 +109,10 @@
         });
 
     });
+
+    function register(){
+        window.location.href=contentp_path+'toRegister';
+    }
 
     function login(){
         var username = $("#username").val();
