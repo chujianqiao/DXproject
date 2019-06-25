@@ -8,6 +8,7 @@ import com.trs.zhq.service.UserService;
 import com.trs.zhq.util.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -19,6 +20,7 @@ import javax.servlet.http.HttpSession;
 import java.io.*;
 import java.net.URLEncoder;
 import java.util.List;
+import java.util.Properties;
 import java.util.UUID;
 
 
@@ -217,10 +219,23 @@ public class IndexController {
     }
 
     @RequestMapping("importData")
-    public String importData(String TRSID, int dataType, ChengXu chengXu, ErJinZhi erJinZhi, FenXi fenXi,
+    public String importData(String TRSID, String TFileName, int dataType, ChengXu chengXu, ErJinZhi erJinZhi, FenXi fenXi,
                              MoCai moCai, PinPu pinPu, ShuCai shuCai, WangLuo wangLuo,
                              XinYuan xinYuan, HttpServletRequest request) throws Exception {
-        String flag = trsSearchService.insertData(chengXu, erJinZhi, fenXi, moCai, pinPu, shuCai, wangLuo, xinYuan, dataType);
+        String TFilePath = "";
+        if(!StringUtils.isEmpty(TFileName)){
+            Properties properties = new Properties();
+            properties.load(HybaseConnectionUtil.class.getClassLoader().getResourceAsStream("file.properties"));
+            String path = properties.getProperty("fileRootPath");
+            int pos = TFileName.lastIndexOf(".");
+            String fileType = "";
+            fileType = pos != -1 ? TFileName.substring(pos) : "";
+            TFilePath = path + FileUtil.getDataType(dataType) + "//" + TRSID + fileType;
+        } else {
+            TFileName = "";
+        }
+            String flag = trsSearchService.insertData(TFilePath, TFileName, TRSID, chengXu, erJinZhi, fenXi, moCai, pinPu, shuCai, wangLuo, xinYuan, dataType);
+
         if (flag.equals("success")) {
             request.setAttribute("flag", "success");
         }

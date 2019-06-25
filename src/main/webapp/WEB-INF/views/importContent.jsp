@@ -53,6 +53,7 @@
     </div>--%>
     <form class="layui-form layui-form-pane" action="<%=basePath%>importData" target="target" enctype="multipart/form-data">
         <input hidden name="dataType" value="${dataType}">
+        <input hidden name="TFileName" id="TFileName" value="">
         <div class="layui-form-item">
             <label class="layui-form-label">SFILENAME</label>
             <div class="layui-input-inline" style="width: 500px">
@@ -663,8 +664,8 @@
 <script>
     $(function () {
         $("#btn").on("click",function () {
-            debugger
             var TFileNmae = $("#file").val();
+            $('#TFileName').attr("value",TFileNmae);
             var pos = TFileNmae.lastIndexOf("\\");
             if(pos != -1){
                 TFileNmae = TFileNmae.substring(pos + 1);
@@ -698,6 +699,8 @@
     function uploadComplete(evt) {
         /* 当服务器响应后，这个事件就会被触发 */
         alert("上传成功：" + evt.target.responseText);
+        var TFileNmae = $("#file").val();
+        $
     }
 
     function uploadFailed(evt) {

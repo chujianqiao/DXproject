@@ -67,7 +67,7 @@ public class TRSSearchServiceImpl implements TRSSearchService {
     }
 
     @Override
-    public String insertData(ChengXu chengXu, ErJinZhi erJinZhi, FenXi fenXi,
+    public String insertData(String TFilePath, String TFileName, String TRSID, ChengXu chengXu, ErJinZhi erJinZhi, FenXi fenXi,
                            MoCai moCai, PinPu pinPu, ShuCai shuCai, WangLuo wangLuo,
                            XinYuan xinYuan, int dataType) {
         TRSConnection conn = HybaseConnectionUtil.getHybaseConnection();
@@ -78,6 +78,9 @@ public class TRSSearchServiceImpl implements TRSSearchService {
         Date date1 = null;
         Date date2 = null;
         try {
+            record.addColumn("TFilePath",TFilePath);
+            record.addColumn("TFileName",TFileName);
+            record.addColumn("TRSID",TRSID);
             if(dataType==0){
                 dbName = "sj_pinpu";
                 if (!pinPu.getDDATA_RECBTIME().equals("")&&pinPu.getDDATA_RECBTIME()!=null){

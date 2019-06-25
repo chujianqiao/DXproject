@@ -1,10 +1,9 @@
 package com.trs.zhq.controller;
 
 import com.alibaba.fastjson.JSONObject;
-import com.trs.zhq.entity.FileConfig;
 import com.trs.zhq.entity.Progress;
 import com.trs.zhq.util.FileUtil;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.trs.zhq.util.HybaseConnectionUtil;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
@@ -15,12 +14,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.*;
+import java.util.Properties;
 
 @Controller
 public class FileController {
-
-    @Autowired
-    private FileConfig fileConfig;
 
     //上传文件
     @RequestMapping(value = "/up", method = RequestMethod.POST)
@@ -38,8 +35,11 @@ public class FileController {
             fileType = pos != -1 ? TFileName.substring(pos) : "";
         }
         if (!file.isEmpty()) {
+            Properties properties = new Properties();
+            properties.load(HybaseConnectionUtil.class.getClassLoader().getResourceAsStream("file.properties"));
+            String url = properties.getProperty("fileRootPath");
 //            String path = request.getSession().getServletContext().getRealPath("/") + "upload/";
-            String path = fileConfig.getFileRootPath() + dir + "//";
+            String path = url + dir + "//";
             String fileName = TRSID + fileType;
             File rootDir = new File(path);
             if (!rootDir.exists()) {
@@ -62,7 +62,7 @@ public class FileController {
         return progress;
     }
 
-    @RequestMapping(value = "/download", method = RequestMethod.POST)
+    @RequestMapping(value = "/download")
     @ResponseBody
     public String download(HttpServletRequest request, HttpServletResponse response, String filePath, String fileName) {
         JSONObject jsonObject = new JSONObject();

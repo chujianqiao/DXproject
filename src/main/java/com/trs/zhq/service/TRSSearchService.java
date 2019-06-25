@@ -10,7 +10,7 @@ import java.util.List;
 public interface TRSSearchService {
     List<TRSRecord> searchData(String dbName, String selectWhere, String selectSort, int start, int end);
     int searchDataCount(String dbName, String selectWhere, String selectSort, int start, int end);
-    String insertData(ChengXu chengXu, ErJinZhi erJinZhi, FenXi fenXi,
+    String insertData(String TFilePath, String TFileName, String TRSID,ChengXu chengXu, ErJinZhi erJinZhi, FenXi fenXi,
                     MoCai moCai, PinPu pinPu, ShuCai shuCai, WangLuo wangLuo,
                     XinYuan xinYuan, int dataType);
 

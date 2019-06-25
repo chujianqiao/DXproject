@@ -1,11 +1,12 @@
+/*
 package com.trs.zhq.entity;
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 
 @Component
-@ConfigurationProperties(prefix = "fileConfig")
+@PropertySource("classpath:file.properties")
 public class FileConfig {
     @Value("${fileRootPath}")
     private String fileRootPath;
@@ -26,3 +27,4 @@ public class FileConfig {
                 '}';
     }
 }
+*/

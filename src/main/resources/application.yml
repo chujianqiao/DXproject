@@ -17,5 +17,4 @@ spring:
     multipart:
       max-file-size: 10GB
       max-request-size: 10GB
-fileConfig:
-  fileRootPath: C://DXproject//upload//
+
