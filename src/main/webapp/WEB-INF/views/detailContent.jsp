@@ -33,11 +33,12 @@
             <a href="<%=basePath%>index">首页</a>
         </li>
         <li class="layui-nav-item" style="float: right">
-            <a href=""><%=request.getSession().getAttribute("CONSOLEUSERNAME") %></a>
-            <dl class="layui-nav-child">
-                <dd><a href="<%=basePath %>logout">注销</a></dd>
-            </dl>
+            <a href="<%=basePath %>logout">注销</a>
         </li>
+        <li class="layui-nav-item" style="float: right">
+            <p><%=request.getSession().getAttribute("CONSOLEUSERNAME") %></p>
+        </li>
+
     </ul>
     <div class="searchDiv" style="height: 100px;text-align: center;">
         <span style="line-height: 100px;font-size: 40px">
