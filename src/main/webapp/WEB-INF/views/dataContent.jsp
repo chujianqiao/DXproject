@@ -12,10 +12,10 @@
 <head>
     <meta charset="utf-8"/>
     <title>DX</title>
-    <link rel="stylesheet" href="<%=basePath%>js/layui/css/layui.css" media="all">
-    <script src="<%=basePath%>js/jquery-2.1.1.min.js"></script>
-    <script src="<%=basePath%>js/jquery.min.js"></script>
-    <script src="<%=basePath%>js/layui/layui.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="<%=basePath%>static/js/layui/css/layui.css" media="all">
+    <script src="<%=basePath%>static/js/jquery-2.1.1.min.js"></script>
+    <script src="<%=basePath%>static/js/jquery.min.js"></script>
+    <script src="<%=basePath%>static/js/layui/layui.js" charset="utf-8"></script>
 
 </head>
 <style>
@@ -44,15 +44,17 @@
 </style>
 <body>
 <div>
-    <div style="width: 700px;margin: auto;padding-top: 25px">
-        <button type="button" class="layui-btn layui-btn-primary layui-btn-sm">
-            <a href="<%=basePath%>index">
-                <i class="layui-icon">
-                    < 首页
-                </i>
-            </a>
-        </button>
-    </div>
+    <ul class="layui-nav">
+        <li class="layui-nav-item">
+            <a href="<%=basePath%>index">首页</a>
+        </li>
+        <li class="layui-nav-item" style="float: right">
+            <a href=""><%=request.getSession().getAttribute("CONSOLEUSERNAME") %></a>
+            <dl class="layui-nav-child">
+                <dd><a href="<%=basePath %>logout">注销</a></dd>
+            </dl>
+        </li>
+    </ul>
     <div class="searchDiv layui-tab layui-tab-card" lay-filter="demo">
         <ul class="layui-tab-title" style="width: 699px">
             <li <c:if test="${searchType==0}">class="layui-this"</c:if>>文档</li>

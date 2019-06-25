@@ -8,7 +8,14 @@ import com.trs.zhq.util.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
+
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import java.io.*;
+import java.net.URLEncoder;
 import java.util.List;
 
 
@@ -19,11 +26,98 @@ public class IndexController {
     private ConfigService configService;
 
     @Autowired
+    private HttpServletRequest request;
+
+    @Autowired
     private TRSSearchService trsSearchService;
 
+
+    @RequestMapping("login")
+    public String login() {
+        return "login";
+    }
+
+    @RequestMapping({ "toLogin" })
+    @ResponseBody
+    public String toLogin(String username, String passwords, String kaptcha,HttpServletResponse response) {
+        try {
+            /*synchronized (this){
+                String kaptchaExpected = (String) request
+                        .getSession()
+                        .getAttribute(
+                                com.google.code.kaptcha.Constants.KAPTCHA_SESSION_KEY);
+                // 获取用户页面输入的验证码
+                String kaptchaReceived = request.getParameter("kaptcha");
+                if (kaptcha == null || !kaptcha.equalsIgnoreCase(kaptchaReceived)
+                        ||kaptcha.equals("") || !kaptchaReceived.equalsIgnoreCase(kaptchaExpected)) {
+                    return "ERROR_NOT";
+                }
+            }*/
+            Users user = this.trsSearchService.selectUserByUserName(username);
+            if (MD5Util.compareWithPasswords(passwords.toUpperCase(),
+                    user.getPASSWORD(), user.getID())) {
+                if ((StringUtil.isNotNull(user))
+                        && (!user.getSTATUS().equals(CodesUtil.NORMAL_USER_STATUS))) {
+                    return CodesUtil.ERROR_STATUS;
+                }
+                /*if (this.trsSearchService.isSuperAdmin(user.getID())) {
+                    user.setSuperAdmin(true);
+                    LoginUtil.setAuth_map(this.trsSearchService
+                            .getUserAllMenusAuthMap(user.getID(), true));
+                } else {
+                    user.setSuperAdmin(false);
+                    LoginUtil.setAuth_map(this.trsSearchService
+                            .getUserAllMenusAuthMap(user.getID(), false));
+                }*/
+
+
+                HttpSession session = RequestUtil.getSession();
+                /**
+                 * 该账号已经被登陆
+                 */
+                if(null != SessionListener.sessionMap.get( user.getUSERNAME() )){
+                    /**
+                     * 将已经登陆的信息拿掉,将新的用户登录信息放进去
+                     */
+                    HttpSession httpSession = SessionListener.sessionMap.get(user.getUSERNAME());
+                    ForceLogoutUtils.forceUserLogout( user.getUSERNAME() );
+
+                    SessionListener.sessionMap.put( user.getUSERNAME(), session );
+                }
+                /**
+                 * 该账号未被登陆
+                 */
+                else{
+                    SessionListener.sessionMap.put( user.getUSERNAME(), session );
+                }
+                RequestUtil.getSession().setAttribute("CONSOLEUSER", user);
+                RequestUtil.getSession().setAttribute("CONSOLEUSERNAME",
+                        user.getUSERNAME());
+                //setLogs(username, "用户：" + username + "登录成功", "成功", 1, "【登录】");
+                return "success";
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+           /* setLogs(username, "用户：" + username + "登录失败", "失败", 1, "【登陆】",
+                    username, username);*/
+            return "error";
+        }
+        return "error";
+    }
+
+    @RequestMapping("logout")
+    public String logout() {
+        Users user = LoginUtil.getConsoleLoginUser();
+        RequestUtil.getSession().removeAttribute("CONSOLEUSER");
+        RequestUtil.getSession().removeAttribute("CONSOLEUSERNAME");
+        SessionListener.sessionMap.remove( user.getUSERNAME() );
+        RequestUtil.getSession().invalidate();
+
+        return "login";
+    }
+
     @RequestMapping("index")
-    public String ImportFile() {
-        System.out.println(111);
+    public String toIndex() {
         return "index";
     }
 
@@ -105,6 +199,17 @@ public class IndexController {
             request.setAttribute("flag", "success");
         }
         return "returnFlag";
+    }
+
+    @RequestMapping("getLoginUser")
+    @ResponseBody
+    public int getConsoleLoginUser(String tel) {
+        try {
+            return LoginUtil.getConsoleLoginUserName() == null ? -1 : 1;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return -1;
     }
 
 

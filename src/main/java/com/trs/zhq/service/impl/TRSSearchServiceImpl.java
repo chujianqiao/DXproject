@@ -294,4 +294,30 @@ public class TRSSearchServiceImpl implements TRSSearchService {
 
     }
 
+    @Override
+    public Users selectUserByUserName(String userName){
+        Users users = new Users();
+        TRSConnection conn = HybaseConnectionUtil.getHybaseConnection();
+        SearchParams param = new SearchParams();
+        TRSResultSet resultSet=null;
+        String selectWhere = "USERNAME:"+userName;
+        try {
+            resultSet = conn.executeSelect("sj_users",selectWhere,0,1,param);
+            for(int i = 0; i < resultSet.size(); i++){
+                resultSet.moveNext();
+                TRSRecord record = resultSet.get();
+                users.setID(record.getString("UID"));
+                users.setUSERNAME(record.getString("USERNAME"));
+                users.setPASSWORD(record.getString("PASSWORD"));
+                users.setSTATUS(record.getString("STATUS"));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }finally {
+            if (conn!=null)conn.close();
+        }
+
+        return users;
+    }
+
 }

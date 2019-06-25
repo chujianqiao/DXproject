@@ -12,10 +12,10 @@
 <head>
     <meta charset="utf-8"/>
     <title>${title}</title>
-    <link rel="stylesheet" href="js/layui/css/layui.css" media="all">
-    <script src="js/jquery-2.1.1.min.js"></script>
-    <script src="js/jquery.min.js"></script>
-    <script src="js/layui/layui.js" charset="utf-8"></script>
+    <link rel="stylesheet" href="<%=basePath%>static/js/layui/css/layui.css" media="all">
+    <script src="<%=basePath%>static/js/jquery-2.1.1.min.js"></script>
+    <script src="<%=basePath%>static/js/jquery.min.js"></script>
+    <script src="<%=basePath%>static/js/layui/layui.js" charset="utf-8"></script>
 
 </head>
 <style>
@@ -28,6 +28,17 @@
 </style>
 <body>
 <div>
+    <ul class="layui-nav">
+        <li class="layui-nav-item">
+            <a href="<%=basePath%>index">首页</a>
+        </li>
+        <li class="layui-nav-item" style="float: right">
+            <a href=""><%=request.getSession().getAttribute("CONSOLEUSERNAME") %></a>
+            <dl class="layui-nav-child">
+                <dd><a href="<%=basePath %>logout">注销</a></dd>
+            </dl>
+        </li>
+    </ul>
     <div class="searchDiv" style="height: 100px;text-align: center;">
         <span style="line-height: 100px;font-size: 40px">
             ${trsRecord.getString("DX_BIAOTI")}

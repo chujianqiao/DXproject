@@ -7,6 +7,7 @@ spring:
     view:
       suffix: .jsp
       prefix: /WEB-INF/views/
+    static-path-pattern: /static/**
   ##关闭默认模板引擎
   thymeleaf:
     cache: false
