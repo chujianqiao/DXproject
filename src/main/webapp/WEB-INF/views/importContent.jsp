@@ -591,16 +591,8 @@
                 </div>
             </div>
         </c:if>
-        <div class="layui-form-item">
-            <label class="layui-form-label" style="width: 700px">
-        <input class="form-control" type="file" name="file" id="file" style="float: left"/>
-            </label>
-        </div>
-        <div class="progress">
-            <div id="progress" class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 1%;">
-                0%
-            </div>
-        </div>
+
+
         <input hidden id="TRSID" name="TRSID" value="${TRSID}" >
         <div class="layui-form-item">
             <div class="layui-input-block">
@@ -610,10 +602,19 @@
         </div>
 
     </form>
-    <%--<form id="fileForm" name="fileForm" enctype="multipart/form-data">
-
+    <form id="fileForm" name="fileForm" enctype="multipart/form-data">
+        <div class="layui-form-item">
+            <label class="layui-form-label" style="width: 700px">
+                <input class="form-control" type="file" name="file" id="file" style="float: left"/>
+            </label>
+        </div>
+        <div class="progress">
+            <div id="progress" class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 1%;">
+                0%
+            </div>
+        </div>
         <button id="btn" type="button">提交</button>
-    </form>--%>
+    </form>
 
     <iframe name="target" id="target" width="800px" height="100px" hidden></iframe>
 </div>
@@ -662,13 +663,23 @@
 <script>
     $(function () {
         $("#btn").on("click",function () {
+            debugger
+            var TFileNmae = $("#file").val();
+            var pos = TFileNmae.lastIndexOf("\\");
+            if(pos != -1){
+                TFileNmae = TFileNmae.substring(pos + 1);
+            }
+            var oMyForm = new FormData($("#fileForm")[0]);
+            oMyForm.append("TFileName", TFileNmae);
+            oMyForm.append("TRSID", '${TRSID}');
+            oMyForm.append("dataType", ${dataType});
             var xhr = new XMLHttpRequest();
             xhr.upload.addEventListener("progress", uploadProgress, false);
             xhr.addEventListener("load", uploadComplete, false);
             xhr.addEventListener("error", uploadFailed, false);
             xhr.addEventListener("abort", uploadCanceled, false);
             xhr.open("POST", "up");
-            xhr.send(new FormData($("#fileForm")[0]));
+            xhr.send(oMyForm);
         });
 
     });
@@ -696,4 +707,5 @@
     function uploadCanceled(evt) {
         alert("上传取消：" + "上传被用户取消或者浏览器断开连接");
     }
+
 </script>

@@ -146,4 +146,27 @@ public final class FileUtil {
 		return rootFile.getAbsolutePath();
 	}
 
+	public static String getDataType(int dataType) {
+		switch (dataType) {
+			case 0:
+				return "pindao";
+			case 1:
+				return "mocai";
+			case 2:
+				return "shucai";
+			case 3:
+				return "xinyuan";
+			case 4:
+				return "wangluocaiji";
+			case 5:
+				return "erjinzhi";
+			case 6:
+				return "fenxigonghengwenjian";
+			case 7:
+				return "chengxu";
+			default:
+				return "qita";
+		}
+	}
+
 }

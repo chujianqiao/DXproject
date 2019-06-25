@@ -26,8 +26,8 @@ public class CustomMultipartResolver extends CommonsMultipartResolver {
         String encoding = determineEncoding(request);
         System.out.println(encoding);
         FileUpload fileUpload = prepareFileUpload(encoding);
-        fileUpload.setFileSizeMax(1024000);
-        fileUpload.setSizeMax(1024000);
+//        fileUpload.setFileSizeMax(1024000000000);
+//        fileUpload.setSizeMax(1024000);
         //向文件上傳進度監視器設置session用於存儲上傳進度
         listener.setSession(request.getSession());
         //將文件上傳進度監視器加入到fileUpload中
