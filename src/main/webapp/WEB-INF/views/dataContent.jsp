@@ -62,7 +62,7 @@
             <li <c:if test="${searchType==1}">class="layui-this"</c:if>>数据</li>
         </ul>
         <form id="searchForm" class="layui-form layui-form-pane" action="<%=basePath%>searchData">
-            <div>
+            <div class="layui-form-item">
                 <input id="start" name="start" value="1" hidden>
                 <input id="end" name="end" value="10" hidden>
                 <input type="text" id="searchType" name="searchType" value="${searchType}" hidden>
@@ -70,8 +70,27 @@
                 <input type="text" hidden id="searchWordHidden" name="searchWordHidden" value="${searchWord}" >
                 <button type="button" onclick="toSearch()" class="layui-btn searchBotton">检索</button>
             </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">排序类型</label>
+                <div class="layui-input-block" style="width: 130px;">
+                    <select id="selectSort" name="selectSort" lay-filter="selectSort" lay-verify="required">
+                        <option value=""></option>
+                        <c:if test="${searchType==0}">
+                            <option value="RELEVANCE" <c:if test="${selectSort=='RELEVANCE'}">selected</c:if>>按相关度排序</option>
+                            <option value="+DX_RUKUSHIJIAN" <c:if test="${selectSort=='+DX_RUKUSHIJIAN'}">selected</c:if>>按入库时间正序</option>
+                            <option value="-DX_RUKUSHIJIAN" <c:if test="${selectSort=='-DX_RUKUSHIJIAN'}">selected</c:if>>按入库时间倒序</option>
+                        </c:if>
+                        <c:if test="${searchType==1}">
+                            <option value="RELEVANCE" <c:if test="${selectSort=='RELEVANCE'}">selected</c:if>>按相关度排序</option>
+                            <option value="+CREATETIME" <c:if test="${selectSort=='+CREATETIME'}">selected</c:if>>按入库时间正序</option>
+                            <option value="-CREATETIME" <c:if test="${selectSort=='-CREATETIME'}">selected</c:if>>按入库时间倒序</option>
+                        </c:if>
+                    </select>
+                </div>
+            </div>
         </form>
-        <br><br>
+
+        <br>
         <c:if test="${searchType==0}">
             <table style="width: 710px">
                 <thead>
@@ -89,7 +108,7 @@
                 <c:forEach items="${resultSet}" var="resultSet">
 
                     <tr <%if (num%2!=0){%>style="background-color: #efefef"<%}%>>
-                        <td class="tdData"><a target="_blank" href="<%=basePath%>toDetail?id=${resultSet.getString("DX_ID")}&searchWord=${searchWord }&dbName=${resultSet.getDbName().replace("system.","")}">${resultSet.getString("DX_BIAOTI")}</a></td>
+                        <td class="tdData"><a target="_blank" href="<%=basePath%>toDetail?id=${resultSet.getString("DX_ID")}&searchWord=${searchWord }&searchType=${searchType}&dbName=${resultSet.getDbName().replace("system.","")}">${resultSet.getString("DX_BIAOTI")}</a></td>
                         <td class="tdData">${resultSet.getString("DX_MIAOSHU")}</td>
                         <td class="tdData">${resultSet.getString('DX_RUKUSHIJIAN').substring(0,10)}</td>
                         <td class="tdData">${resultSet.getString("DX_MIJI")}</td>
@@ -109,6 +128,7 @@
                 <thead>
                 <tr style="text-align: center">
                     <th class="thData">标题</th>
+                    <th class="thData">入库时间</th>
                 </tr>
                 </thead>
                 <%
@@ -117,7 +137,8 @@
                 <c:forEach items="${resultSet}" var="resultSet">
 
                     <tr <%if (num%2!=0){%>style="background-color: #efefef"<%}%>>
-                        <td class="tdData"><a target="_blank" href="<%=basePath%>toDetail?id=${resultSet.getString("SFILENAME")}&searchWord=${searchWord }&dbName=${resultSet.getDbName().replace("system.","")}">${resultSet.getString("SFILENAME")}</a></td>
+                        <td class="tdData"><a target="_blank" href="<%=basePath%>toDetail?id=${resultSet.getString("SFILENAME")}&searchWord=${searchWord }&searchType=${searchType}&dbName=${resultSet.getDbName().replace("system.","")}">${resultSet.getString("SFILENAME")}</a></td>
+                        <td class="tdData">${resultSet.getString("CREATETIME").substring(0,10)}</td>
                     </tr>
                     <%
                         num = num+1;
@@ -139,6 +160,7 @@
 
 </body>
 <script type="text/javascript">
+
 
     function toSearch() {
         var searchWord = $("#searchWord").val();
@@ -193,6 +215,16 @@
                 $("#searchType").attr("value",0);
             }
             console.log(this.innerHTML);
+        });
+    });
+
+
+    layui.use('form', function(){
+        var form = layui.form; //只有执行了这一步，部分表单元素才会自动修饰成功
+
+        form.on('select(selectSort)', function(data){
+            toSearch();
+
         });
     });
 </script>

@@ -23,7 +23,7 @@ public class TRSSearchServiceImpl implements TRSSearchService {
         TRSConnection conn = HybaseConnectionUtil.getHybaseConnection();
         SearchParams param = new SearchParams();
         // 设置结果排序 方式为相关度设置结果排序
-        param.setSortMethod("RELEVANCE");
+        param.setSortMethod(selectSort);
         // 设置返回结果字段为“标题” 与正文
         if(dbName.indexOf("wendang")>0){
             param.setColorColumns("DX_BIAOTI;DX_ZHENGWEN");

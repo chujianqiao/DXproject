@@ -673,7 +673,7 @@
             var oMyForm = new FormData($("#fileForm")[0]);
             oMyForm.append("TFileName", TFileNmae);
             oMyForm.append("TRSID", '${TRSID}');
-            oMyForm.append("dataType", ${dataType});
+            oMyForm.append("datatype", ${dataType});
             var xhr = new XMLHttpRequest();
             xhr.upload.addEventListener("progress", uploadProgress, false);
             xhr.addEventListener("load", uploadComplete, false);

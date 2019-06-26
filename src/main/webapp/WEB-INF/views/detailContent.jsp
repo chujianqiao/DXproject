@@ -40,36 +40,55 @@
         </li>
 
     </ul>
-    <div class="searchDiv" style="height: 100px;text-align: center;">
-        <span style="line-height: 100px;font-size: 40px">
-            ${trsRecord.getString("DX_BIAOTI")}
-        </span>
-    </div>
-    <div style="width: 900px;height: 150px;margin: auto;line-height: 40px;font-size: 20px;">
-        <span>
-            来源：${trsRecord.getString("DX_LAIYUAN")}
-        </span>&nbsp;&nbsp;
-        <span>
-            属性：${trsRecord.getString("DX_SHUXING")}
-        </span>&nbsp;&nbsp;
-        <span>
-            入库时间：${trsRecord.getString("DX_RUKUSHIJIAN").substring(0,10)}
-        </span>&nbsp;&nbsp;
-        <span>
-            密级：${trsRecord.getString("DX_MIJI")}
-        </span>&nbsp;&nbsp;
-        <br>
-        <span>
-            描述：${trsRecord.getString("DX_MIAOSHU")}
-        </span>
-    </div>
-    <div style="width: 900px;height: 600px;margin: auto;padding-top: 50px;line-height: 30px;font-size: 20px;border-top: 2px solid black">
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <span>
-            ${trsRecord.getString("DX_ZHENGWEN")}
-        </span>
-    </div>
-
+    <c:if test="${searchType==0}">
+        <div class="searchDiv" style="height: 100px;text-align: center;">
+            <span style="line-height: 100px;font-size: 40px">
+                ${trsRecord.getString("DX_BIAOTI")}
+            </span>
+        </div>
+        <div style="width: 700px;height: 100px;margin: auto;line-height: 20px;font-size: 15px;">
+            <span>
+                来源：${trsRecord.getString("DX_LAIYUAN")}
+            </span>&nbsp;&nbsp;
+            <span>
+                属性：${trsRecord.getString("DX_SHUXING")}
+            </span>&nbsp;&nbsp;
+            <span>
+                入库时间：${trsRecord.getString("DX_RUKUSHIJIAN").substring(0,10)}
+            </span>&nbsp;&nbsp;
+            <span>
+                密级：${trsRecord.getString("DX_MIJI")}
+            </span>&nbsp;&nbsp;
+            <br>
+            <span>
+                描述：${trsRecord.getString("DX_MIAOSHU")}
+            </span>
+        </div>
+        <div style="width: 700px;height: 600px;margin: auto;padding-top: 30px;line-height: 30px;font-size: 15px;border-top: 2px solid black">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <span>
+                ${trsRecord.getString("DX_ZHENGWEN")}
+            </span>
+        </div>
+    </c:if>
+    <c:if test="${searchType==1}">
+        <div class="searchDiv" style="height: 100px;text-align: center;">
+            <span style="line-height: 100px;font-size: 40px">
+                    ${trsRecord.getString("SFILENAME")}
+            </span>
+        </div>
+        <div style="width: 700px;height: 100px;margin: auto;line-height: 20px;font-size: 15px;">
+            <span>
+                入库时间：${trsRecord.getString("CREATETIME").substring(0,10)}
+            </span>
+        </div>
+        <div style="width: 700px;height: 600px;margin: auto;padding-top: 30px;line-height: 30px;font-size: 15px;border-top: 2px solid black">
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            <span>
+                    ${trsRecord.getString("SUSERCOMMENT	")}
+            </span>
+        </div>
+    </c:if>
 
 </div>
 

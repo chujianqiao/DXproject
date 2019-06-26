@@ -19,6 +19,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.*;
 import java.net.URLEncoder;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 import java.util.UUID;
@@ -148,46 +149,87 @@ public class IndexController {
     }
 
     @RequestMapping("searchData")
-    public String searchData(String searchWord, int start, int end, int searchType, HttpServletRequest request) {
+    public String searchData(String searchWord, int start, int end, String selectSort, int searchType, HttpServletRequest request) {
         int startBak = start;
         String searchWordBak = searchWord;
         start = (start - 1) * end;
-        searchWord = "\"" + searchWord + "\"";
         String dbName = "";
         String searchWhere = "";
-        if (searchType == 0) {
-            dbName = DataBaseConstants.HYBASEWENDANGTABLE;
-            searchWhere = "(" + searchWord + ") OR " + "(DX_BIAOTI:" + searchWord + ")";
-        } else {
-            dbName = DataBaseConstants.HYBASETABLE;
-            searchWhere = "(" + searchWord + ") OR " + "(SFILENAME:" + searchWord + ")";
+        List<TRSRecord> resultSet = new ArrayList<>();
+        int count = 0;
+        if (StringUtils.isEmpty(selectSort)){
+            selectSort = "RELEVANCE";
         }
-        List<TRSRecord> resultSet = trsSearchService.searchData(dbName, searchWhere, "", start, end);
-        int count = trsSearchService.searchDataCount(dbName, searchWhere, "", 0, 10000);
+
+        /**
+         * 字段检索
+         */
+        if (searchWord.indexOf(":")>0||searchWord.indexOf("：")>0){
+            searchWord.replaceAll("：",":");
+            String searchWords[] = searchWord.split(":");
+            searchWord = "\"" + searchWords[1] + "\"";
+            searchWhere = searchWords[0] + ":" + searchWord;
+            if (searchType == 0) {
+                dbName = DataBaseConstants.HYBASEWENDANGTABLE;
+            } else {
+                dbName = DataBaseConstants.HYBASETABLE;
+            }
+            resultSet = trsSearchService.searchData(dbName, searchWhere, selectSort, start, end);
+            count = trsSearchService.searchDataCount(dbName, searchWhere, "", 0, 10000);
+        }else {
+            searchWord = "\"" + searchWord + "\"";
+            if (searchType == 0) {
+                dbName = DataBaseConstants.HYBASEWENDANGTABLE;
+                searchWhere = "(" + searchWord + ") OR " + "(DX_BIAOTI:" + searchWord + ")";
+            } else {
+                dbName = DataBaseConstants.HYBASETABLE;
+                searchWhere = "(" + searchWord + ") OR " + "(SFILENAME:" + searchWord + ")";
+            }
+            resultSet = trsSearchService.searchData(dbName, searchWhere, selectSort, start, end);
+            count = trsSearchService.searchDataCount(dbName, searchWhere, "", 0, 10000);
+        }
+
         request.setAttribute("count", count);
         request.setAttribute("start", startBak);
         request.setAttribute("searchWord", searchWordBak);
         request.setAttribute("searchType", searchType);
         request.setAttribute("resultSet", resultSet);
+        request.setAttribute("selectSort", selectSort);
         return "dataContent";
     }
 
     @RequestMapping("toDetail")
-    public String toDetail(String id, String dbName, String searchWord, HttpServletRequest request) {
+    public String toDetail(String id, String dbName, int searchType, String searchWord, HttpServletRequest request) {
         searchWord = "\"" + searchWord + "\"";
-        String searchWhere = "(DX_ID:" + id + ") AND ((" + searchWord + ") OR (DX_BIAOTI:" + searchWord + " OR DX_ZHENGWEN:" + searchWord + "))";
+        String searchWhere = "";
+        if (searchType == 0) {
+            searchWhere = "(DX_ID:" + id + ") AND ((" + searchWord + ") OR (DX_BIAOTI:" + searchWord + " OR DX_ZHENGWEN:" + searchWord + "))";
+        } else {
+            id = id.replaceAll("<font color=red>", "").replaceAll("</font>", "");;
+            searchWhere = "(SFILENAME:" + id + ") AND ((" + searchWord + ") OR (SUSERCOMMENT:" + searchWord + "))";
+        }
+
+        //searchWhere = "(DX_ID:" + id + ") AND ((" + searchWord + ") OR (DX_BIAOTI:" + searchWord + " OR DX_ZHENGWEN:" + searchWord + "))";
         List<TRSRecord> resultSet = trsSearchService.searchData(dbName, searchWhere, "", 0, 1);
         TRSRecord trsRecord = resultSet.get(0);
         String title = "";
         try {
-            title = trsRecord.getString("DX_BIAOTI");
-            title = title.replaceAll("<font color=red>", "");
-            title = title.replaceAll("</font>", "");
+            if (searchType == 0) {
+                title = trsRecord.getString("DX_BIAOTI");
+                title = title.replaceAll("<font color=red>", "");
+                title = title.replaceAll("</font>", "");
+            } else {
+                title = trsRecord.getString("SFILENAME");
+                title = title.replaceAll("<font color=red>", "");
+                title = title.replaceAll("</font>", "");
+            }
+
         } catch (Exception e) {
             e.printStackTrace();
         }
         request.setAttribute("title", title);
         request.setAttribute("trsRecord", trsRecord);
+        request.setAttribute("searchType", searchType);
         return "detailContent";
     }
 
