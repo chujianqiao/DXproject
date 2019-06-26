@@ -673,11 +673,11 @@
             layer.alert("正在上传，请等待文件上传完毕后再提交数据。");
             document.getElementById("dataSubmit").disabled=true;
             var TFileNmae = $("#file").val();
-            $('#TFileName').attr("value",TFileNmae);
             var pos = TFileNmae.lastIndexOf("\\");
             if(pos != -1){
                 TFileNmae = TFileNmae.substring(pos + 1);
             }
+            $('#TFileName').attr("value",TFileNmae);
             var oMyForm = new FormData($("#fileForm")[0]);
             oMyForm.append("TFileName", TFileNmae);
             oMyForm.append("TRSID", '${TRSID}');

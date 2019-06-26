@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.util.ResourceUtils;
 
 import java.io.*;
+import java.util.Properties;
 
 
 public final class FileUtil {
@@ -167,6 +168,17 @@ public final class FileUtil {
 			default:
 				return "qita";
 		}
+	}
+
+	public static String getRootPath(){
+		Properties properties = new Properties();
+		try {
+			properties.load(FileUtil.class.getClassLoader().getResourceAsStream("file.properties"));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		String rootPath = properties.getProperty("fileRootPath");
+		return rootPath;
 	}
 
 }

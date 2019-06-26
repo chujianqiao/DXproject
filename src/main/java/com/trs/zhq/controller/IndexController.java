@@ -271,8 +271,9 @@ public class IndexController {
             String path = properties.getProperty("fileRootPath");
             int pos = TFileName.lastIndexOf(".");
             String fileType = "";
-            fileType = pos != -1 ? TFileName.substring(pos) : "";
-            TFilePath = path + FileUtil.getDataType(dataType) + "//" + TRSID + fileType;
+//            fileType = pos != -1 ? TFileName.substring(pos) : "";
+//            TFilePath = path + FileUtil.getDataType(dataType) + "//" + TRSID + fileType;
+            TFilePath = path + FileUtil.getDataType(dataType) + "\\" + TFileName;
         } else {
             TFileName = "";
         }

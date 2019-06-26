@@ -88,11 +88,30 @@
                     ${trsRecord.getString("SUSERCOMMENT	")}
             </span>
         </div>
+        <c:if test="${trsRecord.getString('TFileName')!=''}">
+            <div onclick="downloadFile1()">11111</div>
+            <a hidden id="downloadFile" href="">原文下载</a>
+        </c:if>
     </c:if>
+
+
+
 
 </div>
 
 </body>
 <script type="text/javascript">
+        function downloadFile1() {
+            var a = $('#downloadFile');
+            var filename = encodeURI(${trsRecord.getString('TFileName')});
+            var filepath = encodeURI(${trsRecord.getString('TFilePath')});
+            //需要下载的数据内容,我这里放的就是BLOB，如果你有下载链接就不需要了
+            var url = "<%=basePath%>download?fileName=" + filename + "&filePath=" + filepath;
+            a.href = url;
+            a.download = filename;
+            a.click();
+            window.URL.revokeObjectURL(url);
+        }
+
 
 </script>
