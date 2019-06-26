@@ -206,7 +206,7 @@ public class IndexController {
             searchWhere = "(DX_ID:" + id + ") AND ((" + searchWord + ") OR (DX_BIAOTI:" + searchWord + " OR DX_ZHENGWEN:" + searchWord + "))";
         } else {
             id = id.replaceAll("<font color=red>", "").replaceAll("</font>", "");;
-            searchWhere = "(SFILENAME:" + id + ") AND ((" + searchWord + ") OR (SUSERCOMMENT:" + searchWord + "))";
+            searchWhere = "(TRSID:" + id + ") AND ((" + searchWord + ") OR (SUSERCOMMENT:" + searchWord + "))";
         }
 
         //searchWhere = "(DX_ID:" + id + ") AND ((" + searchWord + ") OR (DX_BIAOTI:" + searchWord + " OR DX_ZHENGWEN:" + searchWord + "))";
@@ -230,6 +230,7 @@ public class IndexController {
         request.setAttribute("title", title);
         request.setAttribute("trsRecord", trsRecord);
         request.setAttribute("searchType", searchType);
+        request.setAttribute("dbName", dbName);
         return "detailContent";
     }
 

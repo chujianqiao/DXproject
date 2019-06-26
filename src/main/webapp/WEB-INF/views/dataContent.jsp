@@ -137,7 +137,7 @@
                 <c:forEach items="${resultSet}" var="resultSet">
 
                     <tr <%if (num%2!=0){%>style="background-color: #efefef"<%}%>>
-                        <td class="tdData"><a target="_blank" href="<%=basePath%>toDetail?id=${resultSet.getString("SFILENAME")}&searchWord=${searchWord }&searchType=${searchType}&dbName=${resultSet.getDbName().replace("system.","")}">${resultSet.getString("SFILENAME")}</a></td>
+                        <td class="tdData"><a target="_blank" href="<%=basePath%>toDetail?id=${resultSet.getString("TRSID")}&searchWord=${searchWord }&searchType=${searchType}&dbName=${resultSet.getDbName().replace("system.","")}">${resultSet.getString("SFILENAME")}</a></td>
                         <td class="tdData">${resultSet.getString("CREATETIME").substring(0,10)}</td>
                     </tr>
                     <%

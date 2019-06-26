@@ -1,8 +1,11 @@
 package com.trs.zhq.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.trs.hybase.client.TRSRecord;
 import com.trs.zhq.entity.Progress;
+import com.trs.zhq.service.TRSSearchService;
 import com.trs.zhq.util.FileUtil;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
@@ -13,9 +16,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.*;
+import java.util.List;
 
 @Controller
 public class FileController {
+
+    @Autowired
+    private TRSSearchService trsSearchService;
 
     //上传文件
     @RequestMapping(value = "/up", method = RequestMethod.POST)
@@ -61,12 +68,23 @@ public class FileController {
 
     @RequestMapping(value = "/download")
     @ResponseBody
-    public String download(HttpServletRequest request, HttpServletResponse response, String filePath, String fileName) {
+    public String download(String dbName, String TRSID, HttpServletRequest request, HttpServletResponse response, String filePath, String fileName) {
+
+        String searchWhere = "TRSID:" + TRSID;
+        List<TRSRecord> resultSet = trsSearchService.searchData(dbName, searchWhere, "", 0, 1);
+        TRSRecord trsRecord = resultSet.get(0);
+
+
+
         JSONObject jsonObject = new JSONObject();
         ServletOutputStream sos = null;
         FileInputStream in = null;
         BufferedOutputStream outputStream = null;
         try {
+
+            fileName = trsRecord.getString("TFileName");
+            filePath = trsRecord.getString("TFilePath");
+
             File file = new File(filePath);
             long size = file.length();
             fileName = new String(fileName.getBytes("UTF-8"), "iso-8859-1");//为了解决中文名称乱码问题
