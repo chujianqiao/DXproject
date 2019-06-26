@@ -592,7 +592,7 @@
                 </div>
             </div>
         </c:if>
-
+        <br><br><br><br><br><br>
 
         <input hidden id="TRSID" name="TRSID" value="${TRSID}" >
         <div class="layui-form-item">
@@ -603,18 +603,21 @@
         </div>
 
     </form>
-    <form id="fileForm" name="fileForm" enctype="multipart/form-data">
+    <form id="fileForm" name="fileForm" class="layui-form layui-form-pane" style="position: absolute;margin-top: -150px;" enctype="multipart/form-data">
         <div class="layui-form-item">
-            <label class="layui-form-label" style="width: 700px">
+            <label class="layui-form-label" style="width: 600px">
                 <input class="form-control" type="file" name="file" id="file" style="float: left"/>
-            </label>
+            </label><button id="btn" class="layui-btn" type="button">上传文件</button>
         </div>
         <div class="progress">
-            <div id="progress" class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 1%;">
+            <%--<div id="progress" class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 1%;">
                 0%
+            </div>--%>
+            <div class="layui-progress layui-progress-big" lay-showPercent="yes">
+                <div id="progress" class="layui-progress-bar layui-bg-green" lay-percent="0%"></div>
             </div>
         </div>
-        <button id="btn" type="button">提交</button>
+
     </form>
 
     <iframe name="target" id="target" width="800px" height="100px" hidden></iframe>
@@ -660,6 +663,9 @@
             elem: "[name='DDATA_RECETIME']" //指定元素
         });
     });
+    layui.use('element', function(){
+        var element = layui.element;
+    });
 </script>
 <script>
     $(function () {
@@ -689,8 +695,8 @@
             var percentComplete = Math.round(evt.loaded * 100 / evt.total);
             var progress = $("#progress");
             progress.css("width",percentComplete + "%");
-            progress.html(percentComplete + "%");
-
+            progress.attr("lay-percent",percentComplete + "%");
+            $("#progress span").html(percentComplete + "%");
         } else {
             $("#progress").html("无法计算");
         }
