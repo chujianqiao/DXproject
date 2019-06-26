@@ -597,7 +597,7 @@
         <input hidden id="TRSID" name="TRSID" value="${TRSID}" >
         <div class="layui-form-item">
             <div class="layui-input-block">
-                <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+                <button id="dataSubmit" class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
                 <button type="reset" class="layui-btn layui-btn-primary">重置</button>
             </div>
         </div>
@@ -670,6 +670,8 @@
 <script>
     $(function () {
         $("#btn").on("click",function () {
+            layer.alert("正在上传，请等待文件上传完毕后再提交数据。");
+            document.getElementById("dataSubmit").disabled=true;
             var TFileNmae = $("#file").val();
             $('#TFileName').attr("value",TFileNmae);
             var pos = TFileNmae.lastIndexOf("\\");
@@ -706,7 +708,7 @@
         /* 当服务器响应后，这个事件就会被触发 */
         alert("上传成功：" + evt.target.responseText);
         var TFileNmae = $("#file").val();
-        $
+        document.getElementById("dataSubmit").disabled=false;
     }
 
     function uploadFailed(evt) {
