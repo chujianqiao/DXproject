@@ -200,14 +200,31 @@ public class IndexController {
 
     @RequestMapping("toDetail")
     public String toDetail(String id, String dbName, int searchType, String searchWord, HttpServletRequest request) {
-        searchWord = "\"" + searchWord + "\"";
+
         String searchWhere = "";
-        if (searchType == 0) {
-            searchWhere = "(DX_ID:" + id + ") AND ((" + searchWord + ") OR (DX_BIAOTI:" + searchWord + " OR DX_ZHENGWEN:" + searchWord + "))";
-        } else {
-            id = id.replaceAll("<font color=red>", "").replaceAll("</font>", "");;
-            searchWhere = "(TRSID:" + id + ") AND ((" + searchWord + ") OR (SUSERCOMMENT:" + searchWord + "))";
+
+        if (searchWord.indexOf(":")>0||searchWord.indexOf("：")>0){
+            searchWord.replaceAll("：",":");
+            String searchWords[] = searchWord.split(":");
+            searchWord = "\"" + searchWords[1] + "\"";
+            String newSearchWord = searchWords[0] + ":" + searchWord;
+            if (searchType == 0) {
+                searchWhere = "(DX_ID:" + id + ") AND (" + newSearchWord + ")";
+            } else {
+                id = id.replaceAll("<font color=red>", "").replaceAll("</font>", "");;
+                searchWhere = "(TRSID:" + id + ") AND (" + newSearchWord + ")";
+            }
+        }else {
+            searchWord = "\"" + searchWord + "\"";
+            if (searchType == 0) {
+                searchWhere = "(DX_ID:" + id + ") AND ((" + searchWord + ") OR (DX_BIAOTI:" + searchWord + " OR DX_ZHENGWEN:" + searchWord + "))";
+            } else {
+                id = id.replaceAll("<font color=red>", "").replaceAll("</font>", "");;
+                searchWhere = "(TRSID:" + id + ") AND ((" + searchWord + ") OR (SUSERCOMMENT:" + searchWord + "))";
+            }
         }
+
+
 
         //searchWhere = "(DX_ID:" + id + ") AND ((" + searchWord + ") OR (DX_BIAOTI:" + searchWord + " OR DX_ZHENGWEN:" + searchWord + "))";
         List<TRSRecord> resultSet = trsSearchService.searchData(dbName, searchWhere, "", 0, 1);
