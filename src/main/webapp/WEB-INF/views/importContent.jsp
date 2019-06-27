@@ -20,7 +20,7 @@
 </head>
 <style>
     .searchDiv{
-        width: 700px;
+        width: 740px;
         margin: 30px auto;
     }
     .mustInput{
@@ -55,139 +55,139 @@
         <input hidden name="dataType" value="${dataType}">
         <input hidden name="TFileName" id="TFileName" value="">
         <div class="layui-form-item">
-            <label class="layui-form-label">SFILENAME</label>
+            <label class="layui-form-label" style="width: 150px">文件名</label>
             <div class="layui-input-inline" style="width: 500px">
-                <input type="text" name="SFILENAME" lay-verify="required" placeholder="请输入SFILENAME" autocomplete="off" class="layui-input">
+                <input type="text" name="SFILENAME" lay-verify="required" placeholder="请输入文件名" autocomplete="off" class="layui-input">
             </div>
             <div class="layui-form-mid" style="color: red;">*必填</div>
         </div>
         <c:if test="${fieldString.indexOf('SPROGTYPE')>0}">
             <div class="layui-form-item">
-                <label class="layui-form-label">SPROGTYPE</label>
+                <label class="layui-form-label" style="width: 150px">存储芯片名称</label>
                 <div class="layui-input-inline" style="width: 500px">
-                    <input type="text" name="SPROGTYPE"  lay-verify="required" placeholder="请输入SPROGTYPE" autocomplete="off" class="layui-input">
+                    <input type="text" name="SPROGTYPE"  lay-verify="required" placeholder="请输入存储芯片名称" autocomplete="off" class="layui-input">
                 </div>
                 <div class="layui-form-mid" style="color: red;">*必填</div>
             </div>
         </c:if>
         <c:if test="${fieldString.indexOf('SPROCESSORTYPE')>0}">
             <div class="layui-form-item">
-                <label class="layui-form-label">SPROCESSORTYPE</label>
+                <label class="layui-form-label" style="width: 150px">可编程芯片名称</label>
                 <div class="layui-input-inline" style="width: 500px">
-                    <input type="text" name="SPROCESSORTYPE"  lay-verify="required" placeholder="请输入SPROCESSORTYPE" autocomplete="off" class="layui-input">
+                    <input type="text" name="SPROCESSORTYPE"  lay-verify="required" placeholder="请输入可编程芯片名称" autocomplete="off" class="layui-input">
                 </div>
                 <div class="layui-form-mid" style="color: red;">*必填</div>
             </div>
         </c:if>
         <c:if test="${fieldString.indexOf('SFPGATYPE')>0}">
             <div class="layui-form-item">
-                <label class="layui-form-label">SFPGATYPE</label>
+                <label class="layui-form-label" style="width: 150px">FPGA芯片名称</label>
                 <div class="layui-input-inline" style="width: 500px">
-                    <input type="text" name="SFPGATYPE"  lay-verify="required" placeholder="请输入SFPGATYPE" autocomplete="off" class="layui-input">
+                    <input type="text" name="SFPGATYPE"  lay-verify="required" placeholder="请输入FPGA芯片名称" autocomplete="off" class="layui-input">
                 </div>
                 <div class="layui-form-mid" style="color: red;">*必填</div>
             </div>
         </c:if>
         <c:if test="${fieldString.indexOf('SEQUIPMENT')>0}">
             <div class="layui-form-item">
-                <label class="layui-form-label">SEQUIPMENT</label>
+                <label class="layui-form-label" style="width: 150px">设备名称</label>
                 <div class="layui-input-inline" style="width: 500px">
-                    <input type="text" name="SEQUIPMENT"  lay-verify="required" placeholder="请输入SEQUIPMENT" autocomplete="off" class="layui-input">
+                    <input type="text" name="SEQUIPMENT"  lay-verify="required" placeholder="请输入设备名称" autocomplete="off" class="layui-input">
                 </div>
                 <div class="layui-form-mid" style="color: red;">*必填</div>
             </div>
         </c:if>
         <c:if test="${fieldString.indexOf('SPROJECTNAME')>0}">
             <div class="layui-form-item">
-                <label class="layui-form-label">SPROJECTNAME</label>
+                <label class="layui-form-label" style="width: 150px">隶属课题名称</label>
                 <div class="layui-input-inline" style="width: 500px">
-                    <input type="text" name="SPROJECTNAME"  lay-verify="required" placeholder="请输入SPROJECTNAME" autocomplete="off" class="layui-input">
+                    <input type="text" name="SPROJECTNAME"  lay-verify="required" placeholder="请输入隶属课题名称" autocomplete="off" class="layui-input">
                 </div>
                 <div class="layui-form-mid" style="color: red;">*必填</div>
             </div>
         </c:if>
         <c:if test="${fieldString.indexOf('NFILELEN')>0}">
             <div class="layui-form-item">
-                <label class="layui-form-label">NFILELEN</label>
+                <label class="layui-form-label" style="width: 150px">文件长度</label>
                 <div class="layui-input-inline" style="width: 500px">
-                    <input type="text" id="NFILELEN" name="NFILELEN"  lay-verify="required|number" placeholder="请输入NFILELEN" autocomplete="off" class="layui-input">
+                    <input type="text" id="NFILELEN" name="NFILELEN"  lay-verify="required|number" placeholder="请输入文件长度" autocomplete="off" class="layui-input">
                 </div>
                 <div class="layui-form-mid" style="color: red;">*必填</div>
             </div>
         </c:if>
         <c:if test="${fieldString.indexOf('SCOMFREQSPAN')>0}">
             <div class="layui-form-item">
-                <label class="layui-form-label">SCOMFREQSPAN</label>
-                <div class="layui-input-block">
-                    <input type="text" name="SCOMFREQSPAN" placeholder="请输入SCOMFREQSPAN" autocomplete="off" class="layui-input">
+                <label class="layui-form-label" style="width: 150px">通信频段</label>
+                <div class="layui-input-inline"  style="width: 580px">
+                    <input type="text" name="SCOMFREQSPAN" placeholder="请输入通信频段" autocomplete="off" class="layui-input">
                 </div>
             </div>
         </c:if>
         <c:if test="${fieldString.indexOf('SSATELLITE_NAME')>0}">
             <div class="layui-form-item">
-                <label class="layui-form-label">SSATELLITE_NAME</label>
-                <div class="layui-input-block">
-                    <input type="text" name="SSATELLITE_NAME" placeholder="请输入SSATELLITE_NAME" autocomplete="off" class="layui-input">
+                <label class="layui-form-label" style="width: 150px">卫星名称</label>
+                <div class="layui-input-inline"  style="width: 580px">
+                    <input type="text" name="SSATELLITE_NAME" placeholder="请输入卫星名称" autocomplete="off" class="layui-input">
                 </div>
             </div>
         </c:if>
         <c:if test="${fieldString.indexOf('SORBIT_POS')>0}">
             <c:if test="${dataType==3}">
                 <div class="layui-form-item">
-                    <label class="layui-form-label">SORBIT_POS</label>
+                    <label class="layui-form-label" style="width: 150px">卫星轨道位置</label>
                     <div class="layui-input-inline" style="width: 500px">
-                        <input type="text" name="SORBIT_POS" lay-verify="required" placeholder="请输入SORBIT_POS" autocomplete="off" class="layui-input">
+                        <input type="text" name="SORBIT_POS" lay-verify="required" placeholder="请输入卫星轨道位置" autocomplete="off" class="layui-input">
                     </div>
                     <div class="layui-form-mid" style="color: red;">*必填</div>
                 </div>
             </c:if>
             <c:if test="${dataType!=3}">
                 <div class="layui-form-item">
-                    <label class="layui-form-label">SORBIT_POS</label>
-                    <div class="layui-input-block">
-                        <input type="text" name="SORBIT_POS" placeholder="请输入SORBIT_POS" autocomplete="off" class="layui-input">
+                    <label class="layui-form-label" style="width: 150px">卫星轨道位置</label>
+                    <div class="layui-input-inline"  style="width: 580px">
+                        <input type="text" name="SORBIT_POS" placeholder="请输入卫星轨道位置" autocomplete="off" class="layui-input">
                     </div>
                 </div>
             </c:if>
         </c:if>
         <c:if test="${fieldString.indexOf('SPOLARIZATION_TYPE')>0}">
             <div class="layui-form-item">
-                <label class="layui-form-label">SPOLARIZATION_TYPE</label>
-                <div class="layui-input-block">
-                    <input type="text" name="SPOLARIZATION_TYPE" placeholder="请输入SPOLARIZATION_TYPE" autocomplete="off" class="layui-input">
+                <label class="layui-form-label" style="width: 150px">极化方式</label>
+                <div class="layui-input-inline"  style="width: 580px">
+                    <input type="text" name="SPOLARIZATION_TYPE" placeholder="请输入极化方式" autocomplete="off" class="layui-input">
                 </div>
             </div>
         </c:if>
         <c:if test="${fieldString.indexOf('STRANSPONDR')>0}">
             <div class="layui-form-item">
-                <label class="layui-form-label">STRANSPONDR</label>
-                <div class="layui-input-block">
-                    <input type="text" name="STRANSPONDR" placeholder="请输入STRANSPONDR" autocomplete="off" class="layui-input">
+                <label class="layui-form-label" style="width: 150px">转发器名称</label>
+                <div class="layui-input-inline"  style="width: 580px">
+                    <input type="text" name="STRANSPONDR" placeholder="请输入转发器名称" autocomplete="off" class="layui-input">
                 </div>
             </div>
         </c:if>
         <c:if test="${fieldString.indexOf('SSTATION_NAME')>0}">
             <div class="layui-form-item">
-                <label class="layui-form-label">SSTATION_NAME</label>
-                <div class="layui-input-block">
-                    <input type="text" name="SSTATION_NAME" placeholder="请输入SSTATION_NAME" autocomplete="off" class="layui-input">
+                <label class="layui-form-label" style="width: 150px">阵地名称</label>
+                <div class="layui-input-inline"  style="width: 580px">
+                    <input type="text" name="SSTATION_NAME" placeholder="请输入阵地名称" autocomplete="off" class="layui-input">
                 </div>
             </div>
         </c:if>
         <c:if test="${fieldString.indexOf('NCARRIERFREQ')>0}">
             <c:if test="${dataType==3}">
                 <div class="layui-form-item">
-                    <label class="layui-form-label">NCARRIERFREQ</label>
-                    <div class="layui-input-block">
-                        <input type="text" name="NCARRIERFREQ" lay-verify="number" placeholder="请输入NCARRIERFREQ" autocomplete="off" class="layui-input">
+                    <label class="layui-form-label" style="width: 150px">载波中心频率</label>
+                    <div class="layui-input-inline"  style="width: 580px">
+                        <input type="text" name="NCARRIERFREQ" lay-verify="number" placeholder="请输入载波中心频率" autocomplete="off" class="layui-input">
                     </div>
                 </div>
             </c:if>
             <c:if test="${dataType!=3}">
                 <div class="layui-form-item">
-                    <label class="layui-form-label">NCARRIERFREQ</label>
+                    <label class="layui-form-label" style="width: 150px">载波中心频率</label>
                     <div class="layui-input-inline" style="width: 500px">
-                        <input type="text" name="NCARRIERFREQ"  lay-verify="required|number" placeholder="请输入NCARRIERFREQ" autocomplete="off" class="layui-input">
+                        <input type="text" name="NCARRIERFREQ"  lay-verify="required|number" placeholder="请输入载波中心频率" autocomplete="off" class="layui-input">
                     </div>
                     <div class="layui-form-mid" style="color: red;">*必填</div>
                 </div>
@@ -195,238 +195,238 @@
         </c:if>
         <c:if test="${fieldString.indexOf('SSOURCETYPE')>0}">
             <div class="layui-form-item">
-                <label class="layui-form-label">SSOURCETYPE</label>
+                <label class="layui-form-label" style="width: 150px">信源类型</label>
                 <div class="layui-input-inline" style="width: 500px">
-                    <input type="text" name="SSOURCETYPE"  lay-verify="required" placeholder="请输入SSOURCETYPE" autocomplete="off" class="layui-input">
+                    <input type="text" name="SSOURCETYPE"  lay-verify="required" placeholder="请输入信源类型" autocomplete="off" class="layui-input">
                 </div>
                 <div class="layui-form-mid" style="color: red;">*必填</div>
             </div>
         </c:if>
         <c:if test="${fieldString.indexOf('SSOURCECODETYPE')>0}">
             <div class="layui-form-item">
-                <label class="layui-form-label">SSOURCECODETYPE</label>
+                <label class="layui-form-label" style="width: 150px">信源编码类型</label>
                 <div class="layui-input-inline" style="width: 500px">
-                    <input type="text" name="SSOURCECODETYPE"  lay-verify="required" placeholder="请输入SSOURCECODETYPE" autocomplete="off" class="layui-input">
+                    <input type="text" name="SSOURCECODETYPE"  lay-verify="required" placeholder="请输入信源编码类型" autocomplete="off" class="layui-input">
                 </div>
                 <div class="layui-form-mid" style="color: red;">*必填</div>
             </div>
         </c:if>
         <c:if test="${fieldString.indexOf('NSOURCERATE')>0}">
             <div class="layui-form-item">
-                <label class="layui-form-label">NSOURCERATE</label>
-                <div class="layui-input-block">
-                    <input type="text" name="NSOURCERATE" lay-verify="number" placeholder="请输入NSOURCERATE" autocomplete="off" class="layui-input">
+                <label class="layui-form-label" style="width: 150px">信源速率</label>
+                <div class="layui-input-inline"  style="width: 580px">
+                    <input type="text" name="NSOURCERATE" lay-verify="number" placeholder="请输入信源速率" autocomplete="off" class="layui-input">
                 </div>
             </div>
         </c:if>
         <c:if test="${fieldString.indexOf('SSQUIPMENT_NAME')>0}">
             <div class="layui-form-item">
-                <label class="layui-form-label">SSQUIPMENT_NAME</label>
-                <div class="layui-input-block">
-                    <input type="text" name="SSQUIPMENT_NAME" placeholder="请输入SSQUIPMENT_NAME" autocomplete="off" class="layui-input">
+                <label class="layui-form-label" style="width: 150px">设备名称</label>
+                <div class="layui-input-inline"  style="width: 580px">
+                    <input type="text" name="SSQUIPMENT_NAME" placeholder="请输入设备名称" autocomplete="off" class="layui-input">
                 </div>
             </div>
         </c:if>
         <c:if test="${fieldString.indexOf('SSQUIPMENT_CHAN')>0}">
             <div class="layui-form-item">
-                <label class="layui-form-label">SSQUIPMENT_CHAN</label>
-                <div class="layui-input-block">
-                    <input type="text" name="SSQUIPMENT_CHAN" placeholder="请输入SSQUIPMENT_CHAN" autocomplete="off" class="layui-input">
+                <label class="layui-form-label" style="width: 150px">设备通道号</label>
+                <div class="layui-input-inline"  style="width: 580px">
+                    <input type="text" name="SSQUIPMENT_CHAN" placeholder="请输入设备通道号" autocomplete="off" class="layui-input">
                 </div>
             </div>
         </c:if>
         <c:if test="${fieldString.indexOf('NCARRIER_FREQ')>0}">
             <div class="layui-form-item">
-                <label class="layui-form-label">NCARRIER_FREQ</label>
+                <label class="layui-form-label" style="width: 150px">载波频率</label>
                 <div class="layui-input-inline" style="width: 500px">
-                    <input type="text" name="NCARRIER_FREQ"  lay-verify="required|number" placeholder="请输入NCARRIER_FREQ" autocomplete="off" class="layui-input">
+                    <input type="text" name="NCARRIER_FREQ"  lay-verify="required|number" placeholder="请输入载波频率" autocomplete="off" class="layui-input">
                 </div>
                 <div class="layui-form-mid" style="color: red;">*必填</div>
             </div>
         </c:if>
         <c:if test="${fieldString.indexOf('NIF_FREQ')>0}">
             <div class="layui-form-item">
-                <label class="layui-form-label">NIF_FREQ</label>
+                <label class="layui-form-label" style="width: 150px">中频频率</label>
                 <div class="layui-input-inline" style="width: 500px">
-                    <input type="text" name="NIF_FREQ"  lay-verify="required|number" placeholder="请输入NIF_FREQ" autocomplete="off" class="layui-input">
+                    <input type="text" name="NIF_FREQ"  lay-verify="required|number" placeholder="请输入中频频率" autocomplete="off" class="layui-input">
                 </div>
                 <div class="layui-form-mid" style="color: red;">*必填</div>
             </div>
         </c:if>
         <c:if test="${fieldString.indexOf('NCARRIER_BAND')>0}">
             <div class="layui-form-item">
-                <label class="layui-form-label">NCARRIER_BAND</label>
+                <label class="layui-form-label" style="width: 150px">载波带宽</label>
                 <div class="layui-input-inline" style="width: 500px">
-                    <input type="text" name="NCARRIER_BAND"  lay-verify="required|number" placeholder="请输入NCARRIER_BAND" autocomplete="off" class="layui-input">
+                    <input type="text" name="NCARRIER_BAND"  lay-verify="required|number" placeholder="请输入载波带宽" autocomplete="off" class="layui-input">
                 </div>
                 <div class="layui-form-mid" style="color: red;">*必填</div>
             </div>
         </c:if>
         <c:if test="${fieldString.indexOf('NDATA_SAMPLERATE')>0}">
             <div class="layui-form-item">
-                <label class="layui-form-label">NDATA_SAMPLERATE</label>
+                <label class="layui-form-label" style="width: 150px">采样频率</label>
                 <div class="layui-input-inline" style="width: 500px">
-                    <input type="text" name="NDATA_SAMPLERATE"  lay-verify="required|number" placeholder="请输入NDATA_SAMPLERATE" autocomplete="off" class="layui-input">
+                    <input type="text" name="NDATA_SAMPLERATE"  lay-verify="required|number" placeholder="请输入采样频率" autocomplete="off" class="layui-input">
                 </div>
                 <div class="layui-form-mid" style="color: red;">*必填</div>
             </div>
         </c:if>
         <c:if test="${fieldString.indexOf('SFILTER_BAND')>0}">
             <div class="layui-form-item">
-                <label class="layui-form-label">SFILTER_BAND</label>
-                <div class="layui-input-block">
-                    <input type="text" name="SFILTER_BAND" placeholder="请输入SFILTER_BAND" autocomplete="off" class="layui-input">
+                <label class="layui-form-label" style="width: 150px">模拟滤波器带宽</label>
+                <div class="layui-input-inline"  style="width: 580px">
+                    <input type="text" name="SFILTER_BAND" placeholder="请输入模拟滤波器带宽" autocomplete="off" class="layui-input">
                 </div>
             </div>
         </c:if>
         <c:if test="${fieldString.indexOf('SSAMPLEDATA_TYPE')>0}">
             <div class="layui-form-item">
-                <label class="layui-form-label">SSAMPLEDATA_TYPE</label>
-                <div class="layui-input-block">
-                    <input type="text" name="SSAMPLEDATA_TYPE" placeholder="请输入SSAMPLEDATA_TYPE" autocomplete="off" class="layui-input">
+                <label class="layui-form-label" style="width: 150px">数据类型</label>
+                <div class="layui-input-inline"  style="width: 580px">
+                    <input type="text" name="SSAMPLEDATA_TYPE" placeholder="请输入数据类型" autocomplete="off" class="layui-input">
                 </div>
             </div>
         </c:if>
         <c:if test="${fieldString.indexOf('SSAMPLEGAIN_TYPE')>0}">
             <div class="layui-form-item">
-                <label class="layui-form-label">SSAMPLEGAIN_TYPE</label>
-                <div class="layui-input-block">
-                    <input type="text" name="SSAMPLEGAIN_TYPE" placeholder="请输入SSAMPLEGAIN_TYPE" autocomplete="off" class="layui-input">
+                <label class="layui-form-label" style="width: 150px">增益方式</label>
+                <div class="layui-input-inline"  style="width: 580px">
+                    <input type="text" name="SSAMPLEGAIN_TYPE" placeholder="请输入增益方式" autocomplete="off" class="layui-input">
                 </div>
             </div>
         </c:if>
         <c:if test="${fieldString.indexOf('SSAMPLEGAIN')>0}">
             <div class="layui-form-item">
-                <label class="layui-form-label">SSAMPLEGAIN</label>
-                <div class="layui-input-block">
-                    <input type="text" name="SSAMPLEGAIN" lay-verify="number" placeholder="请输入SSAMPLEGAIN" autocomplete="off" class="layui-input">
+                <label class="layui-form-label" style="width: 150px">增益值</label>
+                <div class="layui-input-inline"  style="width: 580px">
+                    <input type="text" name="SSAMPLEGAIN" lay-verify="number" placeholder="请输入增益值" autocomplete="off" class="layui-input">
                 </div>
             </div>
         </c:if>
         <c:if test="${fieldString.indexOf('NDATA_CARRIERFREQ')>0}">
             <div class="layui-form-item">
-                <label class="layui-form-label">NDATA_CARRIERFREQ</label>
-                <div class="layui-input-block">
-                    <input type="text" name="NDATA_CARRIERFREQ" lay-verify="number" placeholder="请输入NDATA_CARRIERFREQ" autocomplete="off" class="layui-input">
+                <label class="layui-form-label" style="width: 150px">采样后中心频率</label>
+                <div class="layui-input-inline"  style="width: 580px">
+                    <input type="text" name="NDATA_CARRIERFREQ" lay-verify="number" placeholder="请输入采样后中心频率" autocomplete="off" class="layui-input">
                 </div>
             </div>
         </c:if>
         <c:if test="${fieldString.indexOf('NFREQ_START')>0}">
             <div class="layui-form-item">
-                <label class="layui-form-label">NFREQ_START</label>
+                <label class="layui-form-label" style="width: 150px">起始频率</label>
                 <div class="layui-input-inline" style="width: 500px">
-                    <input type="text" name="NFREQ_START"  lay-verify="required|number" placeholder="请输入NFREQ_START" autocomplete="off" class="layui-input">
+                    <input type="text" name="NFREQ_START"  lay-verify="required|number" placeholder="请输入起始频率" autocomplete="off" class="layui-input">
                 </div>
                 <div class="layui-form-mid" style="color: red;">*必填</div>
             </div>
         </c:if>
         <c:if test="${fieldString.indexOf('NFREQ_STOP')>0}">
             <div class="layui-form-item">
-                <label class="layui-form-label">NFREQ_STOP</label>
+                <label class="layui-form-label" style="width: 150px">结束频率</label>
                 <div class="layui-input-inline" style="width: 500px">
-                    <input type="text" name="NFREQ_STOP"  lay-verify="required|number" placeholder="请输入NFREQ_STOP" autocomplete="off" class="layui-input">
+                    <input type="text" name="NFREQ_STOP"  lay-verify="required|number" placeholder="请输入结束频率" autocomplete="off" class="layui-input">
                 </div>
                 <div class="layui-form-mid" style="color: red;">*必填</div>
             </div>
         </c:if>
         <c:if test="${fieldString.indexOf('NBANDDATA_SPLRATE')>0}">
             <div class="layui-form-item">
-                <label class="layui-form-label">NBANDDATA_SPLRATE</label>
+                <label class="layui-form-label" style="width: 150px">采样频率</label>
                 <div class="layui-input-inline" style="width: 500px">
-                    <input type="text" name="NBANDDATA_SPLRATE"  lay-verify="required|number" placeholder="请输入NBANDDATA_SPLRATE" autocomplete="off" class="layui-input">
+                    <input type="text" name="NBANDDATA_SPLRATE"  lay-verify="required|number" placeholder="请输入采样频率" autocomplete="off" class="layui-input">
                 </div>
                 <div class="layui-form-mid" style="color: red;">*必填</div>
             </div>
         </c:if>
         <c:if test="${fieldString.indexOf('NBANDDATA_FFTNUM')>0}">
             <div class="layui-form-item">
-                <label class="layui-form-label">NBANDDATA_FFTNUM</label>
+                <label class="layui-form-label" style="width: 150px">FFT点数</label>
                 <div class="layui-input-inline" style="width: 500px">
-                    <input type="text" name="NBANDDATA_FFTNUM"  lay-verify="required|number" placeholder="请输入NBANDDATA_FFTNUM" autocomplete="off" class="layui-input">
+                    <input type="text" name="NBANDDATA_FFTNUM"  lay-verify="required|number" placeholder="请输入FFT点数" autocomplete="off" class="layui-input">
                 </div>
                 <div class="layui-form-mid" style="color: red;">*必填</div>
             </div>
         </c:if>
         <c:if test="${fieldString.indexOf('NSIGLEVEL')>0}">
             <div class="layui-form-item">
-                <label class="layui-form-label">NSIGLEVEL</label>
-                <div class="layui-input-block">
-                    <input type="text" name="NSIGLEVEL" lay-verify="number" placeholder="请输入NSIGLEVEL" autocomplete="off" class="layui-input">
+                <label class="layui-form-label" style="width: 150px">参考信号电平</label>
+                <div class="layui-input-inline"  style="width: 580px">
+                    <input type="text" name="NSIGLEVEL" lay-verify="number" placeholder="请输入参考信号电平" autocomplete="off" class="layui-input">
                 </div>
             </div>
         </c:if>
         <c:if test="${fieldString.indexOf('NBANDDATA_TYPE')>0}">
             <div class="layui-form-item">
-                <label class="layui-form-label">NBANDDATA_TYPE</label>
+                <label class="layui-form-label" style="width: 150px">频谱数据类型</label>
                 <div class="layui-input-inline" style="width: 500px">
-                    <input type="text" name="NBANDDATA_TYPE"  lay-verify="required|number" placeholder="请输入NBANDDATA_TYPE" autocomplete="off" class="layui-input">
+                    <input type="text" name="NBANDDATA_TYPE"  lay-verify="required|number" placeholder="请输入频谱数据类型" autocomplete="off" class="layui-input">
                 </div>
                 <div class="layui-form-mid" style="color: red;">*必填</div>
             </div>
         </c:if>
         <c:if test="${fieldString.indexOf('NSPECTRUM_DIVISION')>0}">
             <div class="layui-form-item">
-                <label class="layui-form-label">NSPECTRUM_DIVISION</label>
-                <div class="layui-input-block">
-                    <input type="text" name="NSPECTRUM_DIVISION" lay-verify="number" placeholder="请输入NSPECTRUM_DIVISION" autocomplete="off" class="layui-input">
+                <label class="layui-form-label" style="width: 150px">频率分辨率</label>
+                <div class="layui-input-inline"  style="width: 580px">
+                    <input type="text" name="NSPECTRUM_DIVISION" lay-verify="number" placeholder="请输入频率分辨率" autocomplete="off" class="layui-input">
                 </div>
             </div>
         </c:if>
         <c:if test="${fieldString.indexOf('DDATA_RECBTIME')>0}">
             <div class="layui-form-item">
-                <label class="layui-form-label">DDATA_RECBTIME</label>
-                <div class="layui-input-block">
-                    <input type="text" name="DDATA_RECBTIME" placeholder="请输入DDATA_RECBTIME" autocomplete="off" class="layui-input">
+                <label class="layui-form-label" style="width: 150px">记录开始时间</label>
+                <div class="layui-input-inline"  style="width: 580px">
+                    <input type="text" name="DDATA_RECBTIME" placeholder="请输入记录开始时间" autocomplete="off" class="layui-input">
                 </div>
             </div>
         </c:if>
         <c:if test="${fieldString.indexOf('DDATA_RECETIME')>0}">
             <div class="layui-form-item">
-                <label class="layui-form-label">DDATA_RECETIME</label>
-                <div class="layui-input-block">
-                    <input type="text" name="DDATA_RECETIME" placeholder="请输入DDATA_RECETIME" autocomplete="off" class="layui-input">
+                <label class="layui-form-label" style="width: 150px">记录结束时间</label>
+                <div class="layui-input-inline"  style="width: 580px">
+                    <input type="text" name="DDATA_RECETIME" placeholder="请输入记录结束时间" autocomplete="off" class="layui-input">
                 </div>
             </div>
         </c:if>
         <c:if test="${fieldString.indexOf('NDATA_RECDURATION')>0}">
             <div class="layui-form-item">
-                <label class="layui-form-label">NDATA_RECDURATION</label>
-                <div class="layui-input-block">
-                    <input type="text" name="NDATA_RECDURATION" lay-verify="number" placeholder="请输入NDATA_RECDURATION" autocomplete="off" class="layui-input">
+                <label class="layui-form-label" style="width: 150px">记录持续时间</label>
+                <div class="layui-input-inline"  style="width: 580px">
+                    <input type="text" name="NDATA_RECDURATION" lay-verify="number" placeholder="请输入记录持续时间" autocomplete="off" class="layui-input">
                 </div>
             </div>
         </c:if>
         <c:if test="${fieldString.indexOf('NSAMPLE_BITS')>0}">
             <div class="layui-form-item">
-                <label class="layui-form-label">NSAMPLE_BITS</label>
-                <div class="layui-input-block">
-                    <input type="text" name="NSAMPLE_BITS" lay-verify="number" placeholder="请输入NSAMPLE_BITS" autocomplete="off" class="layui-input">
+                <label class="layui-form-label" style="width: 150px">采样精度</label>
+                <div class="layui-input-inline"  style="width: 580px">
+                    <input type="text" name="NSAMPLE_BITS" lay-verify="number" placeholder="请输入采样精度" autocomplete="off" class="layui-input">
                 </div>
             </div>
         </c:if>
         <c:if test="${fieldString.indexOf('NSAMPLE_VALID_BITS')>0}">
             <div class="layui-form-item">
-                <label class="layui-form-label">NSAMPLE_VALID_BITS</label>
-                <div class="layui-input-block">
-                    <input type="text" name="NSAMPLE_VALID_BITS" lay-verify="number" placeholder="请输入NSAMPLE_VALID_BITS" autocomplete="off" class="layui-input">
+                <label class="layui-form-label" style="width: 150px">数据有效位</label>
+                <div class="layui-input-inline"  style="width: 580px">
+                    <input type="text" name="NSAMPLE_VALID_BITS" lay-verify="number" placeholder="请输入数据有效位" autocomplete="off" class="layui-input">
                 </div>
             </div>
         </c:if>
         <c:if test="${fieldString.indexOf('SMODULATIONMODE')>0}">
             <c:if test="${dataType==2}">
                 <div class="layui-form-item">
-                    <label class="layui-form-label">SMODULATIONMODE</label>
+                    <label class="layui-form-label" style="width: 150px">调制方式</label>
                     <div class="layui-input-inline" style="width: 500px">
-                        <input type="text" name="SMODULATIONMODE" lay-verify="required" placeholder="请输入SMODULATIONMODE" autocomplete="off" class="layui-input">
+                        <input type="text" name="SMODULATIONMODE" lay-verify="required" placeholder="请输入调制方式" autocomplete="off" class="layui-input">
                     </div>
                     <div class="layui-form-mid" style="color: red;">*必填</div>
                 </div>
             </c:if>
             <c:if test="${dataType!=2}">
                 <div class="layui-form-item">
-                    <label class="layui-form-label">SMODULATIONMODE</label>
-                    <div class="layui-input-block">
-                        <input type="text" name="SMODULATIONMODE" placeholder="请输入SMODULATIONMODE" autocomplete="off" class="layui-input">
+                    <label class="layui-form-label" style="width: 150px">调制方式</label>
+                    <div class="layui-input-inline"  style="width: 580px">
+                        <input type="text" name="SMODULATIONMODE" placeholder="请输入调制方式" autocomplete="off" class="layui-input">
                     </div>
                 </div>
             </c:if>
@@ -434,161 +434,161 @@
         <c:if test="${fieldString.indexOf('NMODULATIONRATE')>0}">
             <c:if test="${dataType==2}">
                 <div class="layui-form-item">
-                    <label class="layui-form-label">NMODULATIONRATE</label>
+                    <label class="layui-form-label" style="width: 150px">调制速率</label>
                     <div class="layui-input-inline" style="width: 500px">
-                        <input type="text" name="NMODULATIONRATE" lay-verify="required|number" placeholder="请输入NMODULATIONRATE" autocomplete="off" class="layui-input">
+                        <input type="text" name="NMODULATIONRATE" lay-verify="required|number" placeholder="请输入调制速率" autocomplete="off" class="layui-input">
                     </div>
                     <div class="layui-form-mid" style="color: red;">*必填</div>
                 </div>
             </c:if>
             <c:if test="${dataType!=2}">
                 <div class="layui-form-item">
-                    <label class="layui-form-label">NMODULATIONRATE</label>
-                    <div class="layui-input-block">
-                        <input type="text" name="NMODULATIONRATE" lay-verify="number" placeholder="请输入NMODULATIONRATE" autocomplete="off" class="layui-input">
+                    <label class="layui-form-label" style="width: 150px">调制速率</label>
+                    <div class="layui-input-inline"  style="width: 580px">
+                        <input type="text" name="NMODULATIONRATE" lay-verify="number" placeholder="请输入调制速率" autocomplete="off" class="layui-input">
                     </div>
                 </div>
             </c:if>
         </c:if>
         <c:if test="${fieldString.indexOf('SCODETYPE')>0}">
             <div class="layui-form-item">
-                <label class="layui-form-label">SCODETYPE</label>
-                <div class="layui-input-block">
-                    <input type="text" name="SCODETYPE" placeholder="请输入SCODETYPE" autocomplete="off" class="layui-input">
+                <label class="layui-form-label" style="width: 150px">信道编码类型</label>
+                <div class="layui-input-inline"  style="width: 580px">
+                    <input type="text" name="SCODETYPE" placeholder="请输入信道编码类型" autocomplete="off" class="layui-input">
                 </div>
             </div>
         </c:if>
         <c:if test="${fieldString.indexOf('SCODERATIO')>0}">
             <div class="layui-form-item">
-                <label class="layui-form-label">SCODERATIO</label>
-                <div class="layui-input-block">
-                    <input type="text" name="SCODERATIO" placeholder="请输入SCODERATIO" autocomplete="off" class="layui-input">
+                <label class="layui-form-label" style="width: 150px">信道编码码率</label>
+                <div class="layui-input-inline"  style="width: 580px">
+                    <input type="text" name="SCODERATIO" placeholder="请输入信道编码码率" autocomplete="off" class="layui-input">
                 </div>
             </div>
         </c:if>
         <c:if test="${fieldString.indexOf('SSCRAMBLERTYPE')>0}">
             <div class="layui-form-item">
-                <label class="layui-form-label">SSCRAMBLERTYPE</label>
-                <div class="layui-input-block">
-                    <input type="text" name="SSCRAMBLERTYPE" placeholder="请输入SSCRAMBLERTYPE" autocomplete="off" class="layui-input">
+                <label class="layui-form-label" style="width: 150px">扰码类型</label>
+                <div class="layui-input-inline"  style="width: 580px">
+                    <input type="text" name="SSCRAMBLERTYPE" placeholder="请输入扰码类型" autocomplete="off" class="layui-input">
                 </div>
             </div>
         </c:if>
         <c:if test="${fieldString.indexOf('SSCRAMBLERRATIO')>0}">
             <div class="layui-form-item">
-                <label class="layui-form-label">SSCRAMBLERRATIO</label>
-                <div class="layui-input-block">
-                    <input type="text" name="SSCRAMBLERRATIO" placeholder="请输入SSCRAMBLERRATIO" autocomplete="off" class="layui-input">
+                <label class="layui-form-label" style="width: 150px">扰码码率</label>
+                <div class="layui-input-inline"  style="width: 580px">
+                    <input type="text" name="SSCRAMBLERRATIO" placeholder="请输入扰码码率" autocomplete="off" class="layui-input">
                 </div>
             </div>
         </c:if>
         <c:if test="${fieldString.indexOf('SMODFRAMETYPE')>0}">
             <div class="layui-form-item">
-                <label class="layui-form-label">SMODFRAMETYPE</label>
-                <div class="layui-input-block">
-                    <input type="text" name="SMODFRAMETYPE" placeholder="请输入SMODFRAMETYPE" autocomplete="off" class="layui-input">
+                <label class="layui-form-label" style="width: 150px">调制成帧结构类型</label>
+                <div class="layui-input-inline"  style="width: 580px">
+                    <input type="text" name="SMODFRAMETYPE" placeholder="请输入调制成帧结构类型" autocomplete="off" class="layui-input">
                 </div>
             </div>
         </c:if>
         <c:if test="${fieldString.indexOf('SFRAMERATIO')>0}">
             <div class="layui-form-item">
-                <label class="layui-form-label">SFRAMERATIO</label>
-                <div class="layui-input-block">
-                    <input type="text" name="SFRAMERATIO" placeholder="请输入SFRAMERATIO" autocomplete="off" class="layui-input">
+                <label class="layui-form-label" style="width: 150px">成帧类型码率</label>
+                <div class="layui-input-inline"  style="width: 580px">
+                    <input type="text" name="SFRAMERATIO" placeholder="请输入成帧类型码率" autocomplete="off" class="layui-input">
                 </div>
             </div>
         </c:if>
         <c:if test="${fieldString.indexOf('NINFORATE')>0}">
             <div class="layui-form-item">
-                <label class="layui-form-label">NINFORATE</label>
-                <div class="layui-input-block">
-                    <input type="text" name="NINFORATE" lay-verify="number" placeholder="请输入NINFORATE" autocomplete="off" class="layui-input">
+                <label class="layui-form-label" style="width: 150px">信息速率</label>
+                <div class="layui-input-inline"  style="width: 580px">
+                    <input type="text" name="NINFORATE" lay-verify="number" placeholder="请输入信息速率" autocomplete="off" class="layui-input">
                 </div>
             </div>
         </c:if>
         <c:if test="${fieldString.indexOf('SBUSINESSTYPE')>0}">
             <div class="layui-form-item">
-                <label class="layui-form-label">SBUSINESSTYPE</label>
-                <div class="layui-input-block">
-                    <input type="text" name="SBUSINESSTYPE" placeholder="请输入SBUSINESSTYPE" autocomplete="off" class="layui-input">
+                <label class="layui-form-label" style="width: 150px">复接信号类型</label>
+                <div class="layui-input-inline"  style="width: 580px">
+                    <input type="text" name="SBUSINESSTYPE" placeholder="请输入复接信号类型" autocomplete="off" class="layui-input">
                 </div>
             </div>
         </c:if>
         <c:if test="${fieldString.indexOf('SNETSIGNALTYPE')>0}">
             <div class="layui-form-item">
-                <label class="layui-form-label">SNETSIGNALTYPE</label>
+                <label class="layui-form-label" style="width: 150px">网络信号类型</label>
                 <div class="layui-input-inline" style="width: 500px">
-                    <input type="text" name="SNETSIGNALTYPE"  lay-verify="required" placeholder="请输入SNETSIGNALTYPE" autocomplete="off" class="layui-input">
+                    <input type="text" name="SNETSIGNALTYPE"  lay-verify="required" placeholder="请输入网络信号类型" autocomplete="off" class="layui-input">
                 </div>
                 <div class="layui-form-mid" style="color: red;">*必填</div>
             </div>
         </c:if>
         <c:if test="${fieldString.indexOf('NDEMOD_ERR')>0}">
             <div class="layui-form-item">
-                <label class="layui-form-label">NDEMOD_ERR</label>
-                <div class="layui-input-block">
-                    <input type="text" name="NDEMOD_ERR" lay-verify="number" placeholder="请输入NDEMOD_ERR" autocomplete="off" class="layui-input">
+                <label class="layui-form-label" style="width: 150px">解调误码率</label>
+                <div class="layui-input-inline"  style="width: 580px">
+                    <input type="text" name="NDEMOD_ERR" lay-verify="number" placeholder="请输入解调误码率" autocomplete="off" class="layui-input">
                 </div>
             </div>
         </c:if>
         <c:if test="${fieldString.indexOf('NDECOD_ERR')>0}">
             <div class="layui-form-item">
-                <label class="layui-form-label">NDECOD_ERR</label>
-                <div class="layui-input-block">
-                    <input type="text" name="NDECOD_ERR" lay-verify="number" placeholder="请输入NDECOD_ERR" autocomplete="off" class="layui-input">
+                <label class="layui-form-label" style="width: 150px">译码误码率</label>
+                <div class="layui-input-inline"  style="width: 580px">
+                    <input type="text" name="NDECOD_ERR" lay-verify="number" placeholder="请输入译码误码率" autocomplete="off" class="layui-input">
                 </div>
             </div>
         </c:if>
         <c:if test="${fieldString.indexOf('SNETDATA_TYPE')>0}">
             <div class="layui-form-item">
-                <label class="layui-form-label">SNETDATA_TYPE</label>
+                <label class="layui-form-label" style="width: 150px">网络数据格式</label>
                 <div class="layui-input-inline" style="width: 500px">
-                    <input type="text" name="SNETDATA_TYPE"  lay-verify="required" placeholder="请输入SNETDATA_TYPE" autocomplete="off" class="layui-input">
+                    <input type="text" name="SNETDATA_TYPE"  lay-verify="required" placeholder="请输入网络数据格式" autocomplete="off" class="layui-input">
                 </div>
                 <div class="layui-form-mid" style="color: red;">*必填</div>
             </div>
         </c:if>
         <c:if test="${fieldString.indexOf('SIS_COMPRESS_SAVE')>0}">
             <div class="layui-form-item">
-                <label class="layui-form-label">SIS_COMPRESS_SAVE</label>
+                <label class="layui-form-label" style="width: 150px">存储方式</label>
                 <div class="layui-input-inline" style="width: 500px">
-                    <input type="text" name="SIS_COMPRESS_SAVE"  lay-verify="required" placeholder="请输入SIS_COMPRESS_SAVE" autocomplete="off" class="layui-input">
+                    <input type="text" name="SIS_COMPRESS_SAVE"  lay-verify="required" placeholder="请输入存储方式" autocomplete="off" class="layui-input">
                 </div>
                 <div class="layui-form-mid" style="color: red;">*必填</div>
             </div>
         </c:if>
         <c:if test="${fieldString.indexOf('SUPLOADER')>0}">
             <div class="layui-form-item">
-                <label class="layui-form-label">SUPLOADER</label>
+                <label class="layui-form-label" style="width: 150px">上传人</label>
                 <div class="layui-input-inline" style="width: 500px">
-                    <input type="text" name="SUPLOADER"  lay-verify="required|number" placeholder="请输入SUPLOADER" autocomplete="off" class="layui-input">
+                    <input type="text" name="SUPLOADER"  lay-verify="required|number" placeholder="请输入上传人" autocomplete="off" class="layui-input">
                 </div>
                 <div class="layui-form-mid" style="color: red;">*必填</div>
             </div>
         </c:if>
         <c:if test="${fieldString.indexOf('DUPLOADERTIME')>0}">
             <div class="layui-form-item">
-                <label class="layui-form-label">DUPLOADERTIME</label>
+                <label class="layui-form-label" style="width: 150px">上传时间</label>
                 <div class="layui-input-inline" style="width: 500px">
-                    <input type="text" name="DUPLOADERTIME"  lay-verify="required" placeholder="请输入DUPLOADERTIME" autocomplete="off" class="layui-input">
+                    <input type="text" name="DUPLOADERTIME"  lay-verify="required" placeholder="请输入上传时间" autocomplete="off" class="layui-input">
                 </div>
                 <div class="layui-form-mid" style="color: red;">*必填</div>
             </div>
         </c:if>
         <c:if test="${fieldString.indexOf('BISTOSHARE')>0}">
             <div class="layui-form-item">
-                <label class="layui-form-label">BISTOSHARE</label>
+                <label class="layui-form-label" style="width: 150px">是否共享</label>
                 <div class="layui-input-inline" style="width: 500px">
-                    <input type="text" name="BISTOSHARE"  lay-verify="required" placeholder="请输入BISTOSHARE" autocomplete="off" class="layui-input">
+                    <input type="text" name="BISTOSHARE"  lay-verify="required" placeholder="请输入是否共享" autocomplete="off" class="layui-input">
                 </div>
                 <div class="layui-form-mid" style="color: red;">*必填</div>
             </div>
         </c:if>
         <c:if test="${fieldString.indexOf('SUSERCOMMENT')>0}">
             <div class="layui-form-item layui-form-text">
-                <label class="layui-form-label">SUSERCOMMENT</label>
+                <label class="layui-form-label">用户注释信息</label>
                 <div class="layui-input-block">
-                    <textarea name="SUSERCOMMENT" placeholder="请输入SUSERCOMMENT" class="layui-textarea"></textarea>
+                    <textarea name="SUSERCOMMENT" placeholder="请输入用户注释信息" class="layui-textarea"></textarea>
                 </div>
             </div>
         </c:if>
@@ -605,7 +605,7 @@
     </form>
     <form id="fileForm" name="fileForm" class="layui-form layui-form-pane" style="position: absolute;margin-top: -150px;" enctype="multipart/form-data">
         <div class="layui-form-item">
-            <label class="layui-form-label" style="width: 600px">
+            <label class="layui-form-label" style="width: 640px">
                 <input class="form-control" type="file" name="file" id="file" style="float: left"/>
             </label><button id="btn" class="layui-btn" type="button">上传文件</button>
         </div>
