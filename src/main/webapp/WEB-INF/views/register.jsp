@@ -34,7 +34,7 @@
 
 <style>
     .searchDiv{
-        width: 700px;
+        width: 55%;
         margin: 30px auto;
     }
 </style>

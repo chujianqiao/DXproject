@@ -21,15 +21,15 @@
 <style>
     .searchWord{
         float: left;
-        width: 600px;
+        width: 85%;
         height: 52px;
     }
     .searchBotton{
-        width: 100px;
+        width: 15%;
         height: 52px;
     }
     .searchDiv{
-        width: 700px;
+        width: 55%;
         margin: 30px auto;
     }
     .tdData{
@@ -57,7 +57,7 @@
 
     </ul>
     <div class="searchDiv layui-tab layui-tab-card" lay-filter="demo">
-        <ul class="layui-tab-title" style="width: 699px">
+        <ul class="layui-tab-title" style="width: 100%">
             <li <c:if test="${searchType==0}">class="layui-this"</c:if>>文档</li>
             <li <c:if test="${searchType==1}">class="layui-this"</c:if>>数据</li>
         </ul>
@@ -92,7 +92,7 @@
 
         <br>
         <c:if test="${searchType==0}">
-            <table style="width: 710px">
+            <table style="width: 100%">
                 <thead>
                     <tr style="text-align: center">
                         <th class="thData">标题</th>
@@ -124,7 +124,7 @@
             </table>
         </c:if>
         <c:if test="${searchType==1}">
-            <table style="width: 710px">
+            <table style="width: 100%">
                 <thead>
                 <tr style="text-align: center">
                     <th class="thData">标题</th>

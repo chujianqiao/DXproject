@@ -21,22 +21,22 @@
 <style>
     .searchWord{
         float: left;
-        width: 600px;
+        width: 85%;
         height: 52px;
         border: 0px;
     }
     .searchBotton{
-        width: 100px;
+        width: 15%;
         height: 52px;
     }
     .searchDiv{
-        width: 700px;
+        width: 50%;
         margin-left: auto;
         margin-right: auto;
         margin-top: 150px;
     }
     .typeButton{
-        width: 700px;
+        width: 50%;
         margin-top: 50px;
         margin-left: auto;
         margin-right: auto;
@@ -57,7 +57,7 @@
 
     </ul>
     <div class="searchDiv layui-tab layui-tab-card" lay-filter="demo">
-        <ul class="layui-tab-title" style="width: 699px">
+        <ul class="layui-tab-title" style="width: 100%">
             <li class="layui-this">文档</li>
             <li>数据</li>
         </ul>
