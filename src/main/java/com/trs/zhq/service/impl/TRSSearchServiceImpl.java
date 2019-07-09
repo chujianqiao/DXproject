@@ -27,7 +27,9 @@ public class TRSSearchServiceImpl implements TRSSearchService {
         // 设置返回结果字段为“标题” 与正文
         if(dbName.indexOf("wendang")>0){
             param.setColorColumns("DX_BIAOTI;DX_ZHENGWEN");
-        }else{
+        }else if (dbName.indexOf("users")>0){
+            param.setColorColumns("USERNAME");
+        }else {
             param.setColorColumns("SFILENAME;SUSERCOMMENT");
         }
 
@@ -293,34 +295,12 @@ public class TRSSearchServiceImpl implements TRSSearchService {
         }catch (Exception e){
             e.printStackTrace();
             return "false";
-        }
-
-    }
-
-    @Override
-    public Users selectUserByUserName(String userName){
-        Users users = new Users();
-        TRSConnection conn = HybaseConnectionUtil.getHybaseConnection();
-        SearchParams param = new SearchParams();
-        TRSResultSet resultSet=null;
-        String selectWhere = "USERNAME:"+userName;
-        try {
-            resultSet = conn.executeSelect("sj_users",selectWhere,0,1,param);
-            for(int i = 0; i < resultSet.size(); i++){
-                resultSet.moveNext();
-                TRSRecord record = resultSet.get();
-                users.setID(record.getString("UID"));
-                users.setUSERNAME(record.getString("USERNAME"));
-                users.setPASSWORD(record.getString("PASSWORD"));
-                users.setSTATUS(record.getString("STATUS"));
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
         }finally {
             if (conn!=null)conn.close();
         }
 
-        return users;
     }
+
+
 
 }

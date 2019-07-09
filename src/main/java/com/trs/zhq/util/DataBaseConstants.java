@@ -6,5 +6,5 @@ public class DataBaseConstants {
 
 	public static final String HYBASEWENDANGTABLE = "sj_wendang";
 
-	
+	public static final String HYBASEUSERTABLE = "sj_users";
 }

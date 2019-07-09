@@ -14,5 +14,4 @@ public interface TRSSearchService {
                     MoCai moCai, PinPu pinPu, ShuCai shuCai, WangLuo wangLuo,
                     XinYuan xinYuan, int dataType);
 
-    Users selectUserByUserName(String userName);
 }

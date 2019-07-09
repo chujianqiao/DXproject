@@ -54,7 +54,15 @@
         <li class="layui-nav-item" style="float: right">
             <p><%=request.getSession().getAttribute("CONSOLEUSERNAME") %></p>
         </li>
-
+        <%
+            if (request.getSession().getAttribute("CONSOLEUSERNAME").equals("admin")){
+        %>
+            <li class="layui-nav-item" style="float: right">
+                <a href="<%=basePath %>user/searchUsers?start=1&end=10">用户管理</a>
+            </li>
+        <%
+            }
+        %>
     </ul>
     <div class="searchDiv layui-tab layui-tab-card" lay-filter="demo">
         <ul class="layui-tab-title" style="width: 100%">

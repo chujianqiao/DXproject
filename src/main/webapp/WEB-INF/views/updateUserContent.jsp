@@ -11,7 +11,7 @@
 <head>
     <meta charset="utf-8">
     <title>
-        登录
+        dx
     </title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -40,39 +40,53 @@
 
 <body>
 <div>
-    <c:if test="${flag!='1'}">
-    <ul class="layui-nav">
-        <li class="layui-nav-item" >
-            <a href="<%=basePath%>index">登录</a>
-        </li>
-        <li class="layui-nav-item">
-        </li>
-    </ul>
-    </c:if>
     <div class="searchDiv">
-        <form class="layui-form layui-form-pane" id="register" action="#" target="target" enctype="multipart/form-data">
+        <form class="layui-form layui-form-pane" id="updateForm" action="#" target="target" enctype="multipart/form-data">
             <div class="layui-form-item">
-                <input name="flag" value="${flag}" hidden>
-                <label class="layui-form-label" style="width: 20%">用户名：</label>
+                <label class="layui-form-label" style="width: 20%">用户名</label>
                 <div class="layui-input-inline" style="width: 70%">
-                    <input type="text" name="USERNAME" lay-verify="required" placeholder="请输入用户名" autocomplete="off" class="layui-input">
+                    <input type="text" name="USERNAME" lay-verify="required" value="${user.USERNAME}" autocomplete="off" class="layui-input">
                 </div>
                 <div class="layui-form-mid" style="color: red;">*必填</div>
             </div>
             <div class="layui-form-item">
-                <label class="layui-form-label" style="width: 20%">密  码：</label>
+                <label class="layui-form-label" style="width: 20%">密  码</label>
                 <div class="layui-input-inline" style="width: 70%">
-                    <input type="password" id="passWord1" lay-verify="required" placeholder="请输入密码" autocomplete="off" class="layui-input">
-                    <input type="password" id="passWord0" name="PASSWORD" hidden>
+                    <input type="password" id="passWord1" lay-verify="required" value="${user.PASSWORD}" autocomplete="off" class="layui-input">
+                    <input type="password" id="passWord0" value="${user.PASSWORD}" name="PASSWORD" hidden>
                 </div>
                 <div class="layui-form-mid" style="color: red;">*必填</div>
             </div>
             <div class="layui-form-item">
-                <label class="layui-form-label" style="width: 20%">确认密码：</label>
+                <label class="layui-form-label" style="width: 20%">用户密级</label>
                 <div class="layui-input-inline" style="width: 70%">
-                    <input type="password" id="passWord2" lay-verify="required|rePassword" placeholder="请再次输入密码" autocomplete="off" class="layui-input">
+                    <select id="selectMiji" name="USER_MIJI" lay-filter="selectSort" lay-verify="required">
+                        <option value="秘密" <c:if test="${user.USER_MIJI=='秘密'}">selected</c:if>>秘密</option>
+                        <option value="机密" <c:if test="${user.USER_MIJI=='机密'}">selected</c:if>>机密</option>
+                        <option value="绝密" <c:if test="${user.USER_MIJI=='绝密'}">selected</c:if>>绝密</option>
+                    </select>
                 </div>
-                <div class="layui-form-mid" style="color: red;">*必填</div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label" style="width: 20%">用户状态</label>
+                <div class="layui-input-inline" style="width: 70%">
+                    <select id="selectStatus" name="STATUS" lay-filter="selectSort" lay-verify="required">
+                        <option value="0" <c:if test="${user.STATUS=='0'}">selected</c:if>>停用</option>
+                        <option value="1" <c:if test="${user.STATUS=='1'}">selected</c:if>>正常</option>
+                    </select>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label" style="width: 20%">创建时间</label>
+                <div class="layui-input-inline"  style="width: 70%">
+                    <input type="text" name="CREATETIME" value="${user.CREATETIME.substring(0,10).replaceAll("/","-")}" autocomplete="off" class="layui-input">
+                </div>
+            </div>
+            <div class="layui-form-item" hidden>
+                <label class="layui-form-label">UID：</label>
+                <div class="layui-input-inline" style="width: 500px">
+                    <input type="text" name="UID" lay-verify="required" value="${user.UID}" autocomplete="off" class="layui-input">
+                </div>
             </div>
             <div class="layui-form-item">
                 <div class="layui-input-block">
@@ -87,51 +101,41 @@
 <script src="<%=basePath %>static/js/layui/layui.js" charset="utf-8">
 </script>
 <script type="text/javascript">
-    var contentH = window.innerHeight;
+    layui.use('laydate', function(){
+        var laydate = layui.laydate;
 
-
-    $(function(){  //生成验证码
-
-        /* 增加回车提交功能 */
-        $(document).keypress(function(e) {
-            // 回车键事件
-            if(e.which == 13) {
-
-            }
+        //执行一个laydate实例
+        laydate.render({
+            elem: "[name='CREATETIME']", //指定元素
+            trigger: "click"
         });
-
     });
 
     $("#passWord1").blur(function(){
-        $("#passWord0").val(hex_md5($("#passWord1").val()));
+        if ($("#passWord0").val() == $("#passWord1").val()){
+
+        }else {
+            $("#passWord0").val(hex_md5($("#passWord1").val()));
+        }
     })
 
     layui.use('form', function(){
         var form = layui.form;
-        form.verify({
-            rePassword: function(value) {
-                var pwd = $("#passWord1").val();
-                if (pwd !== value)
-                    return "二次输入的密码不一致！";
-            }
-        });
+
         //监听提交
         form.on('submit(formDemo)', function(data){
-            //layer.msg(JSON.stringify(data.field));
-            submitRegister();
+            submitUpdate();
             return false;
-
-
         });
     });
 
-    function submitRegister() {
+    function submitUpdate() {
         $.ajax({
             //几个参数需要注意一下
             type: "POST",//方法类型
             dataType: "text",//预期服务器返回的数据类型
-            url: "<%=basePath%>register" ,//url
-            data: $('#register').serialize(),
+            url: "<%=basePath%>user/updateUser" ,//url
+            data: $('#updateForm').serialize(),
             success: function (result) {
                 console.log(result);
                 if (result == "success"){
@@ -139,29 +143,10 @@
                         var layer = layui.layer;
                         layer.open({
                             title: '提示'
-                            ,content: '注册成功，即将返回登陆页面！'
-                        });
-                    });
-                    setTimeout(function(){
-                        window.location.href=contentp_path+'login';
-                    },2000)
-                } else if (result == "successAdd") {
-                    layui.use('layer', function(){
-                        var layer = layui.layer;
-                        layer.open({
-                            title: '提示'
-                            ,content: '添加成功！'
+                            ,content: '修改成功！'
                         });
                     });
                     window.parent.layer.closeAll();//关闭弹窗
-                } else if (result == "errorAdd") {
-                    layui.use('layer', function(){
-                        var layer = layui.layer;
-                        layer.open({
-                            title: '提示'
-                            ,content: '添加失败！'
-                        });
-                    });
                 } else if (result == "same") {
                     layui.use('layer', function(){
                         var layer = layui.layer;
@@ -175,7 +160,7 @@
                         var layer = layui.layer;
                         layer.open({
                             title: '提示'
-                            ,content: '注册失败！'
+                            ,content: '修改失败！'
                         });
                     });
                 }
@@ -186,13 +171,12 @@
                     var layer = layui.layer;
                     layer.open({
                         title: '提示'
-                        ,content: '失败！'
+                        ,content: '修改失败！'
                     });
                 });
             }
         });
     }
-
 </script>
 </body>
 

@@ -47,21 +47,33 @@ public class IndexController {
     }
 
     @RequestMapping("toRegister")
-    public String toRegister() {
+    public String toRegister(int flag) {
+        request.setAttribute("flag",flag);
+
         return "register";
     }
 
     @RequestMapping("register")
-    public String register(Users user) {
-        String flag = userService.insertUser(user);
-        if (flag.equals("success")) {
-            request.setAttribute("flag", "register");
-        }else if (flag.equals("same")){
-            request.setAttribute("flag", "same");
+    @ResponseBody
+    public String register(Users user, int flag) {
+        String message = userService.insertUser(user);
+        if (flag==1){
+            if (message.equals("success")) {
+                return "successAdd";
+            } else if (message.equals("same")) {
+                return "same";
+            } else {
+                return "errorAdd";
+            }
         }else {
-            request.setAttribute("flag", "error");
+            if (message.equals("success")) {
+                return "success";
+            } else if (message.equals("same")) {
+                return "same";
+            } else {
+                return "error";
+            }
         }
-        return "returnFlag";
     }
 
     @RequestMapping({ "toLogin" })
@@ -80,9 +92,13 @@ public class IndexController {
                     return "ERROR_NOT";
                 }
             }*/
-            Users user = this.trsSearchService.selectUserByUserName(username);
+
+            Users user = this.userService.selectUserByUserName(username);
+            if (user.getSTATUS().equals("0")){
+                return "statusFalse";
+            }
             if (MD5Util.compareWithPasswords(passwords.toUpperCase(),
-                    user.getPASSWORD(), user.getID())) {
+                    user.getPASSWORD(), user.getUID())) {
                 if ((StringUtil.isNotNull(user))
                         && (!user.getSTATUS().equals(CodesUtil.NORMAL_USER_STATUS))) {
                     return CodesUtil.ERROR_STATUS;

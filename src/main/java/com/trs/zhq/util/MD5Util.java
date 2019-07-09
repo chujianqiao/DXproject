@@ -88,8 +88,8 @@ public class MD5Util {
 		}
 	}
 	public static void main(String[] args) {
-		System.out.println(sortFromEndAndMd5(MD5("tfsadmin"),
-				"e7864ab3-9578-45b5-8a34-208d57eed6df41"));
+		System.out.println(sortFromEndAndMd5(MD5(""),
+				"62de688d24814dfaac7dccdfe07a881a"));
 	}
 }
 

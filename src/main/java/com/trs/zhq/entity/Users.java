@@ -1,169 +1,60 @@
 package com.trs.zhq.entity;
 
-import java.io.Serializable;
-import java.util.Date;
 
-public class Users implements Serializable {
-	private String ID;
+
+public class Users {
 	private String USERNAME;
 	private String PASSWORD;
-	private String NICKNAME;
-	private String TRUENAME;
-	private String EMAIL;
-	private String TELPHONE;
 	private String STATUS;
-	private String DEPARTNAME;
-	private String MOBILE;
-	private String DESCS;
-	private Date CRTIME;
-	private String CRUSER;
-	private String CRUSERNAME;
-	public String REPASSWORDS;
-
-	public String getID() {
-		return this.ID;
-	}
-
-	public void setID(String ID) {
-		this.ID = (ID == null ? null : ID.trim());
-	}
+	private String UID;
+	private String CREATETIME;
+	private String USER_MIJI;
 
 	public String getUSERNAME() {
-		return this.USERNAME;
+		return USERNAME;
 	}
 
 	public void setUSERNAME(String USERNAME) {
-		this.USERNAME = (USERNAME == null ? null : USERNAME.trim());
+		this.USERNAME = USERNAME;
 	}
 
 	public String getPASSWORD() {
-		return this.PASSWORD;
+		return PASSWORD;
 	}
 
 	public void setPASSWORD(String PASSWORD) {
-		this.PASSWORD = (PASSWORD == null ? null : PASSWORD.trim());
-	}
-
-	public String getNICKNAME() {
-		return this.NICKNAME;
-	}
-
-	public void setNICKNAME(String NICKNAME) {
-		this.NICKNAME = (NICKNAME == null ? null : NICKNAME.trim());
-	}
-
-	public String getTRUENAME() {
-		return this.TRUENAME;
-	}
-
-	public void setTRUENAME(String TRUENAME) {
-		this.TRUENAME = (TRUENAME == null ? null : TRUENAME.trim());
-	}
-
-	public String getEMAIL() {
-		return this.EMAIL;
-	}
-
-	public void setEMAIL(String EMAIL) {
-		this.EMAIL = (EMAIL == null ? null : EMAIL.trim());
-	}
-
-	public String getTELPHONE() {
-		return this.TELPHONE;
-	}
-
-	public void setTELPHONE(String TELPHONE) {
-		this.TELPHONE = (TELPHONE == null ? null : TELPHONE.trim());
+		this.PASSWORD = PASSWORD;
 	}
 
 	public String getSTATUS() {
-		return this.STATUS;
+		return STATUS;
 	}
 
 	public void setSTATUS(String STATUS) {
 		this.STATUS = STATUS;
 	}
 
-	public String getDEPARTNAME() {
-		return this.DEPARTNAME;
+	public String getUID() {
+		return UID;
 	}
 
-	public void setDEPARTNAME(String DEPARTNAME) {
-		this.DEPARTNAME = (DEPARTNAME == null ? null : DEPARTNAME.trim());
+	public void setUID(String UID) {
+		this.UID = UID;
 	}
 
-	public String getMOBILE() {
-		return this.MOBILE;
+	public String getCREATETIME() {
+		return CREATETIME;
 	}
 
-	public void setMOBILE(String MOBILE) {
-		this.MOBILE = (MOBILE == null ? null : MOBILE.trim());
+	public void setCREATETIME(String CREATETIME) {
+		this.CREATETIME = CREATETIME;
 	}
 
-	public String getDESCS() {
-		return this.DESCS;
+	public String getUSER_MIJI() {
+		return USER_MIJI;
 	}
 
-	public void setDESCS(String DESCS) {
-		this.DESCS = (DESCS == null ? null : DESCS.trim());
-	}
-
-	public Date getCRTIME() {
-		return this.CRTIME;
-	}
-
-	public void setCRTIME(Date CRTIME) {
-		this.CRTIME = CRTIME;
-	}
-
-	public String getCRUSER() {
-		return this.CRUSER;
-	}
-
-	public void setCRUSER(String CRUSER) {
-		this.CRUSER = (CRUSER == null ? null : CRUSER.trim());
-	}
-
-	public String getCRUSERNAME() {
-		return this.CRUSERNAME;
-	}
-
-	public void setCRUSERNAME(String CRUSERNAME) {
-		this.CRUSERNAME = (CRUSERNAME == null ? null : CRUSERNAME.trim());
-	}
-
-	public String orderby = " crtime desc ";
-	public boolean isSuperAdmin;
-
-	public String getOrderby() {
-		return this.orderby;
-	}
-
-	public void setOrderby(String orderby) {
-		this.orderby = orderby;
-	}
-
-	public String getREPASSWORDS() {
-		return this.REPASSWORDS;
-	}
-
-	public void setREPASSWORDS(String rEPASSWORDS) {
-		this.REPASSWORDS = rEPASSWORDS;
-	}
-
-	public boolean isSuperAdmin() {
-		return this.isSuperAdmin;
-	}
-
-	public void setSuperAdmin(boolean isSuperAdmin) {
-		this.isSuperAdmin = isSuperAdmin;
+	public void setUSER_MIJI(String USER_MIJI) {
+		this.USER_MIJI = USER_MIJI;
 	}
 }
-
-/*
- * Location: C:\Users\UserHao\Desktop\通用框架\wms\WEB-INF\classes\
- * 
- * Qualified Name: com.wms.model.Users
- * 
- * JD-Core Version: 0.7.0.1
- */

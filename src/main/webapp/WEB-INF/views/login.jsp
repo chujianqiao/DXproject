@@ -111,7 +111,7 @@
     });
 
     function register(){
-        window.location.href=contentp_path+'toRegister';
+        window.location.href=contentp_path+'toRegister?flag=0';
     }
 
     function login(){
@@ -129,6 +129,9 @@
 
                     if(result=='success'){
                         window.location.href=contentp_path+'index';
+                    }else if(result == 'statusFalse'){
+                        messageStrTips('用户已被停用，请联系管理员！');
+                        changeCode();
                     }else if(result == 'ERROT_STATUS'){
                         messageStrTips('用户状态错误，请联系管理人员核实身份！');
                         changeCode();
