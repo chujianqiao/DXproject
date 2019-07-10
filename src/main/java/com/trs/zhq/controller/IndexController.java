@@ -6,6 +6,7 @@ import com.trs.zhq.service.ConfigService;
 import com.trs.zhq.service.TRSSearchService;
 import com.trs.zhq.service.UserService;
 import com.trs.zhq.util.*;
+import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
@@ -171,10 +172,24 @@ public class IndexController {
         start = (start - 1) * end;
         String dbName = "";
         String searchWhere = "";
-        List<TRSRecord> resultSet = new ArrayList<>();
+        List<TRSRecord> resultSet = null;
         int count = 0;
         if (StringUtils.isEmpty(selectSort)){
             selectSort = "RELEVANCE";
+        }
+        String search_miji = "";
+        //判断密级
+        if(searchType == 0){
+            Users consoleUser = (Users) request.getSession().getAttribute("CONSOLEUSER");
+            String user_miji = consoleUser.getUSER_MIJI();
+            if("秘密".equals(user_miji)){
+                search_miji += " NOT DX_MIJI#LIST:机密,绝密 ";
+            } else if("机密".equals(user_miji)) {
+                search_miji += " NOT DX_MIJI#LIST:绝密 ";
+            } else if("绝密".equals(user_miji)){
+            } else {
+                search_miji += " NOT DX_MIJI#LIST:秘密,机密,绝密 ";
+            }
         }
 
         /**
@@ -184,7 +199,7 @@ public class IndexController {
             searchWord.replaceAll("：",":");
             String searchWords[] = searchWord.split(":");
             searchWord = "\"" + searchWords[1] + "\"";
-            searchWhere = searchWords[0] + ":" + searchWord;
+            searchWhere = searchWords[0] + ":" + searchWord + search_miji;
             if (searchType == 0) {
                 dbName = DataBaseConstants.HYBASEWENDANGTABLE;
             } else {
@@ -196,10 +211,10 @@ public class IndexController {
             searchWord = "\"" + searchWord + "\"";
             if (searchType == 0) {
                 dbName = DataBaseConstants.HYBASEWENDANGTABLE;
-                searchWhere = "(" + searchWord + ") OR " + "(DX_BIAOTI:" + searchWord + ")";
+                searchWhere = "(" + searchWord + ") OR " + "(DX_BIAOTI:" + searchWord + ")" + search_miji;
             } else {
                 dbName = DataBaseConstants.HYBASETABLE;
-                searchWhere = "(" + searchWord + ") OR " + "(SFILENAME:" + searchWord + ")";
+                searchWhere = "(" + searchWord + ") OR " + "(SFILENAME:" + searchWord + ")" + search_miji;
             }
             resultSet = trsSearchService.searchData(dbName, searchWhere, selectSort, start, end);
             count = trsSearchService.searchDataCount(dbName, searchWhere, "", 0, 10000);
