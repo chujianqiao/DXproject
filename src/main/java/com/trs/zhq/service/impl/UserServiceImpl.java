@@ -50,6 +50,7 @@ public class UserServiceImpl implements UserService {
                         + MD5Util.MD5(user.getUID()));
                 record.addColumn("PASSWORD",pass_md5);
                 record.addColumn("UID",user.getUID());
+                record.addColumn("USER_MIJI",user.getUSER_MIJI());
                 record.addColumn("STATUS",1);
                 recordList.add(record);
 
@@ -129,7 +130,9 @@ public class UserServiceImpl implements UserService {
                 TRSInputRecord record = new TRSInputRecord();
                 record.setUid(trsRecord.getUid());
                 record.addColumn("USERNAME",user.getUSERNAME());
-                record.addColumn("PASSWORD",user.getPASSWORD());
+                String pass_md5 = MD5Util.MD5(user.getPASSWORD().toUpperCase()
+                        + MD5Util.MD5(user.getUID()));
+                record.addColumn("PASSWORD",pass_md5);
                 record.addColumn("STATUS",user.getSTATUS());
                 record.addColumn("UID",user.getUID());
                 record.addColumn("USER_MIJI",user.getUSER_MIJI());

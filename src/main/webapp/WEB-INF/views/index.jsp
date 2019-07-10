@@ -52,7 +52,10 @@
             <a href="<%=basePath %>logout">注销</a>
         </li>
         <li class="layui-nav-item" style="float: right">
-            <p><%=request.getSession().getAttribute("CONSOLEUSERNAME") %></p>
+            <a href="javascript:;"><%=request.getSession().getAttribute("CONSOLEUSERNAME") %></a>
+            <dl class="layui-nav-child"> <!-- 二级菜单 -->
+                <dd><a onclick="updatePass('<%=request.getSession().getAttribute("CONSOLEUSERNAME") %>')" href="javascript:;">修改密码</a></dd>
+            </dl>
         </li>
         <%
             if (request.getSession().getAttribute("CONSOLEUSERNAME").equals("admin")){
@@ -126,6 +129,17 @@
     
     function toImport() {
 
+    }
+
+    function updatePass(USERNAME) {
+        layui.use('layer', function() {
+            layer.open({
+                type: 2,
+                area: ['1000px', '500px'],
+                content: '<%=basePath%>user/toUpdatePass?USERNAME=' + USERNAME, //这里content是一个URL，如果你不想让iframe出现滚动条，你还可以content: ['http://sentsin.com', 'no']
+
+            });
+        });
     }
 
 </script>

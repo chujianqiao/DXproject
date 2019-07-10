@@ -11,7 +11,6 @@
 <head>
     <meta charset="utf-8">
     <title>
-        登录
     </title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
@@ -40,29 +39,21 @@
 
 <body>
 <div>
-    <c:if test="${flag!='1'}">
-    <ul class="layui-nav">
-        <li class="layui-nav-item" >
-            <a href="<%=basePath%>index">登录</a>
-        </li>
-        <li class="layui-nav-item">
-        </li>
-    </ul>
-    </c:if>
     <div class="searchDiv">
         <form class="layui-form layui-form-pane" id="register" action="#" target="target" enctype="multipart/form-data">
             <div class="layui-form-item">
-                <input name="flag" value="${flag}" hidden>
-                <label class="layui-form-label" style="width: 20%">用户名</label>
+                <label class="layui-form-label" style="width: 20%">原密码</label>
                 <div class="layui-input-inline" style="width: 70%">
-                    <input type="text" name="USERNAME" lay-verify="required" placeholder="请输入用户名" autocomplete="off" class="layui-input">
+                    <input type="password" id="oldpassWord1" lay-verify="required" placeholder="请输入原密码" autocomplete="off" class="layui-input">
+                    <input type="password" id="oldpassWord0" name="oldPASSWORD" hidden>
+                    <input type="password" value="${USERNAME}" name="USERNAME" hidden>
                 </div>
                 <div class="layui-form-mid" style="color: red;">*必填</div>
             </div>
             <div class="layui-form-item">
-                <label class="layui-form-label" style="width: 20%">密  码</label>
+                <label class="layui-form-label" style="width: 20%">新密码</label>
                 <div class="layui-input-inline" style="width: 70%">
-                    <input type="password" id="passWord1" lay-verify="required" placeholder="请输入密码" autocomplete="off" class="layui-input">
+                    <input type="password" id="passWord1" lay-verify="required" placeholder="请输入新密码" autocomplete="off" class="layui-input">
                     <input type="password" id="passWord0" name="PASSWORD" hidden>
                 </div>
                 <div class="layui-form-mid" style="color: red;">*必填</div>
@@ -70,19 +61,7 @@
             <div class="layui-form-item">
                 <label class="layui-form-label" style="width: 20%">确认密码</label>
                 <div class="layui-input-inline" style="width: 70%">
-                    <input type="password" id="passWord2" lay-verify="required|rePassword" placeholder="请再次输入密码" autocomplete="off" class="layui-input">
-                </div>
-                <div class="layui-form-mid" style="color: red;">*必填</div>
-            </div>
-            <div class="layui-form-item">
-                <label class="layui-form-label" style="width: 20%">用户密级</label>
-                <div class="layui-input-inline" style="width: 70%">
-                    <select id="selectMiji" name="USER_MIJI" lay-filter="selectSort" lay-verify="required">
-                        <option value="">请选择</option>
-                        <option value="秘密">秘密</option>
-                        <option value="机密">机密</option>
-                        <option value="绝密">绝密</option>
-                    </select>
+                    <input type="password" id="passWord2" lay-verify="required|rePassword" placeholder="请再次输入新密码" autocomplete="off" class="layui-input">
                 </div>
                 <div class="layui-form-mid" style="color: red;">*必填</div>
             </div>
@@ -117,6 +96,9 @@
     $("#passWord1").blur(function(){
         $("#passWord0").val(hex_md5($("#passWord1").val()));
     })
+    $("#oldpassWord1").blur(function(){
+        $("#oldpassWord0").val(hex_md5($("#oldpassWord1").val()));
+    })
 
     layui.use('form', function(){
         var form = layui.form;
@@ -142,7 +124,7 @@
             //几个参数需要注意一下
             type: "POST",//方法类型
             dataType: "text",//预期服务器返回的数据类型
-            url: "<%=basePath%>register" ,//url
+            url: "<%=basePath%>user/updatePass" ,//url
             data: $('#register').serialize(),
             success: function (result) {
                 console.log(result);
@@ -151,35 +133,16 @@
                         var layer = layui.layer;
                         layer.open({
                             title: '提示'
-                            ,content: '注册成功，即将返回登陆页面！'
-                        });
-                    });
-                    setTimeout(function(){
-                        window.location.href=contentp_path+'login';
-                    },2000)
-                } else if (result == "successAdd") {
-                    layui.use('layer', function(){
-                        var layer = layui.layer;
-                        layer.open({
-                            title: '提示'
-                            ,content: '添加成功！'
+                            ,content: '修改成功！'
                         });
                     });
                     window.parent.layer.closeAll();//关闭弹窗
-                } else if (result == "errorAdd") {
+                } else if (result == "falsePass") {
                     layui.use('layer', function(){
                         var layer = layui.layer;
                         layer.open({
                             title: '提示'
-                            ,content: '添加失败！'
-                        });
-                    });
-                } else if (result == "same") {
-                    layui.use('layer', function(){
-                        var layer = layui.layer;
-                        layer.open({
-                            title: '提示'
-                            ,content: '用户名重复，请重新输入！'
+                            ,content: '原密码错误，请重新输入！'
                         });
                     });
                 } else {
@@ -187,7 +150,7 @@
                         var layer = layui.layer;
                         layer.open({
                             title: '提示'
-                            ,content: '注册失败！'
+                            ,content: '修改失败！'
                         });
                     });
                 }
