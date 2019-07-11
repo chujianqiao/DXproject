@@ -182,14 +182,14 @@ public class IndexController {
         if(searchType == 0){
             Users consoleUser = (Users) request.getSession().getAttribute("CONSOLEUSER");
             String user_miji = consoleUser.getUSER_MIJI();
-            if("秘密".equals(user_miji)){
-                search_miji += " NOT DX_MIJI#LIST:机密,绝密 ";
-            } else if("机密".equals(user_miji)) {
-                search_miji += " NOT DX_MIJI#LIST:绝密 ";
-            } else if("绝密".equals(user_miji)){
-            } else {
-                search_miji += " NOT DX_MIJI#LIST:秘密,机密,绝密 ";
-            }
+            if("公开".equals(user_miji)){
+                search_miji += " NOT DX_MIJI#LIST:秘密,机密 ";
+            } else if("秘密".equals(user_miji)) {
+                search_miji += " NOT DX_MIJI#LIST:机密 ";
+            } else if("机密".equals(user_miji)){
+            } /*else {
+                search_miji += " NOT DX_MIJI#LIST:公开,秘密,机密 ";
+            }*/
         }
 
         /**

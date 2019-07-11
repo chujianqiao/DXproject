@@ -27,7 +27,7 @@
         width: 500px;
     }
 </style>
-<body>
+<body background="<%=basePath %>static/images/timg0.jpg">
 <div>
 <ul class="layui-nav">
     <li class="layui-nav-item">

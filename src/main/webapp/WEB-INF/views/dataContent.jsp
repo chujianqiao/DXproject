@@ -29,6 +29,7 @@
         height: 52px;
     }
     .searchDiv{
+        background-color: white;
         width: 55%;
         margin: 30px auto;
     }
@@ -42,7 +43,7 @@
         height: 50px;
     }
 </style>
-<body>
+<body background="<%=basePath %>static/images/timg0.jpg">
 <div>
     <ul class="layui-nav">
         <li class="layui-nav-item">
@@ -99,7 +100,7 @@
                         <th class="thData">描述</th>
                         <th class="thData">入库时间</th>
                         <th class="thData">密级</th>
-                        <th class="thData">来源</th>
+                        <th class="thData" style="border-right: 0px solid white;">来源</th>
                     </tr>
                 </thead>
                 <%
@@ -108,11 +109,18 @@
                 <c:forEach items="${resultSet}" var="resultSet">
 
                     <tr <%if (num%2!=0){%>style="background-color: #efefef"<%}%>>
-                        <td class="tdData"><a target="_blank" href="<%=basePath%>toDetail?id=${resultSet.getString("DX_ID")}&searchWord=${searchWord }&searchType=${searchType}&dbName=${resultSet.getDbName().replace("system.","")}">${resultSet.getString("DX_BIAOTI")}</a></td>
+                        <td class="tdData">
+                            <c:if test="${resultSet.getString('DX_MIJI')!='机密'}">
+                                <a target="_blank" href="<%=basePath%>toDetail?id=${resultSet.getString("DX_ID")}&searchWord=${searchWord }&searchType=${searchType}&dbName=${resultSet.getDbName().replace("system.","")}">${resultSet.getString("DX_BIAOTI")}</a>
+                            </c:if>
+                            <c:if test="${resultSet.getString('DX_MIJI')=='机密'}">
+                                ${resultSet.getString("DX_BIAOTI")}
+                            </c:if>
+                        </td>
                         <td class="tdData">${resultSet.getString("DX_MIAOSHU")}</td>
                         <td class="tdData">${resultSet.getString('DX_RUKUSHIJIAN').substring(0,10)}</td>
                         <td class="tdData">${resultSet.getString("DX_MIJI")}</td>
-                        <td class="tdData">${resultSet.getString("DX_LAIYUAN")}</td>
+                        <td class="tdData" style="border-right: 0px solid white;">${resultSet.getString("DX_LAIYUAN")}</td>
                     </tr>
                     <%
                         num = num+1;

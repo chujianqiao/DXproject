@@ -79,9 +79,9 @@
                 <div class="layui-input-inline" style="width: 70%">
                     <select id="selectMiji" name="USER_MIJI" lay-filter="selectSort" lay-verify="required">
                         <option value="">请选择</option>
+                        <option value="公开">公开</option>
                         <option value="秘密">秘密</option>
                         <option value="机密">机密</option>
-                        <option value="绝密">绝密</option>
                     </select>
                 </div>
                 <div class="layui-form-mid" style="color: red;">*必填</div>

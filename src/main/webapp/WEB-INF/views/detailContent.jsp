@@ -20,13 +20,31 @@
 </head>
 <style>
     .searchDiv{
-        width: 900px;
+        background-color: white;
+        width: 60%;
         margin-left: auto;
         margin-right: auto;
         margin-top: 50px;
     }
+    .searchDivShu{
+        background-color: white;
+        width: 60%;
+        height: 100px;
+        margin: auto;
+        line-height: 20px;
+        font-size: 15px;
+    }
+    .searchDivZheng{
+        background-color: white;
+        width: 60%;
+        margin: auto;
+        padding-top: 30px;
+        line-height: 30px;
+        font-size: 15px;
+        border-top: 2px solid black;
+    }
 </style>
-<body>
+<body background="<%=basePath %>static/images/timg0.jpg">
 <div>
     <ul class="layui-nav">
         <li class="layui-nav-item">
@@ -46,8 +64,9 @@
                 ${trsRecord.getString("DX_BIAOTI")}
             </span>
         </div>
-        <div style="width: 700px;height: 100px;margin: auto;line-height: 20px;font-size: 15px;">
+        <div class="searchDivShu">
             <span>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 来源：${trsRecord.getString("DX_LAIYUAN")}
             </span>&nbsp;&nbsp;
             <span>
@@ -59,18 +78,22 @@
             <span>
                 密级：${trsRecord.getString("DX_MIJI")}
             </span>&nbsp;&nbsp;
-            <br>
+            <br><br>
             <span>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 描述：${trsRecord.getString("DX_MIAOSHU")}
             </span>
         </div>
-        <div style="width: 700px;height: 600px;margin: auto;padding-top: 30px;line-height: 30px;font-size: 15px;border-top: 2px solid black">
+        <div class="searchDivZheng">
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <span>
                 ${trsRecord.getString("DX_ZHENGWEN")}
             </span>
-            <c:if test="${trsRecord.getString('TFileName')!=''}">
-                <a id="downloadFile" href="<%=basePath%>download?TRSID=${trsRecord.getString('TRSID')}&dbName=${dbName}">原文下载</a>
+            <br>
+            <c:if test="${trsRecord.getString('DX_MIJI')!='秘密'&&trsRecord.getString('DX_MIJI')!='机密'}">
+                <c:if test="${trsRecord.getString('TFileName')!=''&&trsRecord.getString('TFileName')!=null }">
+                    <a id="downloadFile" href="<%=basePath%>download?TRSID=${trsRecord.getString('TRSID')}&dbName=${dbName}">原文下载</a>
+                </c:if>
             </c:if>
         </div>
 
@@ -81,16 +104,17 @@
                     ${trsRecord.getString("SFILENAME")}
             </span>
         </div>
-        <div style="width: 700px;height: 100px;margin: auto;line-height: 20px;font-size: 15px;">
+        <div class="searchDivShu">
             <span>
                 入库时间：${trsRecord.getString("CREATETIME").substring(0,10)}
             </span>
         </div>
-        <div style="width: 700px;height: 600px;margin: auto;padding-top: 30px;line-height: 30px;font-size: 15px;border-top: 2px solid black">
+        <div  class="searchDivZheng">
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <span>
                     ${trsRecord.getString("SUSERCOMMENT	")}
             </span>
+            <br>
             <c:if test="${trsRecord.getString('TFileName')!=''}">
                 <a id="downloadFile" href="<%=basePath%>download?TRSID=${trsRecord.getString('TRSID')}&dbName=${dbName}">原文下载</a>
             </c:if>

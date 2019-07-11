@@ -61,9 +61,9 @@
                 <label class="layui-form-label" style="width: 20%">用户密级</label>
                 <div class="layui-input-inline" style="width: 70%">
                     <select id="selectMiji" name="USER_MIJI" lay-filter="selectSort" lay-verify="required">
+                        <option value="公开" <c:if test="${user.USER_MIJI=='公开'}">selected</c:if>>公开</option>
                         <option value="秘密" <c:if test="${user.USER_MIJI=='秘密'}">selected</c:if>>秘密</option>
                         <option value="机密" <c:if test="${user.USER_MIJI=='机密'}">selected</c:if>>机密</option>
-                        <option value="绝密" <c:if test="${user.USER_MIJI=='绝密'}">selected</c:if>>绝密</option>
                     </select>
                 </div>
             </div>

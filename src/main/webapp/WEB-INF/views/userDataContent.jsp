@@ -29,6 +29,7 @@
         height: 52px;
     }
     .searchDiv{
+        background-color: white;
         width: 55%;
         margin: 30px auto;
     }
@@ -42,7 +43,7 @@
         height: 50px;
     }
 </style>
-<body>
+<body background="<%=basePath %>static/images/timg0.jpg">
 <div>
     <ul class="layui-nav">
         <li class="layui-nav-item">
@@ -102,7 +103,7 @@
                     <th class="thData">创建时间</th>
                     <th class="thData">密级</th>
                     <th class="thData">状态</th>
-                    <th class="thData">操作</th>
+                    <th class="thData" style="border-right: 0px solid white;">操作</th>
                 </tr>
             </thead>
             <%
@@ -118,7 +119,7 @@
                         <c:if test="${resultSet.getString('STATUS')==1}">正常</c:if>
                         <c:if test="${resultSet.getString('STATUS')==0}">停用</c:if>
                     </td>
-                    <td class="tdData" style="width: 85px">
+                    <td class="tdData" style="width: 85px;border-right: 0px solid white;">
                         <div class="layui-btn-group">
                         <button type="button" title="编辑" onclick="updateUser('${resultSet.getString("USERNAME")}')" class="layui-btn layui-btn-sm">
                             <i class="layui-icon">&#xe642;</i>
