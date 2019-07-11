@@ -42,7 +42,7 @@
         margin-right: auto;
     }
 </style>
-<body background="<%=basePath %>static/images/timg0.jpg">
+<body background="<%=basePath %>static/images/timg2.jpg">
 <div>
     <ul class="layui-nav">
         <li class="layui-nav-item">

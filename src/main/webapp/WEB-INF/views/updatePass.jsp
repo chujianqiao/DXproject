@@ -37,7 +37,7 @@
     }
 </style>
 
-<body>
+<body background="<%=basePath %>static/images/timg2.jpg">
 <div>
     <div class="searchDiv">
         <form class="layui-form layui-form-pane" id="register" action="#" target="target" enctype="multipart/form-data">

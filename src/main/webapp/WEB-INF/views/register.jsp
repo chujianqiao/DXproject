@@ -38,7 +38,7 @@
     }
 </style>
 
-<body>
+<body background="<%=basePath %>static/images/timg2.jpg">
 <div>
     <c:if test="${flag!='1'}">
     <ul class="layui-nav">

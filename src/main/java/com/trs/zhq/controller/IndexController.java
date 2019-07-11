@@ -196,7 +196,7 @@ public class IndexController {
          * 字段检索
          */
         if (searchWord.indexOf(":")>0||searchWord.indexOf("：")>0){
-            searchWord.replaceAll("：",":");
+            searchWord = searchWord.replaceAll("：",":");
             String searchWords[] = searchWord.split(":");
             searchWord = "\"" + searchWords[1] + "\"";
             searchWhere = searchWords[0] + ":" + searchWord + search_miji;

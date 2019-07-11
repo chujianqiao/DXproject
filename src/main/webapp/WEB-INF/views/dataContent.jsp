@@ -43,7 +43,7 @@
         height: 50px;
     }
 </style>
-<body background="<%=basePath %>static/images/timg0.jpg">
+<body background="<%=basePath %>static/images/timg2.jpg">
 <div>
     <ul class="layui-nav">
         <li class="layui-nav-item">
@@ -94,7 +94,7 @@
 
         <br>
         <c:if test="${searchType==0}">
-            <table style="width: 100%">
+            <table style="width: 100%;text-align: center">
                 <thead>
                     <tr style="text-align: center">
                         <th class="thData">标题</th>
