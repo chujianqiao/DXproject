@@ -1,5 +1,7 @@
 package com.trs.zhq.util;
 
+import com.trs.hybase.client.TRSException;
+import com.trs.hybase.client.TRSRecord;
 import org.apache.tomcat.util.http.fileupload.FileUtils;
 import org.apache.tools.ant.Project;
 import org.apache.tools.ant.taskdefs.Expand;
@@ -8,15 +10,16 @@ import org.slf4j.LoggerFactory;
 import org.springframework.util.ResourceUtils;
 
 import java.io.*;
+import java.util.Arrays;
 import java.util.Properties;
 
 
 public final class FileUtil {
-	
+
 	private final static Logger LOGGER = LoggerFactory.getLogger(FileUtil.class);
-	
+
 	public static String OS_SEPARATOR = File.separator;
-	
+
 	private static boolean found = false;
 
 	/**
@@ -171,14 +174,86 @@ public final class FileUtil {
 	}
 
 	public static String getRootPath(){
-		Properties properties = new Properties();
-		try {
-			properties.load(FileUtil.class.getClassLoader().getResourceAsStream("file.properties"));
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		String rootPath = properties.getProperty("fileRootPath");
+		String rootPath = getFileProp().getProperty("fileRootPath");
 		return rootPath;
 	}
+
+	public static Properties getFileProp(){
+        Properties properties = new Properties();
+        try {
+            properties.load(FileUtil.class.getClassLoader().getResourceAsStream("file.properties"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return properties;
+    }
+
+
+    /*
+
+
+
+
+
+
+
+    */
+    public static String formatFileName(TRSRecord record, String dbName) {
+		String fileName = "";
+		try {
+			fileName = record.getString("TFileName");
+			String name = record.getString("TFileName");
+			String fileType = name.substring(name.lastIndexOf("."));
+			switch (dbName) {
+				case "sj_pinpu":
+					fileName = record.getString("SSQUIPMENT_CHAN") + "_" + record.getString("SCOMFREQSPAN")
+							+ "_(" + record.getString("SORBIT_POS") + "_" + record.getString("SSATELLITE_NAME") + ")_"
+							+ record.getString("NFREQ_START") + "MHz_" + record.getString("NFREQ_STOP") + "MHz_"
+							+ record.getString("NBANDDATA_FFTNUM") + "_" + record.getString("DDATA_RECBTIME") + "_"
+							+ record.getString("DDATA_RECETIME") + ".freqDat";
+					break;
+				case "sj_mocai":
+					fileName = record.getString("SSQUIPMENT_CHAN") + "_" + record.getString("SCOMFREQSPAN")
+							+ "_(" + record.getString("SORBIT_POS") + "_" + record.getString("SSATELLITE_NAME") + ")_"
+							+ record.getString("NFREQ_START") + "MHz_" + record.getString("NFREQ_STOP") + "MHz_"
+							+ record.getString("NDATA_SAMPLERATE") + "_" + record.getString("DDATA_RECBTIME") + "_"
+							+ record.getString("DDATA_RECETIME") + ".anaDat";
+					break;
+				case "sj_shucai":
+					fileName = record.getString("SSQUIPMENT_CHAN") + "_" + record.getString("SCOMFREQSPAN")
+							+ "_(" + record.getString("SORBIT_POS") + "_" + record.getString("SSATELLITE_NAME") + ")_"
+							+ record.getString("NCARRIERFREQ") + "MHz_" + record.getString("SMODULATIONMODE") + "_"
+							+ record.getString("NINFORATE") + "_" + record.getString("DDATA_RECBTIME") + "_"
+							+ record.getString("DDATA_RECETIME") + ".digDat";
+					break;
+				case "sj_xinyuan":
+					fileName = record.getString("SCOMFREQSPAN") + "_(" + record.getString("SORBIT_POS") + "_"
+							+ record.getString("SSATELLITE_NAME") + ")_" + record.getString("NCARRIERFREQ") + "MHz_"
+							+ record.getString("SSOURCETYPE") + "_" + record.getString("SSOURCECODETYPE") + "_"
+							+ record.getString("DDATA_RECBTIME") + "_" + record.getString("DDATA_RECETIME") + ".sDat";
+					break;
+				case "sj_wangluo":
+					fileName = record.getString("SORBIT_POS") + "_" + record.getString("SSATELLITE_NAME") + ")_"
+							+ record.getString("NCARRIERFREQ") + "MHz_" + record.getString("SMODULATIONMODE") + "_"
+							+ record.getString("NMODULATIONRATE") + "_" + record.getString("SNETSIGNALTYPErecord")
+							+ "_" + record.getString("DDATA_RECBTIME") + "_" + record.getString("DDATA_RECETIME") + fileType;
+					break;
+				case "sj_erjinzhi":
+				case "sj_fenxi":
+					fileName = record.getString("SEQUIPMENT") + "_" + record.getString("SFILENAME") + fileType;
+					break;
+			}
+		} catch (TRSException e) {
+			e.printStackTrace();
+		}
+
+		return fileName;
+    }
+
+    public static String concatFileName() {
+
+        return "";
+    }
+
 
 }

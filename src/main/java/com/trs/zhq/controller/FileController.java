@@ -69,20 +69,16 @@ public class FileController {
     @RequestMapping(value = "/download")
     @ResponseBody
     public String download(String dbName, String TRSID, HttpServletRequest request, HttpServletResponse response, String filePath, String fileName) {
-
         String searchWhere = "TRSID:" + TRSID;
         List<TRSRecord> resultSet = trsSearchService.searchData(dbName, searchWhere, "", 0, 1);
         TRSRecord trsRecord = resultSet.get(0);
-
-
-
         JSONObject jsonObject = new JSONObject();
         ServletOutputStream sos = null;
         FileInputStream in = null;
         BufferedOutputStream outputStream = null;
         try {
-
-            fileName = trsRecord.getString("TFileName");
+//            fileName = trsRecord.getString("TFileName");
+            fileName = FileUtil.formatFileName(trsRecord, dbName);
             filePath = trsRecord.getString("TFilePath");
 
             File file = new File(filePath);
@@ -93,7 +89,6 @@ public class FileController {
             //设置文件下载是以附件的形式下载
             response.setHeader("Content-disposition", String.format("attachment; filename=\"%s\"", fileName));
             response.addHeader("Content-Length", String.valueOf(size));
-
             sos = response.getOutputStream();
             in = new FileInputStream(file);
             outputStream = new BufferedOutputStream(sos);
