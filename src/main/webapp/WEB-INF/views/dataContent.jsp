@@ -133,7 +133,7 @@
             </table>
         </c:if>
         <c:if test="${searchType==1}">
-            <table style="width: 100%">
+            <table style="width: 100%;text-align: center">
                 <thead>
                 <tr style="text-align: center">
                     <th class="thData">标题</th>
