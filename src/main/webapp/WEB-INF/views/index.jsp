@@ -1,4 +1,5 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8" %>
+<%@ page import="com.trs.zhq.entity.Users" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
@@ -48,7 +49,7 @@
         <li class="layui-nav-item">
             <a href="<%=basePath%>index">首页</a>
         </li>
-        <img src="<%=basePath %>static/images/biaoti.png">
+        <img style="width: 800px;" src="<%=basePath %>static/images/biaoti.png">
         <li class="layui-nav-item" style="float: right">
             <a href="<%=basePath %>logout">注销</a>
         </li>
@@ -67,6 +68,9 @@
         <%
             }
         %>
+        <li class="layui-nav-item" style="float: right">
+            <a target="_blank" href="http://localhost:8090/prv/login.html?username=<%=request.getSession().getAttribute("CONSOLEUSERNAME") %>">网盘管理</a>
+        </li>
     </ul>
     <div class="searchDiv layui-tab layui-tab-card" lay-filter="demo">
         <ul class="layui-tab-title" style="width: 100%">

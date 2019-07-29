@@ -45,7 +45,7 @@
         <li class="layui-nav-item" >
             <a href="<%=basePath%>index">登录</a>
         </li>
-        <img src="<%=basePath %>static/images/biaoti.png">
+        <img style="width: 800px;" src="<%=basePath %>static/images/biaoti.png">
         <li class="layui-nav-item">
         </li>
     </ul>
