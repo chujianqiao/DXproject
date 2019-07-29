@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.trs.zhq.mapper.UseSpaceMapper">
+    <resultMap id="BaseResultMap" type="com.trs.zhq.entity.UseSpace">
+        <id column="UID" property="UID" jdbcType="VARCHAR"/>
+        <result column="USERNAME" property="USERNAME" jdbcType="VARCHAR"/>
+        <result column="FILESIZE" property="FILESIZE" jdbcType="VARCHAR"/>
+        <result column="MAXSIZE" property="MAXSIZE" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        UID, USERNAME,FILESIZE, MAXSIZE
+    </sql>
+
+    <!-- 查询用户 -->
+    <select id="selectUseSpaceById" resultMap="BaseResultMap" parameterType="String">
+        select
+        <include refid="Base_Column_List"/>
+        from users where UID=#{UID}
+    </select>
+    <update id="updateUseSpace" parameterType="String">
+        UPDATE
+        users
+        SET
+        <if test="FILESIZE != null and FILESIZE!=''">FILESIZE = #{FILESIZE},</if>
+        WHERE
+        UID = #{UID}
+    </update>
+
+    <insert id="insertUseSpace" parameterType="com.trs.zhq.entity.UseSpace">
+        INSERT INTO users (UID, USERNAME, FILESIZE, MAXSIZE) value (#{UID}, #{USERNAME}, #{FILESIZE}, #{MAXSIZE})
+    </insert>
+
+    <delete id="deleteUseSpace" parameterType="String">
+        DELETE FROM users WHERE UID in (#{UIDS})
+    </delete>
+
+</mapper>

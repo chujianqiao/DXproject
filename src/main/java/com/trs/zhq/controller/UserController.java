@@ -4,6 +4,7 @@ package com.trs.zhq.controller;
 import com.trs.hybase.client.TRSRecord;
 import com.trs.zhq.entity.Users;
 import com.trs.zhq.service.TRSSearchService;
+import com.trs.zhq.service.UseSpaceService;
 import com.trs.zhq.service.UserService;
 import com.trs.zhq.util.DataBaseConstants;
 import com.trs.zhq.util.MD5Util;
@@ -28,6 +29,9 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private UseSpaceService useSpaceService;
 
     @RequestMapping("searchUsers")
     public String searchData(String searchWord, int start, int end, String miji, String selectSort, HttpServletRequest request) {
@@ -80,7 +84,8 @@ public class UserController {
 
     @RequestMapping("deleteUser")
     @ResponseBody
-    public String deleteUser(String userName){
+    public String deleteUser(String userName, String UIDS){
+        useSpaceService.deleteUseSpace(UIDS);
         return userService.deleteUserData(userName);
     }
 

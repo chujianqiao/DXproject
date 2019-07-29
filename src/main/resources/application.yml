@@ -17,4 +17,15 @@ spring:
     multipart:
       max-file-size: 10GB
       max-request-size: 10GB
+  #数据库连接配置信息
+  datasource:
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/shop?useUnicode=true&characterEncoding=utf-8
+    username: root
+    password: root
+#mybatis数据库映射文件配置
+mybatis:
+  config-locations: classpath:mybatis/mybatis-config.xml
+  mapper-locations: classpath:mybatis/mapper/*.xml
+
 

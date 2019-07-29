@@ -7,8 +7,10 @@ import org.springframework.stereotype.Service;
 @Service
 public interface UserService {
     String insertUser(Users users);
+
     Users selectUserByUserName(String userName);
 
     String deleteUserData(String userName);
+
     String updateUser(Users user);
 }

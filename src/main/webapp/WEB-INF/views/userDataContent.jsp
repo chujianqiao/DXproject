@@ -125,7 +125,7 @@
                         <button type="button" title="编辑" onclick="updateUser('${resultSet.getString("USERNAME")}')" class="layui-btn layui-btn-sm">
                             <i class="layui-icon">&#xe642;</i>
                         </button>
-                        <button type="button" title="删除" onclick="ifDeleteUser('${resultSet.getString("USERNAME")}')" class="layui-btn layui-btn-sm">
+                        <button type="button" title="删除" onclick="ifDeleteUser('${resultSet.getString("USERNAME")}','${resultSet.getString("UID")}')" class="layui-btn layui-btn-sm">
                             <i class="layui-icon">&#xe640;</i>
                         </button>
                         </div>
@@ -220,19 +220,19 @@
         });
     });
 
-    function ifDeleteUser(USERNAME){
+    function ifDeleteUser(USERNAME,UID){
         layui.use('layer', function() {
             layer.confirm("是否删除用户名为：" + USERNAME + "的用户？", {icon: 3, title: '提示'}, function (index) {
-                deleteUser(USERNAME);
+                deleteUser(USERNAME,UID);
                 layer.close(index);
             });
         });
     }
 
-    function deleteUser(USERNAME){
+    function deleteUser(USERNAME,UID){
         $.ajax({
             type:"POST",
-            url:"<%=basePath%>user/deleteUser?userName="+USERNAME,
+            url:"<%=basePath%>user/deleteUser?userName="+USERNAME+"&UIDS="+UID,
             dataType:"text",
             async:false,
             success:function(data){

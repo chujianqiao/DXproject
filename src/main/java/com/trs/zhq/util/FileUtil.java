@@ -250,10 +250,4 @@ public final class FileUtil {
 		return fileName;
     }
 
-    public static String concatFileName() {
-
-        return "";
-    }
-
-
 }

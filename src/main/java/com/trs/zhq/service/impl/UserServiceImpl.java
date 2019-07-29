@@ -7,10 +7,12 @@ import com.trs.hybase.client.TRSResultSet;
 import com.trs.hybase.client.params.SearchParams;
 import com.trs.zhq.entity.*;
 import com.trs.zhq.service.TRSSearchService;
+import com.trs.zhq.service.UseSpaceService;
 import com.trs.zhq.service.UserService;
 import com.trs.zhq.util.HybaseConnectionUtil;
 import com.trs.zhq.util.MD5Util;
 import com.trs.zhq.util.StringUtil;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.text.SimpleDateFormat;
@@ -23,6 +25,9 @@ import java.util.UUID;
 @Service("UserService")
 public class UserServiceImpl implements UserService {
 
+    @Autowired
+    private UseSpaceService useSpaceService;
+
     @Override
     public String insertUser(Users user){
         TRSConnection conn = HybaseConnectionUtil.getHybaseConnection();
@@ -33,6 +38,11 @@ public class UserServiceImpl implements UserService {
         user.setUID(UUID.randomUUID().toString().replaceAll("-",""));
         TRSResultSet resultSet=null;
         String selectWhere = "USERNAME:"+user.getUSERNAME();
+
+        //插入使用空间开始
+        UseSpace useSpace = new UseSpace(user.getUID(), user.getUSERNAME(), "0", "20480");
+        useSpaceService.insertUseSpace(useSpace);
+        //插入使用空间结束
         SearchParams param = new SearchParams();
         int flag = 0;
         try {
