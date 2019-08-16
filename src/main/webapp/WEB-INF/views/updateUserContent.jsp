@@ -44,14 +44,14 @@
         <form class="layui-form layui-form-pane" id="updateForm" action="#" target="target" enctype="multipart/form-data">
             <div class="layui-form-item">
                 <label class="layui-form-label" style="width: 20%">用户名</label>
-                <div class="layui-input-inline" style="width: 70%">
-                    <input type="text" name="USERNAME" lay-verify="required" value="${user.USERNAME}" autocomplete="off" class="layui-input">
+                <div class="layui-input-inline" style="width: 60%">
+                    <input type="text" name="USERNAME" readonly="true" lay-verify="required" value="${user.USERNAME}" autocomplete="off" class="layui-input">
                 </div>
-                <div class="layui-form-mid" style="color: red;">*必填</div>
+                <div class="layui-form-mid" style="color: red;">*不可修改</div>
             </div>
             <div class="layui-form-item">
                 <label class="layui-form-label" style="width: 20%">密  码</label>
-                <div class="layui-input-inline" style="width: 70%">
+                <div class="layui-input-inline" style="width: 60%">
                     <input type="password" id="passWord1" lay-verify="required" value="${user.PASSWORD}" autocomplete="off" class="layui-input">
                     <input type="password" id="passWord0" value="${user.PASSWORD}" name="PASSWORD" hidden>
                 </div>
@@ -59,7 +59,7 @@
             </div>
             <div class="layui-form-item">
                 <label class="layui-form-label" style="width: 20%">用户密级</label>
-                <div class="layui-input-inline" style="width: 70%">
+                <div class="layui-input-inline" style="width: 60%">
                     <select id="selectMiji" name="USER_MIJI" lay-filter="selectSort" lay-verify="required">
                         <option value="公开" <c:if test="${user.USER_MIJI=='公开'}">selected</c:if>>公开</option>
                         <option value="秘密" <c:if test="${user.USER_MIJI=='秘密'}">selected</c:if>>秘密</option>
@@ -69,7 +69,7 @@
             </div>
             <div class="layui-form-item">
                 <label class="layui-form-label" style="width: 20%">用户状态</label>
-                <div class="layui-input-inline" style="width: 70%">
+                <div class="layui-input-inline" style="width: 60%">
                     <select id="selectStatus" name="STATUS" lay-filter="selectSort" lay-verify="required">
                         <option value="0" <c:if test="${user.STATUS=='0'}">selected</c:if>>停用</option>
                         <option value="1" <c:if test="${user.STATUS=='1'}">selected</c:if>>正常</option>
@@ -78,9 +78,16 @@
             </div>
             <div class="layui-form-item">
                 <label class="layui-form-label" style="width: 20%">创建时间</label>
-                <div class="layui-input-inline"  style="width: 70%">
+                <div class="layui-input-inline"  style="width: 60%">
                     <input type="text" name="CREATETIME" value="${user.CREATETIME.substring(0,10).replaceAll("/","-")}" autocomplete="off" class="layui-input">
                 </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label" style="width: 20%">空间容量</label>
+                <div class="layui-input-inline"  style="width: 60%">
+                    <input type="text" name="MAXSIZE" value="${user1.MAXSIZE}" autocomplete="off" lay-verify="required|number" class="layui-input">
+                </div>
+                <div class="layui-form-mid" style="color: red;">*必填，填写整数数字即可，默认G为单位</div>
             </div>
             <div class="layui-form-item" hidden>
                 <label class="layui-form-label">UID：</label>

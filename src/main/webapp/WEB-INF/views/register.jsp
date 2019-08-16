@@ -84,6 +84,16 @@
                 </div>
                 <div class="layui-form-mid" style="color: red;">*必填</div>
             </div>
+            <c:if test="${flag!='0'}">
+                <div class="layui-form-item">
+                    <input name="flag" value="${flag}" hidden>
+                    <label class="layui-form-label" style="width: 20%">空间容量</label>
+                    <div class="layui-input-inline" style="width: 70%">
+                        <input type="text" name="MAXSIZE" lay-verify="required" placeholder="空间容量" autocomplete="off" class="layui-input">
+                    </div>
+                    <div class="layui-form-mid" style="color: red;">*必填，填写整数数字即可，默认G为单位</div>
+                </div>
+            </c:if>
             <div class="layui-form-item">
                 <div class="layui-input-block">
                     <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>

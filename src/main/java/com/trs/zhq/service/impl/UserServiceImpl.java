@@ -5,16 +5,18 @@ import com.trs.hybase.client.TRSInputRecord;
 import com.trs.hybase.client.TRSRecord;
 import com.trs.hybase.client.TRSResultSet;
 import com.trs.hybase.client.params.SearchParams;
+import com.trs.zhq.dao.UsersMapper;
 import com.trs.zhq.entity.*;
 import com.trs.zhq.service.TRSSearchService;
-import com.trs.zhq.service.UseSpaceService;
 import com.trs.zhq.service.UserService;
 import com.trs.zhq.util.HybaseConnectionUtil;
 import com.trs.zhq.util.MD5Util;
 import com.trs.zhq.util.StringUtil;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -25,11 +27,11 @@ import java.util.UUID;
 @Service("UserService")
 public class UserServiceImpl implements UserService {
 
-    @Autowired
-    private UseSpaceService useSpaceService;
+    @Resource
+    private UsersMapper usersMapper;
 
     @Override
-    public String insertUser(Users user){
+    public String insertUser(Users user, HttpServletRequest request){
         TRSConnection conn = HybaseConnectionUtil.getHybaseConnection();
         List<TRSInputRecord> recordList = new ArrayList<TRSInputRecord>();
         TRSInputRecord record = new TRSInputRecord();
@@ -38,12 +40,9 @@ public class UserServiceImpl implements UserService {
         user.setUID(UUID.randomUUID().toString().replaceAll("-",""));
         TRSResultSet resultSet=null;
         String selectWhere = "USERNAME:"+user.getUSERNAME();
-
-        //插入使用空间开始
-        UseSpace useSpace = new UseSpace(user.getUID(), user.getUSERNAME(), "0", "20480");
-        useSpaceService.insertUseSpace(useSpace);
-        //插入使用空间结束
         SearchParams param = new SearchParams();
+
+        User user1 = new User();
         int flag = 0;
         try {
             resultSet = conn.executeSelect(dbName,selectWhere,0,10000,param);
@@ -65,7 +64,40 @@ public class UserServiceImpl implements UserService {
                 recordList.add(record);
 
                 conn.executeInsert(dbName,recordList);
-                return "success";
+
+                String MAXSIZE = request.getParameter("MAXSIZE");
+                if (MAXSIZE == null || MAXSIZE == ""){
+                    MAXSIZE = "20480";
+                } else {
+                    MAXSIZE = (Integer.parseInt(MAXSIZE) * 1024) + "";
+                }
+
+                user1.setUID(user.getUID());
+                user1.setUSERNAME(user.getUSERNAME());
+                user1.setFILESIZE("0");
+                user1.setMAXSIZE(MAXSIZE);
+                if (usersMapper.insertUser(user1) > 0){
+                    //TODO 向网盘配置文件添加用户
+                    File dest = new File("D:/CloudDisk/kiftd-source-master/conf/account.properties");
+                    //File dest = new File("C:/TRS/kiftd-source-master/conf/account.properties");
+                    try{
+                        BufferedWriter writer  = new BufferedWriter(new FileWriter(dest,true));
+                        writer.write("\r\n");
+                        writer.write(user.getUSERNAME() + ".auth=cudrm");
+                        writer.write("\r\n");
+                        writer.write(user.getUSERNAME() + ".pwd=000000");
+                        writer.flush();
+                        writer.close();
+                    }catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    return "success";
+                }else {
+                    return "false";
+                }
+
             }else {
                 return "same";
             }
@@ -108,11 +140,12 @@ public class UserServiceImpl implements UserService {
     @Override
     public String deleteUserData(String userName) {
         TRSConnection conn = HybaseConnectionUtil.getHybaseConnection();
+        String userNameOld = userName;
         userName = "\"" + userName + "\"";
         String deleteWhere = "USERNAME:" + userName;
         try {
             long num = conn.executeDeleteQuery("sj_users",deleteWhere);
-            if (num > 0){
+            if (num > 0 && usersMapper.deleteByUserName(userNameOld) > 0){
                 return "success";
             }else {
                 return "false";
@@ -126,7 +159,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public String updateUser(Users user) {
+    public String updateUser(Users user, HttpServletRequest request) {
         TRSConnection conn = HybaseConnectionUtil.getHybaseConnection();
         SearchParams params = new SearchParams();
         List<TRSInputRecord> newValues = new ArrayList<TRSInputRecord>();
@@ -150,7 +183,20 @@ public class UserServiceImpl implements UserService {
                 newValues.add(record);
             }
             conn.executeUpdate("sj_users",newValues);
-            return "success";
+
+            //TODO 更新mysql数据
+            String MAXSIZE = request.getParameter("MAXSIZE");
+            if (MAXSIZE == null || MAXSIZE == ""){
+                MAXSIZE = "20480";
+            } else {
+                MAXSIZE = Integer.parseInt(MAXSIZE)*1024 + "";
+            }
+            if (usersMapper.updateMaxSizeByUsername(MAXSIZE, user.getUSERNAME()) > 0){
+                return "success";
+            } else {
+                return "error";
+            }
+
         } catch (Exception e) {
             e.printStackTrace();
             return "error";
@@ -158,5 +204,10 @@ public class UserServiceImpl implements UserService {
             if (conn!=null)conn.close();
         }
 
+    }
+
+    @Override
+    public User selectUserByName(String userName) {
+        return usersMapper.queryByUsername(userName);
     }
 }

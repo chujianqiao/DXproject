@@ -1,26 +1,22 @@
 package com.trs.zhq.controller;
 
 import com.trs.hybase.client.TRSRecord;
+import com.trs.zhq.dao.UsersMapper;
 import com.trs.zhq.entity.*;
 import com.trs.zhq.service.ConfigService;
 import com.trs.zhq.service.TRSSearchService;
 import com.trs.zhq.service.UserService;
 import com.trs.zhq.util.*;
-import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.io.*;
-import java.net.URLEncoder;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 import java.util.UUID;
@@ -42,6 +38,8 @@ public class IndexController {
     private UserService userService;
 
 
+
+
     @RequestMapping("login")
     public String login() {
         return "login";
@@ -56,8 +54,8 @@ public class IndexController {
 
     @RequestMapping("register")
     @ResponseBody
-    public String register(Users user, int flag) {
-        String message = userService.insertUser(user);
+    public String register(Users user, int flag, HttpServletRequest request) {
+        String message = userService.insertUser(user, request);
         if (flag==1){
             if (message.equals("success")) {
                 return "successAdd";

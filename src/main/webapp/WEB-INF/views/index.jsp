@@ -70,6 +70,7 @@
         %>
         <li class="layui-nav-item" style="float: right">
             <a target="_blank" href="http://localhost:8090/prv/login.html?username=<%=request.getSession().getAttribute("CONSOLEUSERNAME") %>">网盘管理</a>
+            <%--<a target="_blank" href="http://192.168.1.16:8090/prv/login.html?username=<%=request.getSession().getAttribute("CONSOLEUSERNAME") %>">网盘管理</a>--%>
         </li>
     </ul>
     <div class="searchDiv layui-tab layui-tab-card" lay-filter="demo">

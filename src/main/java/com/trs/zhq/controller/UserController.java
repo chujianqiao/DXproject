@@ -2,6 +2,7 @@ package com.trs.zhq.controller;
 
 
 import com.trs.hybase.client.TRSRecord;
+import com.trs.zhq.entity.User;
 import com.trs.zhq.entity.Users;
 import com.trs.zhq.service.TRSSearchService;
 import com.trs.zhq.service.UseSpaceService;
@@ -92,8 +93,10 @@ public class UserController {
     @RequestMapping("toUpdateUser")
     public String toUpdateUser(String userName, HttpServletRequest request){
         Users user = this.userService.selectUserByUserName(userName);
-
+        User user1 = this.userService.selectUserByName(userName);
+        user1.setMAXSIZE(Integer.parseInt(user1.getMAXSIZE())/1024 + "");
         request.setAttribute("user",user);
+        request.setAttribute("user1",user1);
         return "updateUserContent";
     }
 
@@ -109,7 +112,7 @@ public class UserController {
 
         }
 
-        return this.userService.updateUser(user);
+        return this.userService.updateUser(user, request);
 
     }
 
@@ -121,12 +124,12 @@ public class UserController {
 
     @RequestMapping("updatePass")
     @ResponseBody
-    public String updatePass(String USERNAME, String PASSWORD, String oldPASSWORD){
+    public String updatePass(String USERNAME, String PASSWORD, String oldPASSWORD, HttpServletRequest request){
         Users user = this.userService.selectUserByUserName(USERNAME);
         if (MD5Util.compareWithPasswords(oldPASSWORD.toUpperCase(),
                 user.getPASSWORD(), user.getUID())) {
             user.setPASSWORD(PASSWORD);
-            return this.userService.updateUser(user);
+            return this.userService.updateUser(user, request);
         }else {
             return "falsePass";
         }

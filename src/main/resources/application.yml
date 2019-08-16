@@ -29,3 +29,15 @@ mybatis:
   mapper-locations: classpath:mybatis/mapper/*.xml
 
 
+  datasource:
+    name: test
+    url: jdbc:mysql://127.0.0.1:3306/kift?serverTimezone=UTC
+    #url: jdbc:mysql://192.168.1.15:3306/kift?serverTimezone=UTC
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.jdbc.Driver
+
+mybatis:
+  mapper-locations: classpath:dao/*Mapper.xml
+  type-aliases-package: com.trs.zhq.entity
+

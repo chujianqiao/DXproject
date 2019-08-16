@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.trs.zhq.dao.UsersMapper">
+	<resultMap id="BaseResultMap" type="com.trs.zhq.entity.User">
+		<result column="UID" jdbcType="VARCHAR" property="UID" />
+		<result column="USERNAME" jdbcType="VARCHAR" property="USERNAME" />
+		<result column="FILESIZE" jdbcType="VARCHAR" property="FILESIZE" />
+		<result column="MAXSIZE" jdbcType="VARCHAR" property="MAXSIZE" />
+	</resultMap>
+
+	<select id="queryByUsername" parameterType="java.lang.String"
+			resultMap="BaseResultMap">
+		SELECT * FROM USERS WHERE USERNAME = #{USERNAME,jdbcType=VARCHAR}
+	</select>
+
+	<insert id="insertUser" parameterType="com.trs.zhq.entity.User">
+		INSERT INTO USERS
+		VALUES(#{UID,jdbcType=VARCHAR},#{USERNAME,jdbcType=VARCHAR},#{FILESIZE,jdbcType=VARCHAR},#{MAXSIZE,jdbcType=VARCHAR})
+	</insert>
+
+	<delete id="deleteByUserName" parameterType="java.lang.String">
+		DELETE FROM USERS WHERE
+		USERNAME = #{USERNAME,jdbcType=VARCHAR}
+	</delete>
+
+	<update id="updateSizeByUsername" parameterType="java.util.Map">
+		UPDATE USERS SET FILESIZE = #{FILESIZE,jdbcType=VARCHAR} WHERE USERNAME
+		= #{USERNAME,jdbcType=VARCHAR}
+	</update>
+
+    <update id="updateMaxSizeByUsername" parameterType="java.util.Map">
+		UPDATE USERS SET MAXSIZE = #{MAXSIZE,jdbcType=VARCHAR} WHERE USERNAME
+		= #{USERNAME,jdbcType=VARCHAR}
+	</update>
+
+
+</mapper>
